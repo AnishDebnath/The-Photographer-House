@@ -1,0 +1,208 @@
+import React from 'react';
+import { Star, User, MapPin } from 'lucide-react';
+import { FullReview } from '../../types';
+
+const GoogleLogo = ({ className = "" }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" width="20" height="20" className={className} xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.24.81-.6z" fill="#FBBC05" />
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+    </svg>
+);
+
+const FacebookLogo = ({ className = "" }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" width="20" height="20" className={className} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="12" fill="#1877F2" />
+        <path d="M16.525 14.292l.532-3.47h-3.328v-2.25c0-.949.465-1.874 1.956-1.874h1.549V3.695s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.651H7.078v3.47h3.047v8.385a12.09 12.09 0 003.75 0v-8.385h2.65z" fill="#fff" />
+    </svg>
+);
+
+const InstagramLogo = ({ className = "" }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" width="20" height="20" className={className} xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="igLinear" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stopColor="#feda75" />
+                <stop offset="0.25" stopColor="#fa7e1e" />
+                <stop offset="0.5" stopColor="#d62976" />
+                <stop offset="0.75" stopColor="#962fbf" />
+                <stop offset="1" stopColor="#4f5bd5" />
+            </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igLinear)" />
+        <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm5.25-6.75a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z" fill="#fff" />
+    </svg>
+);
+
+export const Grid: React.FC = () => {
+    const reviews: FullReview[] = [
+        {
+            id: 1,
+            name: "Priya & Rahul",
+            role: "Wedding Couple",
+            location: "Udaipur, Rajasthan",
+            date: "October 2023",
+            rating: 5,
+            image: "https://picsum.photos/id/1005/100/100",
+            eventImage: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600",
+            text: "The team captured the soul of our wedding. Every photo brings back a flood of memories. They were invisible yet present everywhere, capturing moments we didn't even know happened. The cinematic film is something our family watches every weekend!",
+            source: 'google'
+        },
+        {
+            id: 2,
+            name: "Anita Desai",
+            role: "Fashion Designer",
+            location: "Mumbai, MH",
+            date: "September 2023",
+            rating: 5,
+            image: "https://picsum.photos/id/334/100/100",
+            eventImage: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&q=80&w=600",
+            text: "Professional, creative, and timely. They understood my brand vision perfectly. The product shots have elevated my catalog significantly, leading to a 30% increase in online inquiries.",
+            source: 'instagram'
+        },
+        {
+            id: 3,
+            name: "Mark & Sarah",
+            role: "Anniversary Shoot",
+            location: "North Goa",
+            date: "August 2023",
+            rating: 5,
+            image: "https://picsum.photos/id/129/100/100",
+            eventImage: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=600",
+            text: "We are awkward in front of cameras, but they made us feel so comfortable. The results are stunning. The team directed us gently, and the sunset shots are absolutely breathtaking.",
+            source: 'facebook'
+        },
+        {
+            id: 4,
+            name: "TechSolutions Inc.",
+            role: "Corporate Event",
+            location: "Electronic City, Bangalore",
+            date: "November 2023",
+            rating: 4,
+            image: "https://picsum.photos/id/4/100/100",
+            eventImage: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=600",
+            text: "Great coverage of our annual gala. The turnaround time for the photos was impressive, allowing us to post on social media the very next day. Highly recommended for corporate requirements.",
+            source: 'google'
+        },
+        {
+            id: 5,
+            name: "Vikram Singh",
+            role: "Groom",
+            location: "Jaipur, Rajasthan",
+            date: "July 2023",
+            rating: 5,
+            image: "https://picsum.photos/id/1012/100/100",
+            eventImage: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?auto=format&fit=crop&q=80&w=600",
+            text: "The pre-wedding shoot was an adventure! They scouted locations I didn't know existed in my own city. The final album is a work of art that sits proudly in our living room.",
+            source: 'instagram'
+        },
+        {
+            id: 6,
+            name: "Emily & James",
+            role: "Destination Wedding",
+            location: "Kochi, Kerala",
+            date: "December 2023",
+            rating: 5,
+            image: "https://picsum.photos/id/338/100/100",
+            eventImage: "https://images.unsplash.com/photo-1583939003579-73013917c9dd?auto=format&fit=crop&q=80&w=600",
+            text: "Planning a wedding from abroad is hard, but choosing this team was the easiest decision. Their communication was flawless, and they perfectly captured the cultural fusion of our ceremony.",
+            source: 'facebook'
+        },
+        {
+            id: 7,
+            name: "Raj & Simran",
+            role: "Reception",
+            location: "New Delhi",
+            date: "January 2024",
+            rating: 5,
+            image: "https://picsum.photos/id/64/100/100",
+            eventImage: "https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=600",
+            text: "The team captured the soul of our wedding. The colors, the emotions, the jewelry details—everything was preserved beautifully. Highly recommend!",
+            source: 'google'
+        },
+    ];
+
+    const renderStars = (count: number) => {
+        return [...Array(5)].map((_, i) => (
+            <Star
+                key={i}
+                size={14}
+                className={`${i < count ? 'fill-gold-500 text-gold-500' : 'fill-gray-200 text-gray-200 dark:fill-gray-700 dark:text-gray-700'}`}
+            />
+        ));
+    };
+
+    const renderSourceIcon = (source: FullReview['source']) => {
+        switch (source) {
+            case 'google':
+                return <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400"><GoogleLogo /> <span className="hidden sm:inline">Google</span></div>;
+            case 'facebook':
+                return <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400"><FacebookLogo /> <span className="hidden sm:inline text-blue-700 dark:text-blue-400">Facebook</span></div>;
+            case 'instagram':
+                return <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400"><InstagramLogo /> <span className="hidden sm:inline text-pink-700 dark:text-pink-400">Instagram</span></div>;
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <div className="container mx-auto px-6 py-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {reviews.map((review) => (
+                    <div
+                        key={review.id}
+                        className="flex flex-col h-full bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1"
+                    >
+                        <div className="relative h-56 overflow-hidden">
+                            <img
+                                src={review.eventImage}
+                                alt={`${review.name}'s Event`}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
+                        </div>
+
+                        <div className="flex flex-col flex-grow p-8">
+                            <div className="flex justify-between items-center mb-6">
+                                <div className="flex gap-1">
+                                    {renderStars(review.rating)}
+                                </div>
+                                <div className="opacity-80 hover:opacity-100 transition-opacity">
+                                    {renderSourceIcon(review.source)}
+                                </div>
+                            </div>
+
+                            <div className="flex-grow mb-8">
+                                <p className="text-gray-900 dark:text-gray-100 text-lg leading-relaxed italic font-medium line-clamp-6">
+                                    "{review.text}"
+                                </p>
+                            </div>
+
+                            <div className="flex items-center gap-4 pt-6 border-t border-gray-100 dark:border-white/5 mt-auto">
+                                <div className="relative shrink-0">
+                                    {review.image ? (
+                                        <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-gold-500/20 group-hover:ring-gold-500 transition-all" />
+                                    ) : (
+                                        <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center ring-2 ring-gold-500/20 group-hover:ring-gold-500 text-gray-400 transition-all">
+                                            <User size={20} />
+                                        </div>
+                                    )}
+                                </div>
+                                <div>
+                                    <h4 className="font-serif text-base text-gray-900 dark:text-white font-bold">{review.name}</h4>
+                                    <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold mt-1 text-gold-500">
+                                        <MapPin size={10} className="stroke-[2.5]" />
+                                        <span>{review.location}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
+};
+
+
+

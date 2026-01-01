@@ -1,0 +1,265 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+import { NavBar } from './components/NavBar';
+import { HomePage } from './pages/Home';
+import { PortfolioPage } from './pages/Portfolio';
+import { ServicesPage } from './pages/Services';
+import { FilmsPage } from './pages/Films';
+import { ReviewsPage } from './pages/Reviews';
+import { BlogPage } from './pages/Blog';
+import { AlbumsPage } from './pages/Albums';
+import { SpecialMomentsPage } from './pages/SpecialMoments';
+import { BookingPage } from './pages/Booking';
+import { AboutPage } from './pages/About';
+
+import { GalleryItem } from './types';
+import { galleryItems } from './data';
+
+function App() {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  // Navigation State
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'about' | 'portfolio' | 'services' | 'films' | 'reviews' | 'blog' | 'albums' | 'special-moments' | 'booking'
+  const [portfolioCategory, setPortfolioCategory] = useState('All');
+
+  // Lightbox State (Global for Home section interactions)
+  const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
+
+  // Video Modal State (Global/Home)
+  const [showVideoModal, setShowVideoModal] = useState(false);
+
+  // Blog Navigation State
+  const [selectedBlogId, setSelectedBlogId] = useState<number | null>(null);
+
+  // Handle Theme Toggle
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  // Navigation Logic
+  const handleNavigation = (page: string, sectionId?: string) => {
+    setCurrentPage(page);
+
+    // Reset portfolio category if navigating generally
+    if (page === 'portfolio') {
+      setPortfolioCategory('All');
+    }
+
+    if (page === 'home') {
+      if (sectionId) {
+        // Allow render to happen then scroll
+        setTimeout(() => {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          } else if (sectionId === 'root' || !sectionId) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Special redirect for portfolio deep linking
+  const navigateToPortfolioCategory = (category: string) => {
+    setPortfolioCategory(category);
+    setCurrentPage('portfolio');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBlogNavigation = (blogId: number) => {
+    setSelectedBlogId(blogId);
+    setCurrentPage('blog');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Lightbox Navigation Logic
+  const navigateLightbox = useCallback((direction: 'next' | 'prev') => {
+    if (!lightboxItem) return;
+    const currentIndex = galleryItems.findIndex(item => item.id === lightboxItem.id);
+    if (currentIndex === -1) return;
+
+    let newIndex;
+    if (direction === 'next') {
+      newIndex = (currentIndex + 1) % galleryItems.length;
+    } else {
+      newIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+    }
+    setLightboxItem(galleryItems[newIndex]);
+  }, [lightboxItem]);
+
+  // Lightbox Keyboard Support
+  useEffect(() => {
+    if (!lightboxItem) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxItem(null);
+      if (e.key === 'ArrowRight') navigateLightbox('next');
+      if (e.key === 'ArrowLeft') navigateLightbox('prev');
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxItem, navigateLightbox]);
+
+  // Lock scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxItem || showVideoModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [lightboxItem, showVideoModal]);
+
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+      <NavBar
+        isDarkMode={isDarkMode}
+        toggleTheme={toggleTheme}
+        currentPage={currentPage}
+        onNavigate={handleNavigation}
+      />
+
+      <main>
+        {currentPage === 'home' && (
+          <HomePage
+            onNavigate={handleNavigation}
+            navigateToPortfolioCategory={navigateToPortfolioCategory}
+            setLightboxItem={setLightboxItem}
+            setShowVideoModal={setShowVideoModal}
+            handleBlogNavigation={handleBlogNavigation}
+          />
+        )}
+        {currentPage === 'about' && (
+          <AboutPage onNavigate={handleNavigation} />
+        )}
+        {currentPage === 'portfolio' && (
+          <PortfolioPage initialCategory={portfolioCategory} />
+        )}
+        {currentPage === 'services' && (
+          <ServicesPage onNavigate={handleNavigation} />
+        )}
+        {currentPage === 'films' && (
+          <FilmsPage />
+        )}
+        {currentPage === 'reviews' && (
+          <ReviewsPage onNavigate={handleNavigation} />
+        )}
+        {currentPage === 'blog' && (
+          <BlogPage onNavigate={handleNavigation} initialPostId={selectedBlogId} />
+        )}
+        {currentPage === 'special-moments' && (
+          <SpecialMomentsPage onNavigate={handleNavigation} />
+        )}
+        {currentPage === 'booking' && (
+          <BookingPage />
+        )}
+        {currentPage === 'albums' && (
+          <AlbumsPage onNavigate={handleNavigation} />
+        )}
+      </main>
+
+      {/* --- LIGHTBOX (Global for Home Grid) --- */}
+      {lightboxItem && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 animate-in fade-in duration-300 backdrop-blur-sm"
+          onClick={() => setLightboxItem(null)}
+        >
+          <button
+            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-[110] p-2 bg-white/10 rounded-full hover:bg-white/20"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxItem(null);
+            }}
+            aria-label="Close lightbox"
+          >
+            <X size={32} />
+          </button>
+
+          <button
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:scale-110 transition-all z-[110] p-4 hidden md:block"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigateLightbox('prev');
+            }}
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={48} />
+          </button>
+
+          <button
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white hover:scale-110 transition-all z-[110] p-4 hidden md:block"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigateLightbox('next');
+            }}
+            aria-label="Next image"
+          >
+            <ChevronRight size={48} />
+          </button>
+
+          <div className="relative max-w-full max-h-[90vh] flex items-center justify-center">
+            <img
+              src={lightboxItem.image}
+              alt={lightboxItem.title}
+              className="max-w-full max-h-[90vh] object-contain shadow-2xl select-none"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* --- VIDEO MODAL (Global) --- */}
+      {showVideoModal && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 animate-in fade-in duration-500 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setShowVideoModal(false)}
+        >
+          <button
+            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-[110] p-2 bg-white/10 rounded-full hover:bg-white/20"
+            onClick={() => setShowVideoModal(false)}
+            aria-label="Close Video"
+          >
+            <X size={32} />
+          </button>
+          <div className="w-full max-w-6xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl relative">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+              title="Wedding Cinematography Showreel"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            ></iframe>
+          </div>
+        </div>
+      )}
+
+      {/* FOOTER */}
+      <footer className="bg-gray-100 dark:bg-zinc-950 py-12 border-t border-gray-200 dark:border-white/5 text-center transition-colors duration-300">
+        <div className="container mx-auto px-6">
+          <p className="text-gold-500 text-xs font-bold tracking-[0.2em] uppercase mb-4">The Photographer House</p>
+          <p className="text-gray-500 dark:text-gray-500 text-sm">© {new Date().getFullYear()} All rights reserved. Crafted with passion.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;
