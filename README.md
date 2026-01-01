@@ -2,8 +2,6 @@
 
 A premium, modern photography portfolio and business management platform built with React, TypeScript, and Vite. Designed to showcase breathtaking visual storytelling through a seamless, cinematic user experience.
 
-![GHBanner](https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6)
-
 ## ✨ Features
 
 - **🎭 Cinematic Portfolio**: Multi-category gallery with a custom masonry layout and high-performance lightbox.
@@ -81,8 +79,8 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the Copyright Rights Reserved License of The Photographer House.
 
 ---
 
-<p align="center">Crafted with ❤️ by Anish Debnath</p>
+<p align="center">Design & Developed by ❤️ by Anish Debnath</p>
