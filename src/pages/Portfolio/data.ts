@@ -4,11 +4,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Biswanath & Niketa",
         category: "Wedding",
-        coverImage: "assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (8).jpg",
+        coverImage: "/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (8).jpg",
         count: 10,
         items: Array.from({ length: 10 }, (_, i) => ({
             id: 101 + i,
-            image: `assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (${i + 1}).jpg`,
+            image: `/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (${i + 1}).jpg`,
             title: "Biswanath & Niketa",
             category: "Wedding"
         }))
@@ -16,11 +16,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Arijit & Susmita",
         category: "Wedding",
-        coverImage: "assets/portfolio/Wedding/Arijit & Susmita/arijit susmita wedding (2).jpg",
+        coverImage: "/assets/portfolio/Wedding/Arijit & Susmita/arijit susmita wedding (2).jpg",
         count: 13,
         items: Array.from({ length: 13 }, (_, i) => ({
             id: 201 + i,
-            image: `assets/portfolio/Wedding/Arijit & Susmita/arijit susmita wedding (${i + 1}).jpg`,
+            image: `/assets/portfolio/Wedding/Arijit & Susmita/arijit susmita wedding (${i + 1}).jpg`,
             title: "Arijit & Susmita",
             category: "Wedding"
         }))
@@ -28,11 +28,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Ayesha & Eliyaz",
         category: "Wedding",
-        coverImage: "assets/portfolio/Wedding/Ayesha & Eliyaz/ayesha eliyaz wedding (8).jpg",
+        coverImage: "/assets/portfolio/Wedding/Ayesha & Eliyaz/ayesha eliyaz wedding (8).jpg",
         count: 10,
         items: Array.from({ length: 10 }, (_, i) => ({
             id: 301 + i,
-            image: `assets/portfolio/Wedding/Ayesha & Eliyaz/ayesha eliyaz wedding (${i + 1}).jpg`,
+            image: `/assets/portfolio/Wedding/Ayesha & Eliyaz/ayesha eliyaz wedding (${i + 1}).jpg`,
             title: "Ayesha & Eliyaz",
             category: "Wedding"
         }))
@@ -40,11 +40,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Pooja & Anik",
         category: "Wedding",
-        coverImage: "assets/portfolio/Wedding/Pooja & Anik/pooja anik wedding (7).jpg",
+        coverImage: "/assets/portfolio/Wedding/Pooja & Anik/pooja anik wedding (7).jpg",
         count: 7,
         items: Array.from({ length: 7 }, (_, i) => ({
             id: 401 + i,
-            image: `assets/portfolio/Wedding/Pooja & Anik/pooja anik wedding (${i + 1}).jpg`,
+            image: `/assets/portfolio/Wedding/Pooja & Anik/pooja anik wedding (${i + 1}).jpg`,
             title: "Pooja & Anik",
             category: "Wedding"
         }))
@@ -52,11 +52,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Rajasree & Bishal",
         category: "Wedding",
-        coverImage: "assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (17).jpg",
+        coverImage: "/assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (17).jpg",
         count: 50,
         items: Array.from({ length: 50 }, (_, i) => ({
             id: 501 + i,
-            image: `assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (${i + 1}).jpg`,
+            image: `/assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (${i + 1}).jpg`,
             title: "Rajasree & Bishal",
             category: "Wedding"
         }))
@@ -64,11 +64,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Sourav & Swagata",
         category: "Wedding",
-        coverImage: "assets/portfolio/Wedding/Sourav & Swagata/sourav swagata wedding (8).jpg",
+        coverImage: "/assets/portfolio/Wedding/Sourav & Swagata/sourav swagata wedding (8).jpg",
         count: 10,
         items: Array.from({ length: 10 }, (_, i) => ({
             id: 601 + i,
-            image: `assets/portfolio/Wedding/Sourav & Swagata/sourav swagata wedding (${i + 1}).jpg`,
+            image: `/assets/portfolio/Wedding/Sourav & Swagata/sourav swagata wedding (${i + 1}).jpg`,
             title: "Sourav & Swagata",
             category: "Wedding"
         }))
@@ -76,11 +76,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Indranil & Plavita",
         category: "Engagement",
-        coverImage: "assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (10).jpg",
+        coverImage: "/assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (10).jpg",
         count: 10,
         items: Array.from({ length: 10 }, (_, i) => ({
             id: 701 + i,
-            image: `assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (${i + 1}).jpg`,
+            image: `/assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (${i + 1}).jpg`,
             title: "Indranil & Plavita",
             category: "Engagement"
         }))
@@ -88,11 +88,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Indranil & Plavita",
         category: "Reception",
-        coverImage: "assets/portfolio/Reception/Indranil & Plavita/indranil plavita reception (6).jpg",
+        coverImage: "/assets/portfolio/Reception/Indranil & Plavita/indranil plavita reception (6).jpg",
         count: 8,
         items: Array.from({ length: 8 }, (_, i) => ({
             id: 801 + i,
-            image: `assets/portfolio/Reception/Indranil & Plavita/indranil plavita reception (${i + 1}).jpg`,
+            image: `/assets/portfolio/Reception/Indranil & Plavita/indranil plavita reception (${i + 1}).jpg`,
             title: "Indranil & Plavita",
             category: "Reception"
         }))
@@ -100,11 +100,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Ayesha",
         category: "Haldi",
-        coverImage: "assets/portfolio/Haldi/Ayesha/ayesha haldi (10).jpg",
+        coverImage: "/assets/portfolio/Haldi/Ayesha/ayesha haldi (10).jpg",
         count: 11,
         items: Array.from({ length: 11 }, (_, i) => ({
             id: 901 + i,
-            image: `assets/portfolio/Haldi/Ayesha/ayesha haldi (${i + 1}).jpg`,
+            image: `/assets/portfolio/Haldi/Ayesha/ayesha haldi (${i + 1}).jpg`,
             title: "Ayesha",
             category: "Haldi"
         }))
@@ -112,11 +112,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Kiara",
         category: "Rice Ceremony",
-        coverImage: "assets/portfolio/Rice Ceremony/Kiara/kiara rice ceremony (6).jpg",
+        coverImage: "/assets/portfolio/Rice Ceremony/Kiara/kiara rice ceremony (6).jpg",
         count: 12,
         items: Array.from({ length: 12 }, (_, i) => ({
             id: 1001 + i,
-            image: `assets/portfolio/Rice Ceremony/Kiara/kiara rice ceremony (${i + 1}).jpg`,
+            image: `/assets/portfolio/Rice Ceremony/Kiara/kiara rice ceremony (${i + 1}).jpg`,
             title: "Kiara",
             category: "Rice Ceremony"
         }))
@@ -124,11 +124,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Oiendrila",
         category: "Rice Ceremony",
-        coverImage: "assets/portfolio/Rice Ceremony/Oiendrila/oiendrila rice ceremony (14).jpg",
+        coverImage: "/assets/portfolio/Rice Ceremony/Oiendrila/oiendrila rice ceremony (14).jpg",
         count: 14,
         items: Array.from({ length: 14 }, (_, i) => ({
             id: 1101 + i,
-            image: `assets/portfolio/Rice Ceremony/Oiendrila/oiendrila rice ceremony (${i + 1}).jpg`,
+            image: `/assets/portfolio/Rice Ceremony/Oiendrila/oiendrila rice ceremony (${i + 1}).jpg`,
             title: "Oiendrila",
             category: "Rice Ceremony"
         }))
@@ -136,11 +136,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "Studio Collection",
         category: "Jewellery Photography",
-        coverImage: "assets/portfolio/Jewellery Photography/Jewellery photoshoot/jewellery post (5).jpg",
+        coverImage: "/assets/portfolio/Jewellery Photography/Jewellery photoshoot/jewellery post (5).jpg",
         count: 35,
         items: Array.from({ length: 35 }, (_, i) => ({
             id: 1201 + i,
-            image: `assets/portfolio/Jewellery Photography/Jewellery photoshoot/jewellery post (${i + 1}).jpg`,
+            image: `/assets/portfolio/Jewellery Photography/Jewellery photoshoot/jewellery post (${i + 1}).jpg`,
             title: "Studio Collection",
             category: "Jewellery Photography"
         }))
@@ -148,11 +148,11 @@ export const projectFolders: PortfolioFolder[] = [
     {
         title: "AI Concept Shoot",
         category: "Jewellery Photography",
-        coverImage: "assets/portfolio/Jewellery Photography/Jewellery with AI Models/ai model (1).jpg",
+        coverImage: "/assets/portfolio/Jewellery Photography/Jewellery with AI Models/ai model (1).jpg",
         count: 15,
         items: Array.from({ length: 15 }, (_, i) => ({
             id: 1301 + i,
-            image: `assets/portfolio/Jewellery Photography/Jewellery with AI Models/ai model (${i + 1}).jpg`,
+            image: `/assets/portfolio/Jewellery Photography/Jewellery with AI Models/ai model (${i + 1}).jpg`,
             title: "AI Concept Shoot",
             category: "Jewellery Photography"
         }))
