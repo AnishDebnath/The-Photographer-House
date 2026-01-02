@@ -12,9 +12,7 @@ import { AlbumsPage } from './pages/Albums';
 import { SpecialMomentsPage } from './pages/SpecialMoments';
 import { BookingPage } from './pages/Booking';
 import { AboutPage } from './pages/About';
-
 import { GalleryItem } from './types';
-//why add this line of code
 import { galleryItems } from './pages/Home/data';
 
 function App() {
@@ -23,6 +21,7 @@ function App() {
   // Navigation State
   const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'about' | 'portfolio' | 'services' | 'films' | 'reviews' | 'blog' | 'albums' | 'special-moments' | 'booking'
   const [portfolioCategory, setPortfolioCategory] = useState('All');
+  const [portfolioFolder, setPortfolioFolder] = useState<string | null>(null);
 
   // Lightbox State (Global for Home section interactions)
   const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
@@ -53,6 +52,7 @@ function App() {
     // Reset portfolio category if navigating generally
     if (page === 'portfolio') {
       setPortfolioCategory('All');
+      setPortfolioFolder(null);
     }
 
     if (page === 'home') {
@@ -77,6 +77,14 @@ function App() {
   // Special redirect for portfolio deep linking
   const navigateToPortfolioCategory = (category: string) => {
     setPortfolioCategory(category);
+    setPortfolioFolder(null);
+    setCurrentPage('portfolio');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToPortfolioFolder = (category: string, folderTitle: string) => {
+    setPortfolioCategory(category);
+    setPortfolioFolder(folderTitle);
     setCurrentPage('portfolio');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -138,6 +146,7 @@ function App() {
           <HomePage
             onNavigate={handleNavigation}
             navigateToPortfolioCategory={navigateToPortfolioCategory}
+            navigateToPortfolioFolder={navigateToPortfolioFolder}
             setLightboxItem={setLightboxItem}
             setShowVideoModal={setShowVideoModal}
             handleBlogNavigation={handleBlogNavigation}
@@ -147,7 +156,7 @@ function App() {
           <AboutPage onNavigate={handleNavigation} />
         )}
         {currentPage === 'portfolio' && (
-          <PortfolioPage initialCategory={portfolioCategory} />
+          <PortfolioPage initialCategory={portfolioCategory} initialFolder={portfolioFolder} />
         )}
         {currentPage === 'services' && (
           <ServicesPage onNavigate={handleNavigation} />

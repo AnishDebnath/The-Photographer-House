@@ -16,6 +16,7 @@ import { Blog } from './Blog';
 interface HomePageProps {
     onNavigate: (page: string, sectionId?: string) => void;
     navigateToPortfolioCategory: (category: string) => void;
+    navigateToPortfolioFolder: (category: string, folderTitle: string) => void;
     setLightboxItem: (item: GalleryItem | null) => void;
     setShowVideoModal: (show: boolean) => void;
     handleBlogNavigation: (id: number) => void;
@@ -24,6 +25,7 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({
     onNavigate,
     navigateToPortfolioCategory,
+    navigateToPortfolioFolder,
     setLightboxItem,
     setShowVideoModal,
     handleBlogNavigation
@@ -34,7 +36,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <LatestWork onNavigate={onNavigate} setLightboxItem={setLightboxItem} />
             <VideoShowcase setShowVideoModal={setShowVideoModal} />
             <Callout onNavigate={onNavigate} />
-            <ClientStories navigateToPortfolioCategory={navigateToPortfolioCategory} />
+            <ClientStories navigateToPortfolioFolder={navigateToPortfolioFolder} />
             <Albums onNavigate={onNavigate} />
             <WeddingFilms onNavigate={onNavigate} setShowVideoModal={setShowVideoModal} />
             <Booking onNavigate={onNavigate} />

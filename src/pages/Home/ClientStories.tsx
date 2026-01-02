@@ -4,10 +4,10 @@ import { SectionHeader } from '../../components/SectionHeader';
 import { clientStories } from './data';
 
 interface ClientStoriesProps {
-    navigateToPortfolioCategory: (category: string) => void;
+    navigateToPortfolioFolder: (category: string, folderTitle: string) => void;
 }
 
-export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfolioCategory }) => {
+export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfolioFolder }) => {
     return (
         <section className="py-24 bg-zinc-950 transition-colors duration-300" aria-labelledby="stories-heading">
             <SectionHeader
@@ -24,7 +24,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfoli
                         <article
                             key={story.id}
                             className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden cursor-pointer shadow-2xl"
-                            onClick={() => navigateToPortfolioCategory('Wedding')}
+                            onClick={() => navigateToPortfolioFolder(story.category, story.folderTitle)}
                         >
                             <img
                                 src={story.image}
@@ -64,7 +64,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfoli
                 </div>
 
                 <div className="text-center mt-16">
-                    <Button variant="dark-outline" onClick={() => navigateToPortfolioCategory('Wedding')}>View All Stories</Button>
+                    <Button variant="dark-outline" onClick={() => navigateToPortfolioFolder('Wedding', 'Biswanath & Niketa')}>View All Stories</Button>
                 </div>
             </div>
         </section>

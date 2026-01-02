@@ -9,13 +9,14 @@ import { projectFolders, allItems } from './data';
 
 interface PortfolioPageProps {
   initialCategory?: string;
+  initialFolder?: string | null;
 }
 
-export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 'All' }) => {
+export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 'All', initialFolder = null }) => {
   // State for Navigation & View Modes
   const [activeTab, setActiveTab] = useState(initialCategory); // Controls the top filter tabs
-  const [viewMode, setViewMode] = useState<'folders' | 'gallery'>('folders'); // Controls whether we see folders or photos
-  const [openedFolderTitle, setOpenedFolderTitle] = useState<string | null>(null); // Which project folder is currently open
+  const [viewMode, setViewMode] = useState<'folders' | 'gallery'>(initialFolder ? 'gallery' : 'folders'); // Controls whether we see folders or photos
+  const [openedFolderTitle, setOpenedFolderTitle] = useState<string | null>(initialFolder); // Which project folder is currently open
 
   // State for Lightbox & Layout
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);

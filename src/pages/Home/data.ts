@@ -1,63 +1,63 @@
 export const clientStories = [
     {
         id: 1,
-        name: "Biswanath & Niketa",
+        name: "Rajasree & Bishal",
         category: "Wedding",
-        location: "Kolkata",
-        image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (1).jpg",
-        description: "A timeless celebration of love and culture."
+        folderTitle: "Rajasree & Bishal",
+        location: "Rishikesh",
+        image: "/src/assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (17).jpg",
+        description: "Serene moments in nature, reflecting the peace and love of their union."
     },
     {
         id: 2,
-        name: "Indranil & Plavita",
-        category: "Engagement",
-        location: "Bengaluru",
-        image: "/src/assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (1).jpg",
+        name: "Sourav & Swagata",
+        category: "Wedding",
+        folderTitle: "Sourav & Swagata",
+        location: "Goa",
+        image: "/src/assets/portfolio/wedding/Sourav & Swagata/sourav swagata wedding (8).jpg",
         description: "Captured the intimate glances and joyful beginnings of their forever."
     },
     {
         id: 3,
-        name: "Vikram & Aditi",
-        category: "Ceremony",
-        location: "Udaipur",
-        image: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800",
+        name: "Pooja & Anik",
+        category: "wedding",
+        folderTitle: "Pooja & Anik", // Mapping to an existing folder as a fallback
+        location: "Mumbai",
+        image: "/src/assets/portfolio/Wedding/Pooja & Anik/pooja anik wedding (7).jpg",
         description: "A grand palace celebration in Jaipur, where royalty meets modern elegance."
     },
     {
         id: 4,
-        name: "Arjun & Meera",
-        category: "Pre-Wedding",
-        location: "Goa",
-        image: "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800",
+        name: "Arijit & Susmita",
+        category: "Wedding",
+        folderTitle: "Arijit & Susmita", // Mapping to an existing folder
+        location: "Jaipur",
+        image: "/src/assets/portfolio/Wedding/Arijit & Susmita/arijit susmita wedding (2).jpg",
         description: "A candid evening walk capturing the anticipation of their new journey together."
     },
     {
         id: 5,
-        name: "Kabir & Zoya",
-        category: "Reception",
-        location: "Mumbai",
-        image: "https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=800",
+        name: "Biswanath & Niketa",
+        category: "Wedding",
+        folderTitle: "Biswanath & Niketa", // Mapping to an existing folder
+        location: "Kolkata",
+        image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (8).jpg",
         description: "Elegance and tradition blended perfectly in a night of celebration and joy."
     },
     {
         id: 6,
-        name: "Dev & Ishita",
-        category: "Post-Wedding",
-        location: "Rishikesh",
-        image: "https://images.unsplash.com/photo-1621621667797-e06afc217fb0?auto=format&fit=crop&q=80&w=800",
+        name: "Ayesha & Eliyaz",
+        category: "wedding",
+        folderTitle: "Ayesha & Eliyaz", // Mapping to an existing folder
+        location: "Goa",
+        image: "/src/assets/portfolio/Wedding/Ayesha & Eliyaz/ayesha eliyaz wedding (8).jpg",
         description: "Serene moments in nature, reflecting the peace and love of their union."
     },
 ];
 
-export const albumImages = [
-    "/src/assets/portfolio/Wedding/Rajasree & Bishal/post 6.jpg",
-    "/src/assets/portfolio/Jewellery Photography/Jewellery photoshoot/jewellery-cover.jpg",
-    "/src/assets/portfolio/Engagement/Indranil & Plavita/post 1.jpg",
-    "/src/assets/portfolio/Rice Ceremony/Oiendrila/baby post cover.jpg",
-    "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 3.jpg",
-    "/src/assets/portfolio/Wedding/Arijit & Susmita/as post cover.jpg",
-    "/src/assets/portfolio/Wedding/Sourav & Swagata/ss post 5.jpg"
-];
+import { albums } from '../Albums/data';
+
+export const albumImages = albums.map(album => album.image);
 
 export const faqs = [
     {
@@ -83,10 +83,10 @@ export const faqs = [
 ];
 
 export const galleryItems = [
-    { id: 1, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (1).jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 2, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (1).jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 3, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (3).jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 4, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (4).jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 5, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (5).jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 6, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (6).jpg", title: "Indranil & Plavita", category: "Engagement" },
+    { id: 1, image: "/src/assets/home/latest work/latest work (1).jpg", title: "Rajasree & Bishal", category: "Wedding" },
+    { id: 2, image: "/src/assets/home/latest work/latest work (2).jpg", title: "Sourav & Swagata", category: "Wedding" },
+    { id: 3, image: "/src/assets/home/latest work/latest work (3).jpg", title: "Pooja & Anik", category: "Wedding" },
+    { id: 4, image: "/src/assets/home/latest work/latest work (4).jpg", title: "Arijit & Susmita", category: "Wedding" },
+    { id: 5, image: "/src/assets/home/latest work/latest work (5).jpg", title: "Biswanath & Niketa", category: "Wedding" },
+    { id: 6, image: "/src/assets/home/latest work/latest work (6).jpg", title: "Ayesha & Eliyaz", category: "Wedding" },
 ];
