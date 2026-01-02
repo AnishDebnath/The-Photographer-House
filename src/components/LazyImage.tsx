@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
     src: string;
@@ -16,11 +16,16 @@ export const LazyImage: React.FC<LazyImageProps> = ({
 }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState(false);
+    const imgRef = useRef<HTMLImageElement>(null);
 
-    // Reset state if src changes
+    // Reset state and check for cached images
     useEffect(() => {
         setIsLoaded(false);
         setError(false);
+
+        if (imgRef.current?.complete) {
+            setIsLoaded(true);
+        }
     }, [src]);
 
     return (
@@ -33,11 +38,16 @@ export const LazyImage: React.FC<LazyImageProps> = ({
             )}
 
             <img
+                key={src} // Force re-mount on src change for cleaner state transitions
+                ref={imgRef}
                 src={src}
                 alt={alt}
                 loading="lazy"
                 onLoad={() => setIsLoaded(true)}
-                onError={() => setError(true)}
+                onError={() => {
+                    setError(true);
+                    setIsLoaded(false); // Ensure we don't show a broken image transition
+                }}
                 className={`
                     transition-all duration-1000 ease-out
                     ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105 blur-sm'}
@@ -47,7 +57,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
             />
 
             {error && (
-                <div className="absolute inset-0 flex items-center justify-center bg-zinc-900 border border-white/5">
+                <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 backdrop-blur-sm border border-white/5">
                     <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Image Unavailable</span>
                 </div>
             )}

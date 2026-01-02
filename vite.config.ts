@@ -2,6 +2,7 @@ import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+import fs from 'fs';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
@@ -19,7 +20,24 @@ export default defineConfig(({ mode }) => {
             dest: 'assets'
           }
         ]
-      })
+      }),
+      // Custom plugin to serve src/assets as /assets during dev
+      {
+        name: 'serve-src-assets',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            if (req.url?.startsWith('/assets/')) {
+              const assetPath = path.resolve(__dirname, 'src', req.url.slice(1));
+              if (fs.existsSync(assetPath)) {
+                res.setHeader('Content-Type', getMimeType(assetPath));
+                res.end(fs.readFileSync(assetPath));
+                return;
+              }
+            }
+            next();
+          });
+        }
+      }
     ],
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
@@ -33,3 +51,18 @@ export default defineConfig(({ mode }) => {
     }
   };
 });
+
+function getMimeType(filePath: string) {
+  const ext = path.extname(filePath).toLowerCase();
+  const mimes: Record<string, string> = {
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png': 'image/png',
+    '.gif': 'image/gif',
+    '.webp': 'image/webp',
+    '.svg': 'image/svg+xml',
+    '.mp4': 'video/mp4',
+    '.webm': 'video/webm'
+  };
+  return mimes[ext] || 'application/octet-stream';
+}

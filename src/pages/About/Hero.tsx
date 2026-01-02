@@ -1,13 +1,15 @@
 import React from 'react';
+import { LazyImage } from '../../components/LazyImage';
 
 export const Hero: React.FC = () => {
     return (
         <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
-                <img
+                <LazyImage
                     src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=1920"
                     alt="About Us Hero"
                     className="w-full h-full object-cover"
+                    containerClassName="w-full h-full"
                 />
                 <div className="absolute inset-0 bg-black/60"></div>
             </div>

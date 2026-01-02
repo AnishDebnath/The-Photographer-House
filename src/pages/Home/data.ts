@@ -14,13 +14,13 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Sourav & Swagata",
         location: "Goa",
-        image: "/assets/portfolio/wedding/Sourav & Swagata/sourav swagata wedding (8).jpg",
+        image: "/assets/portfolio/Wedding/Sourav & Swagata/sourav swagata wedding (8).jpg",
         description: "Captured the intimate glances and joyful beginnings of their forever."
     },
     {
         id: 3,
         name: "Pooja & Anik",
-        category: "wedding",
+        category: "Wedding",
         folderTitle: "Pooja & Anik", // Mapping to an existing folder as a fallback
         location: "Mumbai",
         image: "/assets/portfolio/Wedding/Pooja & Anik/pooja anik wedding (7).jpg",
@@ -47,7 +47,7 @@ export const clientStories = [
     {
         id: 6,
         name: "Ayesha & Eliyaz",
-        category: "wedding",
+        category: "Wedding",
         folderTitle: "Ayesha & Eliyaz", // Mapping to an existing folder
         location: "Goa",
         image: "/assets/portfolio/Wedding/Ayesha & Eliyaz/ayesha eliyaz wedding (8).jpg",

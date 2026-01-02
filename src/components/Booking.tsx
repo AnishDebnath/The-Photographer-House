@@ -1,6 +1,7 @@
 import React from 'react';
 import { Camera, MapPin, Calendar, Phone, ArrowRight, ChevronDown } from 'lucide-react';
 import { Button } from './Button';
+import { LazyImage } from './LazyImage';
 
 interface BookingProps {
     onNavigate: (page: string) => void;
@@ -11,10 +12,11 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
         <section className="relative py-32 bg-dark-950 flex items-center justify-center overflow-hidden border-t border-white/5">
             {/* Background */}
             <div className="absolute inset-0 z-0">
-                <img
+                <LazyImage
                     src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=1920"
                     alt="Booking Background"
                     className="w-full h-full object-cover opacity-20"
+                    containerClassName="w-full h-full absolute inset-0"
                 />
                 <div className="absolute inset-0 bg-black/60"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-dark-950"></div>
