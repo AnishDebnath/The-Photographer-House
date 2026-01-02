@@ -5,7 +5,7 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Rajasree & Bishal",
         location: "Rishikesh",
-        image: "assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (17).jpg",
+        image: "../src/assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (17).jpg",
         description: "Serene moments in nature, reflecting the peace and love of their union."
     },
     {
