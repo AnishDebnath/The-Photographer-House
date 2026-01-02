@@ -3,6 +3,8 @@ import { Button } from '../../components/Button';
 import { SectionHeader } from '../../components/SectionHeader';
 import { clientStories } from './data';
 
+import { LazyImage } from '../../components/LazyImage';
+
 interface ClientStoriesProps {
     navigateToPortfolioFolder: (category: string, folderTitle: string) => void;
 }
@@ -26,10 +28,11 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfoli
                             className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden cursor-pointer shadow-2xl"
                             onClick={() => navigateToPortfolioFolder(story.category, story.folderTitle)}
                         >
-                            <img
+                            <LazyImage
                                 src={story.image}
                                 alt={`Portrait of ${story.name}`}
                                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                containerClassName="h-full w-full"
                             />
 
                             {/* Gradient Overlay - Stronger for visibility */}

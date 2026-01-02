@@ -4,6 +4,8 @@ import { SectionHeader } from '../../components/SectionHeader';
 import { GalleryItem } from '../../types';
 import { galleryItems } from './data';
 
+import { LazyImage } from '../../components/LazyImage';
+
 interface LatestWorkProps {
     onNavigate: (page: string) => void;
     setLightboxItem: (item: GalleryItem | null) => void;
@@ -28,10 +30,11 @@ export const LatestWork: React.FC<LatestWorkProps> = ({ onNavigate, setLightboxI
                         aria-label={`Project: ${item.title} - ${item.category}`}
                         onClick={() => setLightboxItem(item)}
                     >
-                        <img
+                        <LazyImage
                             src={item.image}
                             alt={item.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            containerClassName="h-full w-full"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                     </article>

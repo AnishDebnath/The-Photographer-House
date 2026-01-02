@@ -2,6 +2,8 @@ import React from 'react';
 import { Button } from '../../components/Button';
 import { albumImages } from './data';
 
+import { LazyImage } from '../../components/LazyImage';
+
 interface AlbumsProps {
     onNavigate: (page: string) => void;
 }
@@ -28,7 +30,12 @@ export const Albums: React.FC<AlbumsProps> = ({ onNavigate }) => {
                     <div className="flex gap-8 px-4">
                         {albumImages.map((img, i) => (
                             <div key={`set1-${i}`} className="w-80 h-60 md:w-96 md:h-72 flex-shrink-0 rounded-[2rem] overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-lg" onClick={() => onNavigate('albums')}>
-                                <img src={img} alt="Album Preview" className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
+                                <LazyImage
+                                    src={img}
+                                    alt="Album Preview"
+                                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                                    containerClassName="w-full h-full"
+                                />
                             </div>
                         ))}
                     </div>
@@ -36,7 +43,12 @@ export const Albums: React.FC<AlbumsProps> = ({ onNavigate }) => {
                     <div className="flex gap-8 px-4">
                         {albumImages.map((img, i) => (
                             <div key={`set2-${i}`} className="w-80 h-60 md:w-96 md:h-72 flex-shrink-0 rounded-[2rem] overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-lg" onClick={() => onNavigate('albums')}>
-                                <img src={img} alt="Album Preview" className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" />
+                                <LazyImage
+                                    src={img}
+                                    alt="Album Preview"
+                                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                                    containerClassName="w-full h-full"
+                                />
                             </div>
                         ))}
                     </div>

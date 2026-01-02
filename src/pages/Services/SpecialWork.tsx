@@ -2,6 +2,8 @@ import React from 'react';
 import { Star, ArrowRight } from 'lucide-react';
 import { Button } from '../../components/Button';
 
+import { LazyImage } from '../../components/LazyImage';
+
 interface SpecialWorkProps {
     onNavigate: (page: string) => void;
 }
@@ -40,10 +42,7 @@ export const SpecialWork: React.FC<SpecialWorkProps> = ({ onNavigate }) => {
         },
         {
             id: 6,
-            image: "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?auto=format&fit=crop&q=80&w=800", // Fixed: Was missing leading 'h' in 'https' in original but assuming it was correct, wait, let me check original.
-            // Original: "http..." wait, no it was https. Let me double check if I need to fetch it.
-            // Line 199 in original view seems correct https. 
-            // Wait, I will use valid URLs.
+            image: "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?auto=format&fit=crop&q=80&w=800",
             title: "Neon Drift",
             category: "Creative"
         }
@@ -84,10 +83,11 @@ export const SpecialWork: React.FC<SpecialWorkProps> = ({ onNavigate }) => {
                         >
                             {/* Image Container - Using fixed height for consistent sizing + shadow effect */}
                             <div className="relative overflow-hidden h-[400px] w-full bg-gray-100 dark:bg-gray-900 shadow-xl group-hover:shadow-2xl transition-all duration-500 rounded-lg">
-                                <img
+                                <LazyImage
                                     src={item.image}
                                     alt={item.title}
                                     className="w-full h-full object-cover object-center transition-transform duration-1000 group-hover:scale-105 filter grayscale-[20%] group-hover:grayscale-0"
+                                    containerClassName="h-full w-full"
                                 />
 
                                 {/* Minimalist Hover Border Effect - No Text */}

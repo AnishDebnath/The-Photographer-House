@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { GalleryItem } from '../../types';
 
+import { LazyImage } from '../../components/LazyImage';
+
 interface GalleryViewProps {
     openedFolderTitle: string;
     activeTab: string;
@@ -44,13 +46,14 @@ export const GalleryView: React.FC<GalleryViewProps> = ({
                         {colItems.map((item) => (
                             <div
                                 key={item.id}
-                                className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md dark:shadow-none"
+                                className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md dark:shadow-none bg-zinc-800/10"
                                 onClick={() => setSelectedItem(item)}
                             >
-                                <img
+                                <LazyImage
                                     src={item.image}
                                     alt={item.title}
                                     className="w-full h-auto block transition-transform duration-700 group-hover:scale-110"
+                                    containerClassName="w-full"
                                 />
                             </div>
                         ))}

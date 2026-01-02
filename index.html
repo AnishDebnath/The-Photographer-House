@@ -1,54 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Photographer's House</title>
-    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              serif: ['"Playfair Display"', 'serif'],
-              sans: ['"Lato"', 'sans-serif'],
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Photographer's House</title>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Lato"', 'sans-serif'],
+          },
+          colors: {
+            gold: {
+              400: '#D4AF37',
+              500: '#C5A028',
+              600: '#B08D20',
+              900: '#4A3B0F',
             },
-            colors: {
-              gold: {
-                400: '#D4AF37',
-                500: '#C5A028',
-                600: '#B08D20',
-                900: '#4A3B0F',
-              },
-              dark: {
-                900: '#050505',
-                800: '#0a0a0a',
-                700: '#121212',
-              }
+            dark: {
+              900: '#050505',
+              800: '#0a0a0a',
+              700: '#121212',
             }
           }
         }
       }
-    </script>
-    <style>
-      /* Custom scrollbar for horizontal sections */
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
+    }
+  </script>
+  <style>
+    /* Custom scrollbar for horizontal sections */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
       }
-      .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+
+      100% {
+        transform: translateX(-50%);
       }
-      @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
       }
-      .animate-marquee {
-        animation: marquee 40s linear infinite;
+
+      100% {
+        background-position: 200% 0;
       }
-    </style>
+    }
+
+    .animate-marquee {
+      animation: marquee 40s linear infinite;
+    }
+  </style>
   <script type="importmap">
 {
   "imports": {
@@ -59,10 +80,13 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-300 antialiased selection:bg-gold-500 selection:text-white transition-colors duration-300">
-    <div id="root"></div>
+
+<body
+  class="bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-300 antialiased selection:bg-gold-500 selection:text-white transition-colors duration-300">
+  <div id="root"></div>
   <script type="module" src="/src/index.tsx"></script>
 </body>
+
 </html>

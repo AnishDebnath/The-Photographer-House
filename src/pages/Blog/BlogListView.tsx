@@ -4,6 +4,8 @@ import { Button } from '../../components/Button';
 import { BlogPost } from '../../types';
 import { blogPosts } from './data';
 
+import { LazyImage } from '../../components/LazyImage';
+
 interface BlogListViewProps {
     onPostClick: (post: BlogPost) => void;
 }
@@ -63,10 +65,11 @@ export const BlogListView: React.FC<BlogListViewProps> = ({ onPostClick }) => {
                         onClick={() => onPostClick(featuredPost)}
                     >
                         <div className="relative h-[400px] lg:h-auto overflow-hidden">
-                            <img
+                            <LazyImage
                                 src={featuredPost.image}
                                 alt={featuredPost.title}
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                containerClassName="h-full w-full"
                             />
                             <div className="absolute top-6 left-6 bg-gold-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
                                 Featured Story
@@ -100,10 +103,11 @@ export const BlogListView: React.FC<BlogListViewProps> = ({ onPostClick }) => {
                             className="relative h-64 overflow-hidden cursor-pointer"
                             onClick={() => onPostClick(post)}
                         >
-                            <img
+                            <LazyImage
                                 src={post.image}
                                 alt={post.title}
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                containerClassName="h-full w-full"
                             />
                             <div className="absolute top-4 left-4">
                                 <span className="bg-white/90 dark:bg-black/80 backdrop-blur-sm text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest text-gold-500">

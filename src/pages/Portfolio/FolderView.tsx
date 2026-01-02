@@ -2,6 +2,8 @@ import React from 'react';
 import { FolderOpen } from 'lucide-react';
 import { PortfolioFolder } from '../../types';
 
+import { LazyImage } from '../../components/LazyImage';
+
 interface FolderViewProps {
     folders: PortfolioFolder[];
     onFolderClick: (folderTitle: string) => void;
@@ -18,10 +20,11 @@ export const FolderView: React.FC<FolderViewProps> = ({ folders, onFolderClick }
                         className="group cursor-pointer relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
                     >
                         {/* Cover Image */}
-                        <img
+                        <LazyImage
                             src={folder.coverImage}
                             alt={folder.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            containerClassName="h-full w-full"
                         />
 
                         {/* Base Filter Layer - General readability improvement */}
