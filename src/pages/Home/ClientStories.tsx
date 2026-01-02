@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../../components/Button';
 import { SectionHeader } from '../../components/SectionHeader';
-import { clientStories } from '../../data';
+import { clientStories } from './data';
 
 interface ClientStoriesProps {
     navigateToPortfolioCategory: (category: string) => void;

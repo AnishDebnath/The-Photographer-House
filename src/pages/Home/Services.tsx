@@ -2,7 +2,7 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '../../components/Button';
 import { SectionHeader } from '../../components/SectionHeader';
-import { services } from '../../data';
+import { services } from '../Services/data';
 
 interface ServicesProps {
     onNavigate: (page: string) => void;

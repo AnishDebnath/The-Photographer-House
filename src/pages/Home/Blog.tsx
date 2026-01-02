@@ -2,7 +2,7 @@ import React from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '../../components/Button';
 import { SectionHeader } from '../../components/SectionHeader';
-import { blogs } from '../../data';
+import { blogs } from '../Blog/data';
 
 interface BlogProps {
     onNavigate: (page: string) => void;

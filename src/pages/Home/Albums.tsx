@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../../components/Button';
-import { albumImages } from '../../data';
+import { albumImages } from './data';
 
 interface AlbumsProps {
     onNavigate: (page: string) => void;

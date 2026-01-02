@@ -8,7 +8,7 @@ import { Callout } from './Callout';
 import { ClientStories } from './ClientStories';
 import { Albums } from './Albums';
 import { WeddingFilms } from './WeddingFilms';
-import { Booking } from './Booking';
+import { Booking } from '../../components/Booking';
 import { Services } from './Services';
 import { Faq } from './Faq';
 import { Blog } from './Blog';

@@ -2,32 +2,13 @@ import React from 'react';
 import { Quote, Star, MapPin, ArrowRight } from 'lucide-react';
 import { Button } from '../../components/Button';
 import { SectionHeader } from '../../components/SectionHeader';
+import { testimonials } from './data';
 
 interface TestimonialsProps {
     onNavigate: (page: string) => void;
 }
 
 export const Testimonials: React.FC<TestimonialsProps> = ({ onNavigate }) => {
-    const testimonials = [
-        {
-            name: "Priya & Rahul",
-            location: "Udaipur, India",
-            image: "https://picsum.photos/id/1005/100/100",
-            quote: "They didn't just take photos; they bottled the magic of the day. Looking at our album feels like reliving the wedding all over again. The team was invisible yet present everywhere."
-        },
-        {
-            name: "Elena & Marco",
-            location: "Tuscany, Italy",
-            image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
-            quote: "We were worried about being awkward in front of the camera, but Alex made it feel like a walk in the park. The photos are candid, raw, and undeniably us."
-        },
-        {
-            name: "Sarah Jenkins",
-            location: "London, UK",
-            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
-            quote: "For my fashion editorial, I needed someone who understood light and texture. The Photographer's House delivered imagery that elevated my entire brand."
-        }
-    ];
 
     return (
         <section className="py-24 bg-white dark:bg-dark-800 border-t border-gray-100 dark:border-white/5 transition-colors duration-300">

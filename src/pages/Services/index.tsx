@@ -3,7 +3,7 @@ import React from 'react';
 import { Hero } from './Hero';
 import { ServiceList } from './ServiceList';
 import { WhyChooseUs } from './WhyChooseUs';
-import { Booking } from './Booking';
+import { Booking } from '../../components/Booking';
 import { SpecialWork } from './SpecialWork';
 
 interface ServicesPageProps {

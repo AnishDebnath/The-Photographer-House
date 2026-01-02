@@ -1,5 +1,5 @@
 import React from 'react';
-import { specialMoments } from '../../data';
+import { specialMoments } from './data';
 
 interface GridProps {
     onImageClick: (index: number) => void;

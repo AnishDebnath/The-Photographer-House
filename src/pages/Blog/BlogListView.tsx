@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Search, Calendar, User, ChevronRight } from 'lucide-react';
 import { Button } from '../../components/Button';
 import { BlogPost } from '../../types';
-import { blogPosts } from '../../data';
+import { blogPosts } from './data';
 
 interface BlogListViewProps {
     onPostClick: (post: BlogPost) => void;

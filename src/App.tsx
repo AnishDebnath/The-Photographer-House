@@ -14,7 +14,8 @@ import { BookingPage } from './pages/Booking';
 import { AboutPage } from './pages/About';
 
 import { GalleryItem } from './types';
-import { galleryItems } from './data';
+//why add this line of code
+import { galleryItems } from './pages/Home/data';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);

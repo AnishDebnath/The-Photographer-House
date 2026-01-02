@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Hero } from './Hero';
 import { Grid } from './Grid';
 import { Lightbox } from './Lightbox';
-import { specialMoments } from '../../data';
+import { specialMoments } from './data';
 
 interface SpecialMomentsPageProps {
   onNavigate: (page: string, sectionId?: string) => void;

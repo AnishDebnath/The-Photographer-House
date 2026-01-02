@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../../components/Button';
 import { SectionHeader } from '../../components/SectionHeader';
 import { GalleryItem } from '../../types';
-import { galleryItems } from '../../data';
+import { galleryItems } from './data';
 
 interface LatestWorkProps {
     onNavigate: (page: string) => void;

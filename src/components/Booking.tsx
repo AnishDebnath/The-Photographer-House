@@ -1,6 +1,6 @@
 import React from 'react';
 import { Camera, MapPin, Calendar, Phone, ArrowRight, ChevronDown } from 'lucide-react';
-import { Button } from '../../components/Button';
+import { Button } from './Button';
 
 interface BookingProps {
     onNavigate: (page: string) => void;
@@ -148,6 +148,3 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
         </section>
     );
 };
-
-
-
