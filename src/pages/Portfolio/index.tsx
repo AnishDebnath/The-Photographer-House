@@ -27,67 +27,172 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
   }, [initialCategory]);
 
   // Extended data for the full portfolio
-  const allItems: GalleryItem[] = [
-    // { id: 1, image: "https://picsum.photos/id/1027/800/1200", title: "Rohan & Sneha", category: "Wedding" },
-    // { id: 2, image: "https://picsum.photos/id/433/800/800", title: "The Golden Ring", category: "Jewellery Photography" },
-    // { id: 3, image: "https://picsum.photos/id/338/800/1200", title: "Walk Together", category: "Pre-wedding" },
-    // { id: 4, image: "https://picsum.photos/id/250/800/800", title: "Heirloom Scent", category: "Product shoot" },
-    // { id: 5, image: "https://picsum.photos/id/106/800/800", title: "Grand Reception", category: "Reception" },
-    // { id: 6, image: "https://picsum.photos/id/64/800/1200", title: "She Said Yes", category: "Engagement" },
-    // { id: 7, image: "https://picsum.photos/id/1012/800/1200", title: "Forest Tales", category: "Pre-wedding" },
-    // { id: 8, image: "https://picsum.photos/id/1059/800/800", title: "Birthday Bash", category: "Birthday" },
-    // { id: 9, image: "https://picsum.photos/id/349/800/1200", title: "Haldi Vibes", category: "Haldi" },
-    // { id: 10, image: "https://picsum.photos/id/334/800/800", title: "First Rice", category: "Rice Ceremony" },
-    // { id: 11, image: "https://picsum.photos/id/292/800/800", title: "Kitchen Tools", category: "Product shoot" },
-    // { id: 12, image: "https://picsum.photos/id/177/800/1200", title: "Mountain Vows", category: "Wedding" },
-    // { id: 13, image: "https://picsum.photos/id/449/800/1200", title: "City Motion", category: "Reception" },
-    // { id: 14, image: "https://picsum.photos/id/129/800/800", title: "Intimate Moments", category: "Engagement" },
-    // { id: 15, image: "https://picsum.photos/id/65/800/1200", title: "Haldi Joy", category: "Haldi" },
-    // { id: 16, image: "https://picsum.photos/id/158/800/1200", title: "Golden Birthday", category: "Birthday" },
-    // { id: 17, image: "https://picsum.photos/id/1011/800/800", title: "Ceremonial Blessings", category: "Rice Ceremony" },
-    // { id: 18, image: "https://picsum.photos/id/1070/800/800", title: "Bridal Jewellery", category: "Jewellery Photography" },
-    // { id: 19, image: "https://picsum.photos/id/203/800/800", title: "Corporate Gala", category: "Event" },
-
-    // Wedding: Biswanath & Niketa
-    { id: 101, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 1.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 102, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 2.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 103, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 3.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 104, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 4.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 105, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 5.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 106, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 6.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 107, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 7.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 108, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 8.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 109, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 9.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 110, image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 10.jpg", title: "Biswanath & Niketa", category: "Wedding" },
-
-    // Engagement: Indranil & Plavita
-    { id: 201, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 1.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 202, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 2.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 203, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 3.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 204, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 4.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 205, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 5.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 206, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 6.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 207, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 7.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 208, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 8.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 209, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 9.jpg", title: "Indranil & Plavita", category: "Engagement" },
-    { id: 210, image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 10.jpg", title: "Indranil & Plavita", category: "Engagement" },
+  // Data for the full portfolio organized by project folders
+  const projectFolders: PortfolioFolder[] = [
+    {
+      title: "Biswanath & Niketa",
+      category: "Wedding",
+      coverImage: "/src/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (8).jpg",
+      count: 10,
+      items: Array.from({ length: 10 }, (_, i) => ({
+        id: 101 + i,
+        image: `/src/assets/portfolio/Wedding/Biswanath & Niketa/biswanath niketa wedding (${i + 1}).jpg`,
+        title: "Biswanath & Niketa",
+        category: "Wedding"
+      }))
+    },
+    {
+      title: "Arijit & Susmita",
+      category: "Wedding",
+      coverImage: "/src/assets/portfolio/Wedding/Arijit & Susmita/arijit susmita wedding (2).jpg",
+      count: 13,
+      items: Array.from({ length: 13 }, (_, i) => ({
+        id: 201 + i,
+        image: `/src/assets/portfolio/Wedding/Arijit & Susmita/arijit susmita wedding (${i + 1}).jpg`,
+        title: "Arijit & Susmita",
+        category: "Wedding"
+      }))
+    },
+    {
+      title: "Ayesha & Eliyaz",
+      category: "Wedding",
+      coverImage: "/src/assets/portfolio/Wedding/Ayesha & Eliyaz/ayesha eliyaz wedding (8).jpg",
+      count: 10,
+      items: Array.from({ length: 10 }, (_, i) => ({
+        id: 301 + i,
+        image: `/src/assets/portfolio/Wedding/Ayesha & Eliyaz/ayesha eliyaz wedding (${i + 1}).jpg`,
+        title: "Ayesha & Eliyaz",
+        category: "Wedding"
+      }))
+    },
+    {
+      title: "Pooja & Anik",
+      category: "Wedding",
+      coverImage: "/src/assets/portfolio/Wedding/Pooja & Anik/pooja anik wedding (7).jpg",
+      count: 7,
+      items: Array.from({ length: 7 }, (_, i) => ({
+        id: 401 + i,
+        image: `/src/assets/portfolio/Wedding/Pooja & Anik/pooja anik wedding (${i + 1}).jpg`,
+        title: "Pooja & Anik",
+        category: "Wedding"
+      }))
+    },
+    {
+      title: "Rajasree & Bishal",
+      category: "Wedding",
+      coverImage: "/src/assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (17).jpg",
+      count: 50,
+      items: Array.from({ length: 50 }, (_, i) => ({
+        id: 501 + i,
+        image: `/src/assets/portfolio/Wedding/Rajasree & Bishal/rajasree bishal wedding (${i + 1}).jpg`,
+        title: "Rajasree & Bishal",
+        category: "Wedding"
+      }))
+    },
+    {
+      title: "Sourav & Swagata",
+      category: "Wedding",
+      coverImage: "/src/assets/portfolio/Wedding/Sourav & Swagata/sourav swagata wedding (8).jpg",
+      count: 10,
+      items: Array.from({ length: 10 }, (_, i) => ({
+        id: 601 + i,
+        image: `/src/assets/portfolio/Wedding/Sourav & Swagata/sourav swagata wedding (${i + 1}).jpg`,
+        title: "Sourav & Swagata",
+        category: "Wedding"
+      }))
+    },
+    {
+      title: "Indranil & Plavita",
+      category: "Engagement",
+      coverImage: "/src/assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (10).jpg",
+      count: 10,
+      items: Array.from({ length: 10 }, (_, i) => ({
+        id: 701 + i,
+        image: `/src/assets/portfolio/Engagement/Indranil & Plavita/indranil plavita engagement (${i + 1}).jpg`,
+        title: "Indranil & Plavita",
+        category: "Engagement"
+      }))
+    },
+    {
+      title: "Indranil & Plavita",
+      category: "Reception",
+      coverImage: "/src/assets/portfolio/Reception/Indranil & Plavita/indranil plavita reception (6).jpg",
+      count: 8,
+      items: Array.from({ length: 8 }, (_, i) => ({
+        id: 801 + i,
+        image: `/src/assets/portfolio/Reception/Indranil & Plavita/indranil plavita reception (${i + 1}).jpg`,
+        title: "Indranil & Plavita",
+        category: "Reception"
+      }))
+    },
+    {
+      title: "Ayesha",
+      category: "Haldi",
+      coverImage: "/src/assets/portfolio/Haldi/Ayesha/ayesha haldi (10).jpg",
+      count: 11,
+      items: Array.from({ length: 11 }, (_, i) => ({
+        id: 901 + i,
+        image: `/src/assets/portfolio/Haldi/Ayesha/ayesha haldi (${i + 1}).jpg`,
+        title: "Ayesha",
+        category: "Haldi"
+      }))
+    },
+    {
+      title: "Kiara",
+      category: "Rice Ceremony",
+      coverImage: "/src/assets/portfolio/Rice Ceremony/Kiara/kiara rice ceremony (6).jpg",
+      count: 12,
+      items: Array.from({ length: 12 }, (_, i) => ({
+        id: 1001 + i,
+        image: `/src/assets/portfolio/Rice Ceremony/Kiara/kiara rice ceremony (${i + 1}).jpg`,
+        title: "Kiara",
+        category: "Rice Ceremony"
+      }))
+    },
+    {
+      title: "Oiendrila",
+      category: "Rice Ceremony",
+      coverImage: "/src/assets/portfolio/Rice Ceremony/Oiendrila/oiendrila rice ceremony (1).jpg",
+      count: 14,
+      items: Array.from({ length: 14 }, (_, i) => ({
+        id: 1101 + i,
+        image: `/src/assets/portfolio/Rice Ceremony/Oiendrila/oiendrila rice ceremony (${i + 1}).jpg`,
+        title: "Oiendrila",
+        category: "Rice Ceremony"
+      }))
+    },
+    {
+      title: "Studio Collection",
+      category: "Jewellery Photography",
+      coverImage: "/src/assets/portfolio/Jewellery Photography/Jewellery photoshoot/jewellery post (5).jpg",
+      count: 35,
+      items: Array.from({ length: 35 }, (_, i) => ({
+        id: 1201 + i,
+        image: `/src/assets/portfolio/Jewellery Photography/Jewellery photoshoot/jewellery post (${i + 1}).jpg`,
+        title: "Studio Collection",
+        category: "Jewellery Photography"
+      }))
+    },
+    {
+      title: "AI Concept Shoot",
+      category: "Jewellery Photography",
+      coverImage: "/src/assets/portfolio/Jewellery Photography/Jewellery with AI Models/ai model (1).jpg",
+      count: 15,
+      items: Array.from({ length: 15 }, (_, i) => ({
+        id: 1301 + i,
+        image: `/src/assets/portfolio/Jewellery Photography/Jewellery with AI Models/ai model (${i + 1}).jpg`,
+        title: "AI Concept Shoot",
+        category: "Jewellery Photography"
+      }))
+    }
   ];
 
-  // 1. Define Data Structure
-  const uniqueCategories = Array.from(new Set(allItems.map(item => item.category || 'Uncategorized')));
-  const categories = ['All', ...uniqueCategories];
+  // Derive allItems from projectFolders
+  const allItems = projectFolders.flatMap(folder => folder.items);
 
-  const uniqueProjectTitles = Array.from(new Set(allItems.map(item => item.title || 'Untitled')));
-  const projectFolders: PortfolioFolder[] = uniqueProjectTitles.map(title => {
-    const items = allItems.filter(i => i.title === title);
-    return {
-      title: title,
-      category: items[0].category, // Assume project shares one category
-      count: items.length,
-      coverImage: items[0].image,
-      items: items
-    };
-  });
+  // 1. Define Data Structure
+  const uniqueCategories = Array.from(new Set(projectFolders.map(f => f.category || 'Uncategorized')));
+  const categories = ['All', ...uniqueCategories];
 
   // 2. Logic for what to display based on state
   const displayedFolders = activeTab === 'All'

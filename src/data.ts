@@ -232,55 +232,55 @@ export const blogPosts: BlogPost[] = [
 export const blogs = blogPosts.map(({ id, title, image, date, category }) => ({ id, title, image, date, category }));
 
 export const albumImages = [
-    "https://images.unsplash.com/photo-1595535373192-fc0437894294?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1516655855035-d5215bcb5604?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1532153955177-f59af40d6472?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1629079360814-7221379b32c9?auto=format&fit=crop&q=80&w=800"
+    "/src/assets/portfolio/Wedding/Rajasree & Bishal/post 6.jpg",
+    "/src/assets/portfolio/Jewellery Photography/Jewellery photoshoot/jewellery-cover.jpg",
+    "/src/assets/portfolio/Engagement/Indranil & Plavita/post 1.jpg",
+    "/src/assets/portfolio/Rice Ceremony/Oiendrila/baby post cover.jpg",
+    "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 3.jpg",
+    "/src/assets/portfolio/Wedding/Arijit & Susmita/as post cover.jpg",
+    "/src/assets/portfolio/Wedding/Sourav & Swagata/ss post 5.jpg"
 ];
 
 export const specialMoments = [
     {
         id: 1,
-        image: "https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&q=80&w=1200",
-        title: "Golden Solitude",
-        desc: "Captured at dawn in the Himalayas.",
-        date: "Nov 12, 2023",
-        location: "Himalayas, India"
+        image: "/src/assets/portfolio/Wedding/Rajasree & Bishal/8I4A8166.jpg",
+        title: "The Royal Entry",
+        desc: "A grand entrance captured in its full glory.",
+        date: "Dec 2025",
+        location: "Kolkata, India"
     },
     {
         id: 2,
-        image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=1200",
-        title: "The Stare",
-        desc: "A fleeting connection on the streets of Mumbai.",
-        date: "Oct 28, 2023",
-        location: "Mumbai, Maharashtra"
+        image: "/src/assets/portfolio/Jewellery Photography/Jewellery photoshoot/gold Necklace- 27.0710 gm Earrings- 12.770 gm.jpg",
+        title: "Golden Elegance",
+        desc: "Fine details of traditional craftsmanship.",
+        date: "Nov 2025",
+        location: "Studio Session"
     },
     {
         id: 3,
-        image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1200",
-        title: "Vintage Lens",
-        desc: "Composition study with antique equipment.",
-        date: "Sep 15, 2023",
-        location: "Studio A, Delhi"
+        image: "/src/assets/portfolio/Rice Ceremony/Oiendrila/baby post 13.jpg",
+        title: "Innocent Wonder",
+        desc: "The pure joy of a first ceremony.",
+        date: "Oct 2025",
+        location: "Kolkata, India"
     },
     {
         id: 4,
-        image: "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?auto=format&fit=crop&q=80&w=1200",
-        title: "Neon Nights",
-        desc: "Cyberpunk aesthetics in Tokyo.",
-        date: "Aug 04, 2023",
-        location: "Shibuya, Tokyo"
+        image: "/src/assets/portfolio/Engagement/Indranil & Plavita/post 7.jpg",
+        title: "The Silent Vow",
+        desc: "An intimate moment amidst the celebration.",
+        date: "Sept 2025",
+        location: "Bengaluru, India"
     },
     {
         id: 5,
-        image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=1200",
-        title: "Nature's Palette",
-        desc: "Autumn colors in full bloom.",
-        date: "Nov 01, 2023",
-        location: "Kashmir Valley"
+        image: "/src/assets/portfolio/Wedding/Biswanath & Niketa/post 6.jpg",
+        title: "Eternal Union",
+        desc: "A beautiful capture of traditional rituals.",
+        date: "Aug 2025",
+        location: "Kolkata, India"
     },
     {
         id: 6,
