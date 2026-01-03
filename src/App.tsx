@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { NavBar } from './components/NavBar';
+import { Footer } from './components/Footer';
 import { HomePage } from './pages/Home';
 import { PortfolioPage } from './pages/Portfolio';
 import { ServicesPage } from './pages/Services';
@@ -283,13 +284,7 @@ function App() {
         </div>
       )}
 
-      {/* FOOTER */}
-      <footer className="bg-gray-100 dark:bg-zinc-950 py-12 border-t border-gray-200 dark:border-white/5 text-center transition-colors duration-300">
-        <div className="container mx-auto px-6">
-          <p className="text-gold-500 text-xs font-bold tracking-[0.2em] uppercase mb-4">The Photographer House</p>
-          <p className="text-gray-500 dark:text-gray-500 text-sm">© {new Date().getFullYear()} All rights reserved. Crafted with passion.</p>
-        </div>
-      </footer>
+      <Footer onNavigate={handleNavigation} />
     </div>
   );
 }
