@@ -17,7 +17,7 @@ export const Callout: React.FC<CalloutProps> = ({ onNavigate }) => {
                     "Not just a claim. It's our way of life. <br />
                     We offer bespoke, breathtaking & elite wedding photography services across the globe."
                 </p>
-                <Button variant="outline" size="sm" onClick={() => onNavigate('about')}>Read Our Story</Button>
+                <Button variant="outline" size="sm" onClick={() => onNavigate('about-tph')}>Read Our Story</Button>
             </div>
         </section>
     );

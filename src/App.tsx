@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { NavBar } from './components/NavBar';
@@ -17,9 +18,10 @@ import { galleryItems } from './pages/Home/data';
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // Navigation State
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'about' | 'portfolio' | 'services' | 'films' | 'reviews' | 'blog' | 'albums' | 'special-moments' | 'booking'
+  // Navigation State (Derived from location but keeping for stateful logic)
   const [portfolioCategory, setPortfolioCategory] = useState('All');
   const [portfolioFolder, setPortfolioFolder] = useState<string | null>(null);
 
@@ -32,6 +34,9 @@ function App() {
   // Blog Navigation State
   const [selectedBlogId, setSelectedBlogId] = useState<number | null>(null);
 
+  // Derived current page for NavBar highlight
+  const currentPage = location.pathname === '/' ? 'home' : (location.pathname === '/home' ? 'home' : location.pathname.substring(1));
+
   // Handle Theme Toggle
   useEffect(() => {
     if (isDarkMode) {
@@ -41,13 +46,36 @@ function App() {
     }
   }, [isDarkMode]);
 
+  // Update Page Title based on Route
+  useEffect(() => {
+    const baseTitle = 'The Photographer House';
+    const path = location.pathname;
+
+    const titles: Record<string, string> = {
+      '/': 'Premium Photography & Cinematography',
+      '/home': 'Premium Photography & Cinematography',
+      '/about-tph': 'About Our Story',
+      '/portfolio': portfolioFolder ? `${portfolioFolder} Gallery` : 'Portfolio & Gallery',
+      '/services': 'Services',
+      '/films': 'Films',
+      '/reviews': 'Reviews',
+      '/blog': 'Stories',
+      '/special-moments': 'Special Moments',
+      '/booking': 'Book Your Session',
+      '/albums': 'Photo Albums'
+    };
+
+    document.title = titles[path] ? `${titles[path]} | ${baseTitle}` : baseTitle;
+  }, [location.pathname, portfolioFolder]);
+
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
 
   // Navigation Logic
   const handleNavigation = (page: string, sectionId?: string) => {
-    setCurrentPage(page);
+    const path = page === 'home' ? '/' : `/${page}`;
+    navigate(path);
 
     // Reset portfolio category if navigating generally
     if (page === 'portfolio') {
@@ -78,20 +106,20 @@ function App() {
   const navigateToPortfolioCategory = (category: string) => {
     setPortfolioCategory(category);
     setPortfolioFolder(null);
-    setCurrentPage('portfolio');
+    navigate('/portfolio');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const navigateToPortfolioFolder = (category: string, folderTitle: string) => {
     setPortfolioCategory(category);
     setPortfolioFolder(folderTitle);
-    setCurrentPage('portfolio');
+    navigate('/portfolio');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBlogNavigation = (blogId: number) => {
     setSelectedBlogId(blogId);
-    setCurrentPage('blog');
+    navigate('/blog');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -142,43 +170,37 @@ function App() {
       />
 
       <main>
-        {currentPage === 'home' && (
-          <HomePage
-            onNavigate={handleNavigation}
-            navigateToPortfolioCategory={navigateToPortfolioCategory}
-            navigateToPortfolioFolder={navigateToPortfolioFolder}
-            setLightboxItem={setLightboxItem}
-            setShowVideoModal={setShowVideoModal}
-            handleBlogNavigation={handleBlogNavigation}
-          />
-        )}
-        {currentPage === 'about' && (
-          <AboutPage onNavigate={handleNavigation} />
-        )}
-        {currentPage === 'portfolio' && (
-          <PortfolioPage initialCategory={portfolioCategory} initialFolder={portfolioFolder} />
-        )}
-        {currentPage === 'services' && (
-          <ServicesPage onNavigate={handleNavigation} />
-        )}
-        {currentPage === 'films' && (
-          <FilmsPage />
-        )}
-        {currentPage === 'reviews' && (
-          <ReviewsPage onNavigate={handleNavigation} />
-        )}
-        {currentPage === 'blog' && (
-          <BlogPage onNavigate={handleNavigation} initialPostId={selectedBlogId} />
-        )}
-        {currentPage === 'special-moments' && (
-          <SpecialMomentsPage onNavigate={handleNavigation} />
-        )}
-        {currentPage === 'booking' && (
-          <BookingPage />
-        )}
-        {currentPage === 'albums' && (
-          <AlbumsPage onNavigate={handleNavigation} />
-        )}
+        <Routes>
+          <Route path="/" element={
+            <HomePage
+              onNavigate={handleNavigation}
+              navigateToPortfolioCategory={navigateToPortfolioCategory}
+              navigateToPortfolioFolder={navigateToPortfolioFolder}
+              setLightboxItem={setLightboxItem}
+              setShowVideoModal={setShowVideoModal}
+              handleBlogNavigation={handleBlogNavigation}
+            />
+          } />
+          <Route path="/home" element={
+            <HomePage
+              onNavigate={handleNavigation}
+              navigateToPortfolioCategory={navigateToPortfolioCategory}
+              navigateToPortfolioFolder={navigateToPortfolioFolder}
+              setLightboxItem={setLightboxItem}
+              setShowVideoModal={setShowVideoModal}
+              handleBlogNavigation={handleBlogNavigation}
+            />
+          } />
+          <Route path="/about-tph" element={<AboutPage onNavigate={handleNavigation} />} />
+          <Route path="/portfolio" element={<PortfolioPage initialCategory={portfolioCategory} initialFolder={portfolioFolder} />} />
+          <Route path="/services" element={<ServicesPage onNavigate={handleNavigation} />} />
+          <Route path="/films" element={<FilmsPage />} />
+          <Route path="/reviews" element={<ReviewsPage onNavigate={handleNavigation} />} />
+          <Route path="/blog" element={<BlogPage onNavigate={handleNavigation} initialPostId={selectedBlogId} />} />
+          <Route path="/special-moments" element={<SpecialMomentsPage onNavigate={handleNavigation} />} />
+          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/albums" element={<AlbumsPage onNavigate={handleNavigation} />} />
+        </Routes>
       </main>
 
       {/* --- LIGHTBOX (Global for Home Grid) --- */}

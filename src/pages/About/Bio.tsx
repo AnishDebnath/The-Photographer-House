@@ -24,7 +24,7 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
 
                         <div className="prose dark:prose-invert text-gray-600 dark:text-gray-300 leading-relaxed space-y-6">
                             <p className="text-xl font-light text-gray-900 dark:text-white">
-                                Founded in 2010, <strong>The Photographer's House</strong> began with a simple philosophy: that every photograph should not just prove you were there, but prove how it <em>felt</em> to be there.
+                                Founded in 2010, <strong>The Photographer House</strong> began with a simple philosophy: that every photograph should not just prove you were there, but prove how it <em>felt</em> to be there.
                             </p>
                             <p>
                                 We are a collective of dreamers, storytellers, and technical perfectionists. Led by Alex Richardson, our team has traveled to over 20 countries, documenting everything from royal weddings in Rajasthan to intimate elopements in the Swiss Alps.

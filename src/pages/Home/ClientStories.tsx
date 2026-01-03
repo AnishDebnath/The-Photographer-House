@@ -7,9 +7,10 @@ import { LazyImage } from '../../components/LazyImage';
 
 interface ClientStoriesProps {
     navigateToPortfolioFolder: (category: string, folderTitle: string) => void;
+    navigateToPortfolioCategory: (category: string) => void;
 }
 
-export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfolioFolder }) => {
+export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfolioFolder, navigateToPortfolioCategory }) => {
     return (
         <section className="py-24 bg-zinc-950 transition-colors duration-300" aria-labelledby="stories-heading">
             <SectionHeader
@@ -67,7 +68,7 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfoli
                 </div>
 
                 <div className="text-center mt-16">
-                    <Button variant="dark-outline" onClick={() => navigateToPortfolioFolder('Wedding', 'Biswanath & Niketa')}>View All Stories</Button>
+                    <Button variant="dark-outline" onClick={() => navigateToPortfolioCategory('Wedding')}>View All Stories</Button>
                 </div>
             </div>
         </section>

@@ -34,9 +34,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         <>
             <Hero onNavigate={onNavigate} />
             <LatestWork onNavigate={onNavigate} setLightboxItem={setLightboxItem} />
-            <VideoShowcase setShowVideoModal={setShowVideoModal} />
+            <VideoShowcase onNavigate={onNavigate} />
             <Callout onNavigate={onNavigate} />
-            <ClientStories navigateToPortfolioFolder={navigateToPortfolioFolder} />
+            <ClientStories navigateToPortfolioFolder={navigateToPortfolioFolder} navigateToPortfolioCategory={navigateToPortfolioCategory} />
             <Albums onNavigate={onNavigate} />
             <WeddingFilms onNavigate={onNavigate} setShowVideoModal={setShowVideoModal} />
             <Booking onNavigate={onNavigate} />

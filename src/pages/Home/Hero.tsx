@@ -63,12 +63,12 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 <div className="relative">
                     <img
                         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=150&h=150"
-                        alt="Alex Richardson"
+                        alt="Preetam Chakraborty"
                         className="w-14 h-14 rounded-full border-2 border-gold-500 object-cover"
                     />
                 </div>
                 <div className="flex flex-col justify-center">
-                    <h3 className="font-serif text-white text-lg leading-tight tracking-wide">Alex Richardson</h3>
+                    <h3 className="font-serif text-white text-lg leading-tight tracking-wide">Preetam Chakraborty</h3>
                     <div className="flex items-center gap-1.5 mt-0.5">
                         <BadgeCheck size={14} className="text-gold-500 fill-gold-500 text-red-950" />
                         <p className="text-[10px] font-bold text-gold-500 uppercase tracking-[0.15em]">Lead Photographer</p>
