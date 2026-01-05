@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     className="w-full h-full object-cover opacity-50"
                     poster="https://picsum.photos/id/431/1920/1080"
                 >
-                    <source src="https://videos.pexels.com/video-files/3205915/3205915-hd_1920_1080_25fps.mp4" type="video/mp4" />
+                    <source src="/assets/home/hero video/Photographer.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-b from-dark-900/70 via-dark-900/40 to-dark-900/90"></div>
