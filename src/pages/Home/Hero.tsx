@@ -25,13 +25,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover opacity-50"
-                    poster="https://picsum.photos/id/431/1920/1080"
+                    className="w-full h-full object-cover opacity-60"
+                // poster="https://picsum.photos/id/431/1920/1080"
                 >
-                    <source src="/assets/home/hero video/Photographer.mp4" type="video/mp4" />
+                    <source src="/assets/home/homepage hero.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
-                <div className="absolute inset-0 bg-gradient-to-b from-dark-900/70 via-dark-900/40 to-dark-900/90"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-900/40 to-dark-900/90"></div>
             </div>
 
             <div
@@ -55,7 +55,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div>
 
             {/* Lead Photographer Badge */}
-            <div
+            {/* <div
                 className="absolute bottom-10 right-10 z-20 hidden md:flex items-center gap-4 bg-red-900/20 backdrop-blur-md border border-red-500/20 p-2 pr-8 rounded-full shadow-2xl cursor-default hover:bg-red-900/30 transition-colors"
                 role="region"
                 aria-label="Lead Photographer Profile"
@@ -74,7 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                         <p className="text-[10px] font-bold text-gold-500 uppercase tracking-[0.15em]">Lead Photographer</p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </section>
     );
 };

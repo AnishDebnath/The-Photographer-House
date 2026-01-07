@@ -13,7 +13,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
             {/* Background */}
             <div className="absolute inset-0 z-0">
                 <LazyImage
-                    src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=1920"
+                    src="assets/booking banner.jpg"
                     alt="Booking Background"
                     className="w-full h-full object-cover opacity-20"
                     containerClassName="w-full h-full absolute inset-0"
