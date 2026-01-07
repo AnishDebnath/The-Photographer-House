@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BadgeCheck } from 'lucide-react';
 import { Button } from '../../components/Button';
 
@@ -8,6 +8,8 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     const [scrollY, setScrollY] = useState(0);
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,16 +19,43 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        const video = videoRef.current;
+        if (video) {
+            const handleCanPlay = () => setIsVideoLoaded(true);
+            video.addEventListener('canplaythrough', handleCanPlay);
+            // If video is already loaded (cached), set state immediately
+            if (video.readyState >= 3) {
+                setIsVideoLoaded(true);
+            }
+            return () => video.removeEventListener('canplaythrough', handleCanPlay);
+        }
+    }, []);
+
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black" aria-label="Hero Section">
             <div className="absolute inset-0 z-0">
+                {/* Loading shimmer background */}
+                {!isVideoLoaded && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-dark-900 via-dark-700 to-dark-900 animate-pulse">
+                        <div
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+                            style={{
+                                animation: 'shimmer 2s infinite',
+                                backgroundSize: '200% 100%'
+                            }}
+                        />
+                    </div>
+                )}
                 <video
+                    ref={videoRef}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover opacity-60"
-                // poster="https://picsum.photos/id/431/1920/1080"
+                    preload="auto"
+                    poster="/assets/hero-poster.jpg"
+                    className={`w-full h-full object-cover opacity-60 transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-60' : 'opacity-0'}`}
                 >
                     <source src="/assets/home/homepage hero.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
