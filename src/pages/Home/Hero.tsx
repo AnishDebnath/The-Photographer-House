@@ -8,10 +8,8 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     const [scrollY, setScrollY] = useState(0);
-    const [isLowResLoaded, setIsLowResLoaded] = useState(false);
-    const [isHDLoaded, setIsHDLoaded] = useState(false);
-    const lowResVideoRef = useRef<HTMLVideoElement>(null);
-    const hdVideoRef = useRef<HTMLVideoElement>(null);
+    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,24 +19,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Low-res video ready handler
     useEffect(() => {
-        const video = lowResVideoRef.current;
+        const video = videoRef.current;
         if (video) {
-            const handleCanPlay = () => setIsLowResLoaded(true);
-            video.addEventListener('canplay', handleCanPlay);
-            if (video.readyState >= 2) setIsLowResLoaded(true);
-            return () => video.removeEventListener('canplay', handleCanPlay);
-        }
-    }, []);
-
-    // HD video ready handler
-    useEffect(() => {
-        const video = hdVideoRef.current;
-        if (video) {
-            const handleCanPlay = () => setIsHDLoaded(true);
+            const handleCanPlay = () => setIsVideoLoaded(true);
             video.addEventListener('canplaythrough', handleCanPlay);
-            if (video.readyState >= 3) setIsHDLoaded(true);
+            // If video is already loaded (cached), set state immediately
+            if (video.readyState >= 3) {
+                setIsVideoLoaded(true);
+            }
             return () => video.removeEventListener('canplaythrough', handleCanPlay);
         }
     }, []);
@@ -46,9 +35,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black" aria-label="Hero Section">
             <div className="absolute inset-0 z-0">
-                {/* Fallback placeholder image */}
+                {/* Loading placeholder with visible background */}
                 <div
-                    className={`absolute inset-0 transition-opacity duration-500 ${isLowResLoaded || isHDLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                    className={`absolute inset-0 transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
                     style={{
                         backgroundImage: 'url(/assets/booking banner.jpg)',
                         backgroundSize: 'cover',
@@ -57,33 +46,18 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 >
                     <div className="absolute inset-0 bg-black/40 animate-pulse" />
                 </div>
-
-                {/* Low-res video (loads fast, plays immediately) */}
                 <video
-                    ref={lowResVideoRef}
+                    ref={videoRef}
                     autoPlay
                     loop
                     muted
                     playsInline
                     preload="auto"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isLowResLoaded && !isHDLoaded ? 'opacity-60' : 'opacity-0'}`}
+                    className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-60' : 'opacity-0'}`}
                 >
-                    <source src="/assets/home/homepage hero-low.mp4" type="video/mp4" />
+                    <source src="/assets/home/homepage hero 1.webm" type="video/webm" />
+                    Your browser does not support the video tag.
                 </video>
-
-                {/* HD video (loads in background, swaps in when ready) */}
-                <video
-                    ref={hdVideoRef}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isHDLoaded ? 'opacity-60' : 'opacity-0'}`}
-                >
-                    <source src="/assets/home/homepage hero.mp4" type="video/mp4" />
-                </video>
-
                 <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-900/40 to-dark-900/90"></div>
             </div>
 
