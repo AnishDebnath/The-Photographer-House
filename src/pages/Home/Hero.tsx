@@ -35,18 +35,17 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black" aria-label="Hero Section">
             <div className="absolute inset-0 z-0">
-                {/* Loading shimmer background */}
-                {!isVideoLoaded && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-dark-900 via-dark-700 to-dark-900 animate-pulse">
-                        <div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-                            style={{
-                                animation: 'shimmer 2s infinite',
-                                backgroundSize: '200% 100%'
-                            }}
-                        />
-                    </div>
-                )}
+                {/* Loading placeholder with visible background */}
+                <div
+                    className={`absolute inset-0 transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-0' : 'opacity-100'}`}
+                    style={{
+                        backgroundImage: 'url(/assets/booking banner.jpg)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                    }}
+                >
+                    <div className="absolute inset-0 bg-black/40 animate-pulse" />
+                </div>
                 <video
                     ref={videoRef}
                     autoPlay
@@ -54,8 +53,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     muted
                     playsInline
                     preload="auto"
-                    poster="/assets/hero-poster.jpg"
-                    className={`w-full h-full object-cover opacity-60 transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-60' : 'opacity-0'}`}
+                    className={`w-full h-full object-cover transition-opacity duration-1000 ${isVideoLoaded ? 'opacity-60' : 'opacity-0'}`}
                 >
                     <source src="/assets/home/homepage hero.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
