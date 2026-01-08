@@ -69,12 +69,11 @@ export interface BlogPost {
 export interface FullReview {
   id: number;
   name: string;
-  role: string;
   location: string;
-  date: string;
   rating: number;
   image?: string;
   eventImage: string;
+  video?: string;
   text: string;
   source: 'google' | 'facebook' | 'instagram';
 }

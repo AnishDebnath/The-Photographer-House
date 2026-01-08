@@ -48,14 +48,17 @@ export const Grid: React.FC = () => {
         ));
     };
 
-    const renderSourceIcon = (source: FullReview['source']) => {
+    const renderSourceIcon = (source: FullReview['source'], isOverlay: boolean = false, forceDarkText: boolean = false) => {
+        let textColor = isOverlay ? 'text-white' : 'text-gray-800 dark:text-gray-200';
+        if (forceDarkText) textColor = 'text-gray-900'; // Strong dark color for Google label
+
         switch (source) {
             case 'google':
-                return <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400"><GoogleLogo /> <span className="hidden sm:inline">Google</span></div>;
+                return <div className={`flex items-center gap-1 text-xs font-medium ${textColor}`}><GoogleLogo /> <span className="hidden sm:inline">Google</span></div>;
             case 'facebook':
-                return <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400"><FacebookLogo /> <span className="hidden sm:inline text-blue-700 dark:text-blue-400">Facebook</span></div>;
+                return <div className={`flex items-center gap-1 text-xs font-medium ${textColor}`}><FacebookLogo /> <span className={`hidden sm:inline ${isOverlay ? 'text-white' : (forceDarkText ? 'text-blue-700' : 'text-blue-700 dark:text-blue-300')}`}>Facebook</span></div>;
             case 'instagram':
-                return <div className="flex items-center gap-1 text-xs font-medium text-gray-500 dark:text-gray-400"><InstagramLogo /> <span className="hidden sm:inline text-pink-700 dark:text-pink-400">Instagram</span></div>;
+                return <div className={`flex items-center gap-1 text-xs font-medium ${textColor}`}><InstagramLogo /> <span className={`hidden sm:inline ${isOverlay ? 'text-white' : (forceDarkText ? 'text-pink-700' : 'text-pink-700 dark:text-pink-300')}`}>Instagram</span></div>;
             default:
                 return null;
         }
@@ -65,55 +68,103 @@ export const Grid: React.FC = () => {
         <div className="container mx-auto px-6 py-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {reviews.map((review) => (
-                    <div
-                        key={review.id}
-                        className="flex flex-col h-full bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1"
-                    >
-                        <div className="relative h-56 overflow-hidden">
-                            <img
-                                src={review.eventImage}
-                                alt={`${review.name}'s Event`}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    review.video ? (
+                        <div
+                            key={review.id}
+                            className="relative h-full min-h-[400px] bg-dark-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1 block"
+                        >
+                            <video
+                                src={review.video}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
-                        </div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
 
-                        <div className="flex flex-col flex-grow p-8">
-                            <div className="flex justify-between items-center mb-6">
-                                <div className="flex gap-1">
-                                    {renderStars(review.rating)}
+                            {/* Overlay Content */}
+                            <div className="absolute inset-0 p-8 flex flex-col justify-between">
+                                <div className="flex justify-between items-center mb-6">
+                                    <div className="flex gap-1">
+                                        {renderStars(review.rating)}
+                                    </div>
+                                    <div className="opacity-90 hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm">
+                                        {renderSourceIcon(review.source, false, true)}
+                                    </div>
                                 </div>
-                                <div className="opacity-80 hover:opacity-100 transition-opacity">
-                                    {renderSourceIcon(review.source)}
-                                </div>
-                            </div>
 
-                            <div className="flex-grow mb-8">
-                                <p className="text-gray-900 dark:text-gray-100 text-lg leading-relaxed italic font-medium line-clamp-6">
-                                    "{review.text}"
-                                </p>
-                            </div>
-
-                            <div className="flex items-center gap-4 pt-6 border-t border-gray-100 dark:border-white/5 mt-auto">
-                                <div className="relative shrink-0">
-                                    {review.image ? (
-                                        <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-gold-500/20 group-hover:ring-gold-500 transition-all" />
-                                    ) : (
-                                        <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center ring-2 ring-gold-500/20 group-hover:ring-gold-500 text-gray-400 transition-all">
-                                            <User size={20} />
+                                <div className="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
+                                    <div className="relative shrink-0">
+                                        {review.image ? (
+                                            <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-gold-500/20 group-hover:ring-gold-500 transition-all" />
+                                        ) : (
+                                            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center ring-2 ring-gold-500/20 group-hover:ring-gold-500 text-white transition-all">
+                                                <User size={20} />
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <h4 className="font-serif text-base text-white font-bold">{review.name}</h4>
+                                        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold mt-1 text-gold-500">
+                                            <MapPin size={10} className="stroke-[2.5]" />
+                                            <span>{review.location}</span>
                                         </div>
-                                    )}
-                                </div>
-                                <div>
-                                    <h4 className="font-serif text-base text-gray-900 dark:text-white font-bold">{review.name}</h4>
-                                    <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold mt-1 text-gold-500">
-                                        <MapPin size={10} className="stroke-[2.5]" />
-                                        <span>{review.location}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div
+                            key={review.id}
+                            className="flex flex-col h-full bg-white dark:bg-dark-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1"
+                        >
+                            <div className="relative h-56 overflow-hidden">
+                                <img
+                                    src={review.eventImage}
+                                    alt={`${review.name}'s Event`}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
+                            </div>
+
+                            <div className="flex flex-col flex-grow p-8">
+                                <div className="flex justify-between items-center mb-6">
+                                    <div className="flex gap-1">
+                                        {renderStars(review.rating)}
+                                    </div>
+                                    <div className="opacity-80 hover:opacity-100 transition-opacity">
+                                        {renderSourceIcon(review.source)}
+                                    </div>
+                                </div>
+
+                                <div className="flex-grow mb-8">
+                                    <p className="text-gray-900 dark:text-gray-100 text-lg leading-relaxed italic font-medium line-clamp-6">
+                                        "{review.text}"
+                                    </p>
+                                </div>
+
+                                <div className="flex items-center gap-4 pt-6 border-t border-gray-100 dark:border-white/5 mt-auto">
+                                    <div className="relative shrink-0">
+                                        {review.image ? (
+                                            <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-gold-500/20 group-hover:ring-gold-500 transition-all" />
+                                        ) : (
+                                            <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center ring-2 ring-gold-500/20 group-hover:ring-gold-500 text-gray-400 transition-all">
+                                                <User size={20} />
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div>
+                                        <h4 className="font-serif text-base text-gray-900 dark:text-white font-bold">{review.name}</h4>
+                                        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold mt-1 text-gold-500">
+                                            <MapPin size={10} className="stroke-[2.5]" />
+                                            <span>{review.location}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
                 ))}
             </div>
         </div>
