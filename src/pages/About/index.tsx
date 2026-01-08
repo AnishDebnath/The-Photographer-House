@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Hero } from './Hero';
 import { Bio } from './Bio';
-import { Stats } from './Stats';
+import { Stats } from '../../components/Stats';
 import { Values } from './Values';
-import { Testimonials } from './Testimonials';
+import { Testimonials } from '../../components/Testimonials';
 import { Cta } from './Cta';
 
 interface AboutPageProps {

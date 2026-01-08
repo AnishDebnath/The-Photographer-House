@@ -1,6 +1,6 @@
 import React from 'react';
 import { Heart, Aperture, ShieldCheck, Clock } from 'lucide-react';
-import { SectionHeader } from '../../components/SectionHeader';
+import { SectionHeader } from './SectionHeader';
 
 export const WhyChooseUs: React.FC = () => {
     return (

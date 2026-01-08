@@ -1,8 +1,8 @@
 import React from 'react';
 import { Quote, Star, MapPin, ArrowRight } from 'lucide-react';
-import { Button } from '../../components/Button';
-import { SectionHeader } from '../../components/SectionHeader';
-import { testimonials } from './data';
+import { Button } from './Button';
+import { SectionHeader } from './SectionHeader';
+import { testimonials } from '../pages/About/data';
 
 interface TestimonialsProps {
     onNavigate: (page: string) => void;
@@ -56,6 +56,3 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onNavigate }) => {
         </section>
     );
 };
-
-
-

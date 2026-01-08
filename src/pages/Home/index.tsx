@@ -10,12 +10,12 @@ import { Albums } from './Albums';
 import { WeddingFilms } from './WeddingFilms';
 import { Booking } from '../../components/Booking';
 import { Services } from './Services';
-import { Faq } from './Faq';
+import { Faq } from '../../components/Faq';
 import { Blog } from './Blog';
-import { Stats } from '../About/Stats';
-import { Testimonials } from '../About/Testimonials';
-import { Contact } from './Contact';
-import { WhyChooseUs } from './WhyChooseUs';
+import { Stats } from '../../components/Stats';
+import { Testimonials } from '../../components/Testimonials';
+import { Contact } from '../../components/Contact';
+import { WhyChooseUs } from '../../components/WhyChooseUs';
 
 interface HomePageProps {
     onNavigate: (page: string, sectionId?: string) => void;

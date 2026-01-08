@@ -1,6 +1,6 @@
 import React from 'react';
 import { Camera, Globe, Users, Award } from 'lucide-react';
-import { StatCounter } from '../../components/StatCounter';
+import { StatCounter } from './StatCounter';
 
 export const Stats: React.FC = () => {
     return (
@@ -68,6 +68,3 @@ export const Stats: React.FC = () => {
         </section>
     );
 };
-
-
-

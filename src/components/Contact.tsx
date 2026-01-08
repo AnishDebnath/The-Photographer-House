@@ -1,6 +1,6 @@
 import React from 'react';
 import { MapPin, Mail, Phone } from 'lucide-react';
-import { SectionHeader } from '../../components/SectionHeader';
+import { SectionHeader } from './SectionHeader';
 
 export const Contact: React.FC = () => {
     return (

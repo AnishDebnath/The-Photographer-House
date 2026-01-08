@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { Button } from '../../components/Button';
-import { faqs } from './data';
+import { Button } from './Button';
+import { faqs } from '../pages/Home/data';
 
 interface FaqProps {
     onNavigate: (page: string) => void;
@@ -69,6 +69,3 @@ export const Faq: React.FC<FaqProps> = ({ onNavigate }) => {
         </section>
     );
 };
-
-
-
