@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Heart, Share2, ChevronDown, Calendar, Clock, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Heart, Share2, Calendar, Clock, ArrowRight } from 'lucide-react';
 import { Button } from '../../components/Button';
+import { Booking } from '../../components/Booking';
 import { BlogPost } from '../../types';
 import { blogPosts } from './data';
 
@@ -8,9 +9,10 @@ interface BlogDetailViewProps {
     selectedPost: BlogPost;
     onBackToList: () => void;
     onPostClick: (post: BlogPost) => void;
+    onNavigate: (page: string) => void;
 }
 
-export const BlogDetailView: React.FC<BlogDetailViewProps> = ({ selectedPost, onBackToList, onPostClick }) => {
+export const BlogDetailView: React.FC<BlogDetailViewProps> = ({ selectedPost, onBackToList, onPostClick, onNavigate }) => {
     const [scrollProgress, setScrollProgress] = useState(0);
 
     // Update Scroll Progress
@@ -119,47 +121,7 @@ export const BlogDetailView: React.FC<BlogDetailViewProps> = ({ selectedPost, on
             </div>
 
             {/* Booking Section */}
-            <section className="relative py-32 bg-dark-950 overflow-hidden">
-                <div className="absolute inset-0 opacity-40">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover grayscale" alt="Booking Background" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-dark-900 via-dark-900/90 to-dark-900"></div>
-
-                <div className="relative container mx-auto px-6 z-10 max-w-4xl text-center">
-                    <div className="inline-flex items-center gap-2 bg-gold-500/10 text-gold-500 px-4 py-1.5 rounded-full mb-8 border border-gold-500/20">
-                        <span className="w-2 h-2 bg-gold-500 rounded-full animate-pulse"></span>
-                        <span className="text-xs font-bold uppercase tracking-widest">Limited Slots for 2024/25</span>
-                    </div>
-
-                    <h2 className="font-serif text-4xl md:text-6xl text-white mb-4">"Your story deserves</h2>
-                    <h2 className="font-serif text-4xl md:text-6xl text-gold-500 italic mb-16">to be timeless."</h2>
-
-                    <form className="bg-white/5 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] border border-white/10 shadow-2xl" onSubmit={(e) => e.preventDefault()}>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                            <div className="text-left group">
-                                <label className="text-[10px] uppercase tracking-widest text-gold-500 mb-2 block group-focus-within:text-white transition-colors">Event Type</label>
-                                <div className="relative">
-                                    <select className="w-full bg-transparent border-b border-white/20 py-3 text-white outline-none focus:border-gold-500 transition-colors appearance-none cursor-pointer">
-                                        <option className="bg-dark-900">Wedding Photography</option>
-                                        <option className="bg-dark-900">Pre-Wedding Shoot</option>
-                                        <option className="bg-dark-900">Fashion Editorial</option>
-                                    </select>
-                                    <ChevronDown className="absolute right-0 top-3 text-gray-500 pointer-events-none" size={16} />
-                                </div>
-                            </div>
-                            <div className="text-left group">
-                                <label className="text-[10px] uppercase tracking-widest text-gold-500 mb-2 block group-focus-within:text-white transition-colors">Location</label>
-                                <input type="text" placeholder="e.g. Jaipur, India" className="w-full bg-transparent border-b border-white/20 py-3 text-white outline-none focus:border-gold-500 transition-colors placeholder-gray-600" />
-                            </div>
-                            <div className="text-left group">
-                                <label className="text-[10px] uppercase tracking-widest text-gold-500 mb-2 block group-focus-within:text-white transition-colors">Date</label>
-                                <input type="text" placeholder="Approximate Date" className="w-full bg-transparent border-b border-white/20 py-3 text-white outline-none focus:border-gold-500 transition-colors placeholder-gray-600" />
-                            </div>
-                        </div>
-                        <Button variant="primary" size="lg" className="w-full md:w-auto px-16">Check Availability</Button>
-                    </form>
-                </div>
-            </section>
+            <Booking onNavigate={onNavigate} />
 
             {/* Related Posts */}
             <section className="py-24 bg-gray-50 dark:bg-dark-900 border-t border-gray-200 dark:border-white/5">

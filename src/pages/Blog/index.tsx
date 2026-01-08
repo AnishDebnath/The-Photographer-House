@@ -41,6 +41,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate, initialPostId })
         selectedPost={selectedPost}
         onBackToList={handleBackToList}
         onPostClick={handlePostClick}
+        onNavigate={onNavigate}
       />
     );
   }
