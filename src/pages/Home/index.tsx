@@ -12,6 +12,10 @@ import { Booking } from '../../components/Booking';
 import { Services } from './Services';
 import { Faq } from './Faq';
 import { Blog } from './Blog';
+import { Stats } from '../About/Stats';
+import { Testimonials } from '../About/Testimonials';
+import { Contact } from './Contact';
+import { WhyChooseUs } from './WhyChooseUs';
 
 interface HomePageProps {
     onNavigate: (page: string, sectionId?: string) => void;
@@ -41,6 +45,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             <WeddingFilms onNavigate={onNavigate} setShowVideoModal={setShowVideoModal} />
             <Booking onNavigate={onNavigate} />
             <Services onNavigate={onNavigate} />
+            <Stats />
+            <Testimonials onNavigate={onNavigate} />
+            <Contact />
+            <WhyChooseUs />
             <Faq onNavigate={onNavigate} />
             <Blog onNavigate={onNavigate} handleBlogNavigation={handleBlogNavigation} />
         </>

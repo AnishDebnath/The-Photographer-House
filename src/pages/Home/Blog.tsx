@@ -15,7 +15,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate, handleBlogNavigation }) 
             <SectionHeader subtitle="Follow The Shadow" title="Latest Photography Stories" />
             <h2 id="blog-heading" className="sr-only">Latest Blog Posts</h2>
             <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-                {blogs.map((blog) => (
+                {blogs.slice(0, 3).map((blog) => (
                     <article
                         key={blog.id}
                         className="group cursor-pointer bg-white dark:bg-dark-900 rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl border border-gray-100 dark:border-white/5 transition-all duration-500 hover:-translate-y-2 flex flex-col"
