@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from './Button';
 import logo from '../assets/logo/logo.png';
 
 interface NavBarProps {
-  isDarkMode: boolean;
-  toggleTheme: () => void;
   currentPage: string;
   onNavigate: (page: string, sectionId?: string) => void;
 }
 
-export const NavBar: React.FC<NavBarProps> = ({ isDarkMode, toggleTheme, currentPage, onNavigate }) => {
+export const NavBar: React.FC<NavBarProps> = ({ currentPage, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -75,14 +73,6 @@ export const NavBar: React.FC<NavBarProps> = ({ isDarkMode, toggleTheme, current
             </a>
           ))}
 
-          <button
-            onClick={toggleTheme}
-            className={`p-2 rounded-full transition-colors ${isScrolled ? 'hover:bg-gray-100 dark:hover:bg-white/10 text-gray-700 dark:text-gray-200' : 'hover:bg-white/10 text-white'}`}
-            aria-label="Toggle Theme"
-          >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-
           <Button
             variant="danger"
             size="sm"
@@ -95,13 +85,6 @@ export const NavBar: React.FC<NavBarProps> = ({ isDarkMode, toggleTheme, current
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-4">
-          <button
-            onClick={toggleTheme}
-            className={`p-2 rounded-full transition-colors ${isScrolled ? 'text-gray-700 dark:text-gray-200' : 'text-white'}`}
-          >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-
           <button
             className={`${isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}
             onClick={() => setIsOpen(!isOpen)}

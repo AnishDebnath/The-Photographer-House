@@ -18,7 +18,6 @@ import { GalleryItem } from './types';
 import { galleryItems } from './pages/Home/data';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -37,15 +36,6 @@ function App() {
 
   // Derived current page for NavBar highlight
   const currentPage = location.pathname === '/' ? 'home' : (location.pathname === '/home' ? 'home' : location.pathname.substring(1));
-
-  // Handle Theme Toggle
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
 
   // Update Page Title based on Route
   useEffect(() => {
@@ -69,9 +59,6 @@ function App() {
     document.title = titles[path] ? `${titles[path]} | ${baseTitle}` : baseTitle;
   }, [location.pathname, portfolioFolder]);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   // Navigation Logic
   const handleNavigation = (page: string, sectionId?: string) => {
@@ -164,8 +151,6 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
       <NavBar
-        isDarkMode={isDarkMode}
-        toggleTheme={toggleTheme}
         currentPage={currentPage}
         onNavigate={handleNavigation}
       />

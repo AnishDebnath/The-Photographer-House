@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BadgeCheck } from 'lucide-react';
 import { Button } from '../../components/Button';
 
@@ -8,8 +8,6 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     const [scrollY, setScrollY] = useState(0);
-    const [isHighQualityLoaded, setIsHighQualityLoaded] = useState(false);
-    const highQualityVideoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,44 +17,20 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    useEffect(() => {
-        // Preload high quality video
-        if (highQualityVideoRef.current) {
-            highQualityVideoRef.current.addEventListener('canplay', () => {
-                setIsHighQualityLoaded(true);
-            });
-        }
-    }, []);
-
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black" aria-label="Hero Section">
             <div className="absolute inset-0 z-0">
-                {/* Low quality video - loads first */}
                 <video
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className={`w-full h-full object-cover opacity-60 transition-opacity duration-1000 ${isHighQualityLoaded ? 'opacity-0' : 'opacity-60'}`}
-                    style={{ filter: 'blur(4px)' }}
-                >
-                    <source src="/assets/home/web banner wedding.webm" type="video/webm" />
-                </video>
-
-                {/* High quality video - loads in background */}
-                <video
-                    ref={highQualityVideoRef}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${isHighQualityLoaded ? 'opacity-60' : 'opacity-0'}`}
+                    className="w-full h-full object-cover opacity-60"
+                // poster="https://picsum.photos/id/431/1920/1080"
                 >
                     <source src="/assets/home/homepage hero 1.webm" type="video/webm" />
                     Your browser does not support the video tag.
                 </video>
-
                 <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-900/40 to-dark-900/90"></div>
             </div>
 
