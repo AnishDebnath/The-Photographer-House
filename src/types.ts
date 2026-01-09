@@ -75,14 +75,13 @@ export interface FullReview {
   eventImage: string;
   video?: string;
   text: string;
-  source: 'google' | 'facebook' | 'instagram';
+  source: 'google' | 'facebook' | 'instagram' | 'youtube';
 }
 
 export interface FilmItem {
   id: string;
   title: string;
   category: string;
-
   description: string;
   si?: string;
 }

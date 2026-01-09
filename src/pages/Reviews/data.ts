@@ -10,7 +10,7 @@ export const reviews: FullReview[] = [
         eventImage: "",
         video: "/assets/reviews/review_video.mp4",
         text: "The team captured the soul of our wedding. Every photo brings back a flood of memories. They were invisible yet present everywhere, capturing moments we didn't even know happened. The cinematic film is something our family watches every weekend!",
-        source: 'google'
+        source: 'youtube'
     },
     {
         id: 2,
@@ -81,6 +81,6 @@ export const reviews: FullReview[] = [
         eventImage: "",
         video: "/assets/home/homepage hero.mp4",
         text: "The team captured the soul of our wedding. Every photo brings back a flood of memories. They were invisible yet present everywhere, capturing moments we didn't even know happened. The cinematic film is something our family watches every weekend!",
-        source: 'google'
+        source: 'youtube'
     },
 ];

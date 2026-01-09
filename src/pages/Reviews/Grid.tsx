@@ -1,6 +1,7 @@
-import React from 'react';
-import { Star, User, MapPin } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Star, User, MapPin, Play, Pause } from 'lucide-react';
 import { FullReview } from '../../types';
+import { reviews } from './data';
 
 const GoogleLogo = ({ className = "" }: { className?: string }) => (
     <svg viewBox="0 0 24 24" width="20" height="20" className={className} xmlns="http://www.w3.org/2000/svg">
@@ -34,86 +35,124 @@ const InstagramLogo = ({ className = "" }: { className?: string }) => (
     </svg>
 );
 
-import { reviews } from './data';
+const YoutubeLogo = ({ className = "" }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" width="20" height="20" className={className} xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="4" width="20" height="16" rx="5" fill="#FF0000" />
+        <path d="M10 9l6 3-6 3V9z" fill="#fff" />
+    </svg>
+);
 
-export const Grid: React.FC = () => {
+const renderStars = (count: number) => {
+    return [...Array(5)].map((_, i) => (
+        <Star
+            key={i}
+            size={14}
+            className={`${i < count ? 'fill-gold-500 text-gold-500' : 'fill-gray-200 text-gray-200 dark:fill-gray-700 dark:text-gray-700'}`}
+        />
+    ));
+};
 
-    const renderStars = (count: number) => {
-        return [...Array(5)].map((_, i) => (
-            <Star
-                key={i}
-                size={14}
-                className={`${i < count ? 'fill-gold-500 text-gold-500' : 'fill-gray-200 text-gray-200 dark:fill-gray-700 dark:text-gray-700'}`}
-            />
-        ));
-    };
+const renderSourceIcon = (source: FullReview['source'], isOverlay: boolean = false, forceDarkText: boolean = false) => {
+    let textColor = isOverlay ? 'text-white' : 'text-gray-800 dark:text-gray-200';
 
-    const renderSourceIcon = (source: FullReview['source'], isOverlay: boolean = false, forceDarkText: boolean = false) => {
-        let textColor = isOverlay ? 'text-white' : 'text-gray-800 dark:text-gray-200';
-        if (forceDarkText) textColor = 'text-gray-900'; // Strong dark color for Google label
+    // If we use a glassmorphic background (which we will), white text often looks better or specialized colors
+    if (forceDarkText && source !== 'youtube') textColor = 'text-gray-900';
+    if (source === 'youtube') textColor = 'text-white'; // Make YouTube label white as requested
 
-        switch (source) {
-            case 'google':
-                return <div className={`flex items-center gap-1 text-xs font-medium ${textColor}`}><GoogleLogo /> <span className="hidden sm:inline">Google</span></div>;
-            case 'facebook':
-                return <div className={`flex items-center gap-1 text-xs font-medium ${textColor}`}><FacebookLogo /> <span className={`hidden sm:inline ${isOverlay ? 'text-white' : (forceDarkText ? 'text-blue-700' : 'text-blue-700 dark:text-blue-300')}`}>Facebook</span></div>;
-            case 'instagram':
-                return <div className={`flex items-center gap-1 text-xs font-medium ${textColor}`}><InstagramLogo /> <span className={`hidden sm:inline ${isOverlay ? 'text-white' : (forceDarkText ? 'text-pink-700' : 'text-pink-700 dark:text-pink-300')}`}>Instagram</span></div>;
-            default:
-                return null;
+    switch (source) {
+        case 'google':
+            return <div className={`flex items-center gap-1 text-xs font-bold ${textColor}`}><GoogleLogo /> <span className="hidden sm:inline">Google</span></div>;
+        case 'facebook':
+            return <div className={`flex items-center gap-1 text-xs font-bold ${textColor}`}><FacebookLogo /> <span className="hidden sm:inline">Facebook</span></div>;
+        case 'instagram':
+            return <div className={`flex items-center gap-1 text-xs font-bold ${textColor}`}><InstagramLogo /> <span className="hidden sm:inline">Instagram</span></div>;
+        case 'youtube':
+            return <div className={`flex items-center gap-1 text-xs font-bold ${textColor}`}><YoutubeLogo /> <span className="hidden sm:inline">YouTube</span></div>;
+        default:
+            return null;
+    }
+};
+
+const VideoReviewCard: React.FC<{ review: FullReview }> = ({ review }) => {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    const togglePlay = () => {
+        if (videoRef.current) {
+            if (isPlaying) {
+                videoRef.current.pause();
+            } else {
+                videoRef.current.play();
+            }
+            setIsPlaying(!isPlaying);
         }
     };
 
+    return (
+        <div
+            className="relative h-full min-h-[400px] bg-dark-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1 block"
+        >
+            <video
+                ref={videoRef}
+                src={review.video}
+                loop
+                playsInline
+                preload="metadata"
+                onClick={togglePlay}
+                className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent pointer-events-none"></div>
+
+            {/* Overlay Content */}
+            <div className="absolute inset-0 p-8 flex flex-col justify-between pointer-events-none">
+                <div className="flex justify-between items-center mb-6 pointer-events-auto">
+                    <div className="flex gap-1">
+                        {renderStars(review.rating)}
+                    </div>
+                    {/* Blury Style for Source Icon Container - Red tinted for YouTube */}
+                    <div className={`opacity-95 hover:opacity-100 transition-all backdrop-blur-md px-3.5 py-2 rounded-full border shadow-xl ${review.source === 'youtube' ? 'bg-red-500/15 border-red-500/30' : 'bg-white/10 border-white/20'
+                        }`}>
+                        {renderSourceIcon(review.source, false, false)}
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-4 pt-6 mt-auto pointer-events-auto border-t border-white/10">
+                    <div className="relative shrink-0">
+                        {review.image ? (
+                            <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-gold-500/20 group-hover:ring-gold-500 transition-all" />
+                        ) : (
+                            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center ring-2 ring-gold-500/20 group-hover:ring-gold-500 text-white transition-all">
+                                <User size={20} />
+                            </div>
+                        )}
+                    </div>
+                    <div>
+                        <h4 className="font-serif text-base text-white font-bold">{review.name}</h4>
+                        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold mt-1 text-gold-500">
+                            <MapPin size={10} className="stroke-[2.5]" />
+                            <span>{review.location}</span>
+                        </div>
+                    </div>
+                    {/* Reduced size, icon-only play/pause button */}
+                    <button
+                        onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+                        className="ml-auto text-white hover:text-gold-500 transition-all duration-300 transform hover:scale-110 active:scale-90"
+                    >
+                        {isPlaying ? <Pause size={18} fill="currentColor" /> : <Play size={18} fill="currentColor" className="ml-0.5" />}
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const Grid: React.FC = () => {
     return (
         <div className="container mx-auto px-6 py-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {reviews.map((review) => (
                     review.video ? (
-                        <div
-                            key={review.id}
-                            className="relative h-full min-h-[400px] bg-dark-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1 block"
-                        >
-                            <video
-                                src={review.video}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
-
-                            {/* Overlay Content */}
-                            <div className="absolute inset-0 p-8 flex flex-col justify-between">
-                                <div className="flex justify-between items-center mb-6">
-                                    <div className="flex gap-1">
-                                        {renderStars(review.rating)}
-                                    </div>
-                                    <div className="opacity-90 hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm">
-                                        {renderSourceIcon(review.source, false, true)}
-                                    </div>
-                                </div>
-
-                                <div className="flex items-center gap-4 pt-6 border-t border-white/10 mt-auto">
-                                    <div className="relative shrink-0">
-                                        {review.image ? (
-                                            <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-gold-500/20 group-hover:ring-gold-500 transition-all" />
-                                        ) : (
-                                            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center ring-2 ring-gold-500/20 group-hover:ring-gold-500 text-white transition-all">
-                                                <User size={20} />
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div>
-                                        <h4 className="font-serif text-base text-white font-bold">{review.name}</h4>
-                                        <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold mt-1 text-gold-500">
-                                            <MapPin size={10} className="stroke-[2.5]" />
-                                            <span>{review.location}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <VideoReviewCard key={review.id} review={review} />
                     ) : (
                         <div
                             key={review.id}
