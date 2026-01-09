@@ -17,12 +17,12 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onNavigate, initialPostId })
 
   const handlePostClick = (post: BlogPost) => {
     setSelectedPost(post);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   const handleBackToList = () => {
     setSelectedPost(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   // Handle Initial Post ID

@@ -16,6 +16,7 @@ import { BookingPage } from './pages/Booking';
 import { AboutPage } from './pages/About';
 import { GalleryItem } from './types';
 import { galleryItems } from './pages/Home/data';
+import { LoadingBar } from './components/LoadingBar';
 
 function App() {
   const navigate = useNavigate();
@@ -33,6 +34,9 @@ function App() {
 
   // Blog Navigation State
   const [selectedBlogId, setSelectedBlogId] = useState<number | null>(null);
+
+  // Transition State
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Derived current page for NavBar highlight
   const currentPage = location.pathname === '/' ? 'home' : (location.pathname === '/home' ? 'home' : location.pathname.substring(1));
@@ -62,53 +66,77 @@ function App() {
 
   // Navigation Logic
   const handleNavigation = (page: string, sectionId?: string) => {
+    setIsNavigating(true);
+
     const path = page === 'home' ? '/' : `/${page}`;
-    navigate(path);
 
-    // Reset portfolio category if navigating generally
-    if (page === 'portfolio') {
-      setPortfolioCategory('All');
-      setPortfolioFolder(null);
-    }
+    // Simulate a short delay for the loading animation to be visible
+    setTimeout(() => {
+      navigate(path);
 
-    if (page === 'home') {
-      if (sectionId) {
-        // Allow render to happen then scroll
-        setTimeout(() => {
-          const element = document.getElementById(sectionId);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          } else if (sectionId === 'root' || !sectionId) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        }, 100);
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Reset portfolio category if navigating generally
+      if (page === 'portfolio') {
+        setPortfolioCategory('All');
+        setPortfolioFolder(null);
       }
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+
+      if (page === 'home') {
+        if (sectionId) {
+          // Allow render to happen then scroll
+          setTimeout(() => {
+            const element = document.getElementById(sectionId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            } else if (sectionId === 'root' || !sectionId) {
+              window.scrollTo(0, 0);
+            }
+          }, 100);
+        } else {
+          window.scrollTo(0, 0);
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
+
+      // Stop the loading animation after a slight delay for better UX
+      setTimeout(() => setIsNavigating(false), 300);
+    }, 600);
   };
 
   // Special redirect for portfolio deep linking
   const navigateToPortfolioCategory = (category: string) => {
+    setIsNavigating(true);
     setPortfolioCategory(category);
     setPortfolioFolder(null);
-    navigate('/portfolio');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    setTimeout(() => {
+      navigate('/portfolio');
+      window.scrollTo(0, 0);
+      setTimeout(() => setIsNavigating(false), 300);
+    }, 600);
   };
 
   const navigateToPortfolioFolder = (category: string, folderTitle: string) => {
+    setIsNavigating(true);
     setPortfolioCategory(category);
     setPortfolioFolder(folderTitle);
-    navigate('/portfolio');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    setTimeout(() => {
+      navigate('/portfolio');
+      window.scrollTo(0, 0);
+      setTimeout(() => setIsNavigating(false), 300);
+    }, 600);
   };
 
   const handleBlogNavigation = (blogId: number) => {
+    setIsNavigating(true);
     setSelectedBlogId(blogId);
-    navigate('/blog');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    setTimeout(() => {
+      navigate('/blog');
+      window.scrollTo(0, 0);
+      setTimeout(() => setIsNavigating(false), 300);
+    }, 600);
   };
 
   // Lightbox Navigation Logic
@@ -138,18 +166,19 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxItem, navigateLightbox]);
 
-  // Lock scroll when lightbox is open
+  // Lock scroll when lightbox, video modal, or navigating is active
   useEffect(() => {
-    if (lightboxItem || showVideoModal) {
+    if (lightboxItem || showVideoModal || isNavigating) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
     return () => { document.body.style.overflow = 'unset'; };
-  }, [lightboxItem, showVideoModal]);
+  }, [lightboxItem, showVideoModal, isNavigating]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+      <LoadingBar isNavigating={isNavigating} />
       <NavBar
         currentPage={currentPage}
         onNavigate={handleNavigation}

@@ -37,7 +37,7 @@ export const BlogDetailView: React.FC<BlogDetailViewProps> = ({ selectedPost, on
         .slice(0, 3);
 
     return (
-        <div className="bg-white dark:bg-dark-900 min-h-screen transition-colors duration-300 pb-0 animate-in fade-in slide-in-from-bottom-4">
+        <div className="bg-white dark:bg-dark-900 min-h-screen transition-colors duration-300 pb-0 animate-in fade-in">
             {/* Progress Bar */}
             <div
                 className="fixed top-0 left-0 h-1.5 bg-gold-500 z-50 transition-all duration-100 ease-out"

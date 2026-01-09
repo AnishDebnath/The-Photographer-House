@@ -72,7 +72,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
   const handleFolderClick = (folderTitle: string) => {
     setOpenedFolderTitle(folderTitle);
     setViewMode('gallery');
-    window.scrollTo({ top: 400, behavior: 'smooth' }); // Scroll past hero
+    window.scrollTo(0, 400); // Scroll past hero
   };
 
   const handleBackToFolders = () => {
@@ -120,7 +120,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
       {/* Main Content */}
       <div className="container mx-auto px-6 py-20 min-h-[500px]">
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16 animate-in fade-in slide-in-from-bottom-2 duration-700">
+        <div className="flex flex-wrap justify-center gap-4 mb-16 animate-in fade-in duration-700">
           {categories.map(cat => (
             <button
               key={cat}
