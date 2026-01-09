@@ -75,6 +75,24 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     </div>
                 </div>
             </div> */}
+            {/* Scroll Indicator */}
+            <div
+                className="absolute bottom-10 left-0 right-0 mx-auto w-fit z-20 flex flex-col items-center gap-4 animate-bounce opacity-80 cursor-pointer group"
+                onClick={() => {
+                    const nextSection = document.getElementById('latest-work');
+                    if (nextSection) {
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+                    }
+                }}
+            >
+                <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1 group-hover:border-gold-500/50 transition-colors">
+                    <div className="w-1.5 h-2.5 bg-gold-500 rounded-full animate-scroll-dot"></div>
+                </div>
+                {/* Compensate for tracking to ensure pixel-perfect text centering */}
+                <span className="text-[10px] text-white/50 group-hover:text-white transition-colors uppercase tracking-[0.3em] font-bold pl-[0.3em]">Scroll</span>
+            </div>
         </section>
     );
 };
