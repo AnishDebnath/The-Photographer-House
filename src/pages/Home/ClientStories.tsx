@@ -22,11 +22,11 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfoli
             <h2 id="stories-heading" className="sr-only">Client Stories Gallery</h2>
 
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     {clientStories.map((story) => (
                         <article
                             key={story.id}
-                            className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden cursor-pointer shadow-2xl"
+                            className="group relative aspect-[3/4] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden cursor-pointer shadow-2xl"
                             onClick={() => navigateToPortfolioFolder(story.category, story.folderTitle)}
                         >
                             <LazyImage
@@ -36,33 +36,33 @@ export const ClientStories: React.FC<ClientStoriesProps> = ({ navigateToPortfoli
                                 containerClassName="h-full w-full"
                             />
 
-                            {/* Gradient Overlay - Stronger for visibility */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent/0 opacity-90 transition-opacity duration-500"></div>
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-500"></div>
 
                             {/* Content Container */}
-                            <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col items-center text-center z-10">
+                            <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 flex flex-col items-center text-center z-10 transition-transform duration-500 group-hover:-translate-y-2">
 
                                 {/* Category */}
-                                <span className="text-gold-500 text-[10px] font-bold tracking-[0.25em] uppercase mb-3 drop-shadow-sm">
+                                <span className="text-gold-500 text-[9px] md:text-[10px] font-bold tracking-[0.25em] uppercase mb-2 md:mb-3 drop-shadow-sm">
                                     {story.category}
                                 </span>
 
                                 {/* Names */}
-                                <h3 className="font-serif text-3xl text-white mb-4 italic tracking-wide drop-shadow-md">
+                                <h3 className="font-serif text-2xl md:text-3xl text-white mb-3 md:mb-4 italic tracking-wide drop-shadow-md">
                                     {story.name}
                                 </h3>
 
                                 {/* Separator */}
-                                <div className="w-12 h-px bg-gold-500/80 mb-4 shadow-sm"></div>
+                                <div className="w-10 md:w-12 h-px bg-gold-500/80 mb-3 md:mb-4 shadow-sm"></div>
 
                                 {/* Description */}
-                                <p className="text-gray-200 text-xs font-medium leading-relaxed max-w-[220px] mx-auto opacity-90 drop-shadow-sm">
+                                <p className="text-gray-200 text-[10px] md:text-xs font-medium leading-relaxed max-w-[200px] md:max-w-[220px] mx-auto opacity-90 drop-shadow-sm line-clamp-2 md:line-clamp-none">
                                     {story.description}
                                 </p>
                             </div>
 
                             {/* Border effect */}
-                            <div className="absolute inset-0 border border-white/10 rounded-[2rem] group-hover:border-gold-500/30 transition-colors duration-500 pointer-events-none z-20"></div>
+                            <div className="absolute inset-4 md:inset-6 border border-white/10 rounded-[1rem] md:rounded-[1.5rem] group-hover:border-gold-500/30 transition-colors duration-500 pointer-events-none z-20"></div>
                         </article>
                     ))}
                 </div>

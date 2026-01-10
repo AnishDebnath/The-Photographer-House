@@ -21,11 +21,11 @@ export const LatestWork: React.FC<LatestWorkProps> = ({ onNavigate, setLightboxI
             />
             <h2 id="portfolio-heading" className="sr-only">Latest Work Portfolio</h2>
 
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[400px]">
+            <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[300px] md:auto-rows-[400px]">
                 {galleryItems.map((item, idx) => (
                     <article
                         key={item.id}
-                        className={`group relative overflow-hidden rounded-2xl cursor-pointer ${idx === 1 ? 'md:row-span-1' : ''}`}
+                        className={`group relative overflow-hidden rounded-2xl cursor-pointer ${idx === 1 ? 'sm:col-span-2 md:col-span-1' : ''}`}
                         role="article"
                         aria-label={`Project: ${item.title} - ${item.category}`}
                         onClick={() => setLightboxItem(item)}
@@ -37,6 +37,10 @@ export const LatestWork: React.FC<LatestWorkProps> = ({ onNavigate, setLightboxI
                             containerClassName="h-full w-full"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent md:opacity-0 group-hover:opacity-100 transition-opacity">
+                            <p className="text-white text-xs font-bold uppercase tracking-widest">{item.category}</p>
+                            <h4 className="text-white font-serif text-lg">{item.title}</h4>
+                        </div>
                     </article>
                 ))}
             </div>

@@ -5,15 +5,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export const Button: React.FC<ButtonProps> = ({ 
-  children, 
-  variant = 'primary', 
-  size = 'md', 
-  className = '', 
-  ...props 
+export const Button: React.FC<ButtonProps> = ({
+  children,
+  variant = 'primary',
+  size = 'md',
+  className = '',
+  ...props
 }) => {
   const baseStyles = "inline-flex items-center justify-center transition-all duration-300 uppercase tracking-widest font-sans text-xs font-bold rounded-full";
-  
+
   const variants = {
     primary: "bg-gold-500 text-black border border-transparent hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black hover:border-black dark:hover:border-gold-500",
     outline: "border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-black",
@@ -30,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button 
+    <button
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >

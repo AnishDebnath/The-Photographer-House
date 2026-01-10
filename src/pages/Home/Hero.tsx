@@ -35,22 +35,24 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div>
 
             <div
-                className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20"
+                className="relative z-10 text-center px-6 max-w-5xl mx-auto"
                 style={{ transform: `translateY(${scrollY * 0.4}px)` }}
             >
-                <p className="inline-block border border-gold-500/50 rounded-full px-6 py-2 bg-black/20 backdrop-blur-sm text-gold-500 tracking-[0.2em] uppercase text-xs font-bold mb-8 animate-fade-in-up">
-                    www.thephotographerhouse.com
-                </p>
-                <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight">
+                <div className="animate-fade-in-up">
+                    <p className="inline-block border border-gold-500/50 rounded-full px-4 md:px-6 py-1.5 md:py-2 bg-black/20 backdrop-blur-sm text-gold-500 tracking-[0.15em] md:tracking-[0.2em] uppercase text-[10px] md:text-xs font-bold mb-6 md:mb-8">
+                        www.thephotographerhouse.com
+                    </p>
+                </div>
+                <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-[1.1] md:leading-tight">
                     Where Every <br />
                     <span className="italic text-gold-500">Click</span> Tells a Story
                 </h1>
-                <p className="text-gray-300 max-w-2xl mx-auto mb-10 font-light text-lg">
+                <p className="text-gray-300 max-w-2xl mx-auto mb-8 md:mb-10 font-light text-base md:text-lg px-2">
                     Turning spare moments into lasting memories in Indian weddings, commodities, jewelry, and e-commerce photography since 2010.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button variant="primary" size="lg" onClick={() => onNavigate('portfolio')}>Explore Portfolio</Button>
-                    <Button variant="dark-outline" size="lg" onClick={() => onNavigate('services')}>Our Services</Button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <Button variant="primary" size="lg" className="w-full sm:w-auto min-w-[200px]" onClick={() => onNavigate('portfolio')}>Explore Portfolio</Button>
+                    <Button variant="dark-outline" size="lg" className="w-full sm:w-auto min-w-[200px]" onClick={() => onNavigate('services')}>Our Services</Button>
                 </div>
             </div>
 
@@ -77,7 +79,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div> */}
             {/* Scroll Indicator */}
             <div
-                className="absolute bottom-10 left-0 right-0 mx-auto w-fit z-20 flex flex-col items-center gap-4 animate-bounce opacity-80 cursor-pointer group"
+                className="absolute bottom-16 md:bottom-20 left-0 right-0 mx-auto w-fit z-20 flex flex-col items-center gap-4 animate-bounce opacity-80 cursor-pointer group"
                 onClick={() => {
                     const nextSection = document.getElementById('latest-work');
                     if (nextSection) {

@@ -13,14 +13,14 @@ export const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-black/50"></div>
             </div>
-            <div className="relative z-10 text-center px-4 pt-20">
-                <p className="text-gold-500 text-sm font-bold tracking-[0.2em] uppercase mb-4 animate-fade-in-up">
+            <div className="relative z-10 text-center px-6 pt-20">
+                <p className="text-gold-500 text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase mb-4 animate-fade-in-up">
                     Our Masterpieces
                 </p>
-                <h1 className="font-serif text-5xl md:text-7xl text-white mb-6">
+                <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl text-white mb-6 leading-tight">
                     Portfolio
                 </h1>
-                <p className="text-gray-200 max-w-lg mx-auto font-light text-lg">
+                <p className="text-gray-200 max-w-lg mx-auto font-light text-sm md:text-lg px-4">
                     A curated collection of our finest moments captured in time.
                 </p>
             </div>

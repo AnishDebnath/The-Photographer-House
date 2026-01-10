@@ -20,16 +20,16 @@ export const Albums: React.FC<AlbumsProps> = ({ onNavigate }) => {
             </div>
 
             {/* Marquee Container */}
-            <div className="relative w-full overflow-hidden mb-16">
-                {/* Gradient Masks for fade effect at edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-r from-[#111] to-transparent pointer-events-none"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-20 z-10 bg-gradient-to-l from-[#111] to-transparent pointer-events-none"></div>
+            <div className="relative w-full overflow-hidden mb-12 md:mb-16">
+                {/* Gradient Masks */}
+                <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 z-10 bg-gradient-to-r from-[#111] to-transparent pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 z-10 bg-gradient-to-l from-[#111] to-transparent pointer-events-none"></div>
 
                 <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
                     {/* Set 1 */}
-                    <div className="flex gap-8 px-4">
+                    <div className="flex gap-4 md:gap-8 px-2 md:px-4">
                         {albumImages.map((img, i) => (
-                            <div key={`set1-${i}`} className="w-80 h-60 md:w-96 md:h-72 flex-shrink-0 rounded-[2rem] overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-lg" onClick={() => onNavigate('albums')}>
+                            <div key={`set1-${i}`} className="w-64 h-48 md:w-96 md:h-72 flex-shrink-0 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-lg" onClick={() => onNavigate('albums')}>
                                 <LazyImage
                                     src={img}
                                     alt="Album Preview"
@@ -39,10 +39,10 @@ export const Albums: React.FC<AlbumsProps> = ({ onNavigate }) => {
                             </div>
                         ))}
                     </div>
-                    {/* Set 2 (Duplicate for smooth loop) */}
-                    <div className="flex gap-8 px-4">
+                    {/* Set 2 */}
+                    <div className="flex gap-4 md:gap-8 px-2 md:px-4">
                         {albumImages.map((img, i) => (
-                            <div key={`set2-${i}`} className="w-80 h-60 md:w-96 md:h-72 flex-shrink-0 rounded-[2rem] overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-lg" onClick={() => onNavigate('albums')}>
+                            <div key={`set2-${i}`} className="w-64 h-48 md:w-96 md:h-72 flex-shrink-0 rounded-[1.5rem] md:rounded-[2rem] overflow-hidden cursor-pointer hover:opacity-90 transition-opacity shadow-lg" onClick={() => onNavigate('albums')}>
                                 <LazyImage
                                     src={img}
                                     alt="Album Preview"

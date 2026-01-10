@@ -120,12 +120,12 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
       {/* Main Content */}
       <div className="container mx-auto px-6 py-20 min-h-[500px]">
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16 animate-in fade-in duration-700">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12 flex-row animate-in fade-in duration-700">
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => handleTabChange(cat)}
-              className={`px-8 py-3 rounded-full text-sm font-bold uppercase tracking-widest transition-all duration-300 ${activeTab === cat
+              className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-widest transition-all duration-300 ${activeTab === cat
                 ? 'bg-gold-500 text-black shadow-md transform scale-105'
                 : 'text-gray-500 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-white/5 hover:bg-white/50 dark:hover:bg-white/10'
                 }`}
