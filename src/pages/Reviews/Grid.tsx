@@ -61,13 +61,13 @@ const renderSourceIcon = (source: FullReview['source'], isOverlay: boolean = fal
 
     switch (source) {
         case 'google':
-            return <div className={`flex items-center gap-1 text-xs font-bold ${textColor}`}><GoogleLogo /> <span className="hidden sm:inline">Google</span></div>;
+            return <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}><GoogleLogo className="w-4 h-4 md:w-5 md:h-5" /> <span>Google</span></div>;
         case 'facebook':
-            return <div className={`flex items-center gap-1 text-xs font-bold ${textColor}`}><FacebookLogo /> <span className="hidden sm:inline">Facebook</span></div>;
+            return <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}><FacebookLogo className="w-4 h-4 md:w-5 md:h-5" /> <span>Facebook</span></div>;
         case 'instagram':
-            return <div className={`flex items-center gap-1 text-xs font-bold ${textColor}`}><InstagramLogo /> <span className="hidden sm:inline">Instagram</span></div>;
+            return <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}><InstagramLogo className="w-4 h-4 md:w-5 md:h-5" /> <span>Instagram</span></div>;
         case 'youtube':
-            return <div className={`flex items-center gap-1 text-xs font-bold ${textColor}`}><YoutubeLogo /> <span className="hidden sm:inline">YouTube</span></div>;
+            return <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}><YoutubeLogo className="w-4 h-4 md:w-5 md:h-5" /> <span>YouTube</span></div>;
         default:
             return null;
     }
