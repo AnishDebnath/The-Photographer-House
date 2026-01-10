@@ -79,25 +79,29 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
         : services.filter(s => s.category === filter);
 
     return (
-        <div className="container mx-auto px-6 py-20">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-gray-200 dark:border-white/10 pb-8 gap-6">
-                <div>
-                    <h2 className="font-serif text-4xl text-gray-900 dark:text-white mb-2">Our Expertise</h2>
-                    <p className="text-gray-500 italic">Choose the perfect package for your needs</p>
+        <div className="container mx-auto px-6 py-12 md:py-20">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 border-b border-gray-200 dark:border-white/10 pb-8 gap-8">
+                <div className="text-left">
+                    <h2 className="font-serif text-3xl md:text-4xl text-gray-900 dark:text-white mb-2">Our Expertise</h2>
+                    <p className="text-gray-500 italic text-sm md:text-base">Choose the perfect package for your needs</p>
                 </div>
-                <div className="flex flex-wrap gap-2 bg-gray-100 dark:bg-white/5 p-1 rounded-full">
-                    {categories.map(cat => (
-                        <button
-                            key={cat}
-                            onClick={() => setFilter(cat)}
-                            className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 ${filter === cat
-                                ? 'bg-red-900 text-white shadow-md'
-                                : 'text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/10'
-                                }`}
-                        >
-                            {cat}
-                        </button>
-                    ))}
+
+                {/* Category Menu with Horizontal Scroll on Mobile */}
+                <div className="w-full md:w-auto">
+                    <div className="flex overflow-x-auto no-scrollbar gap-2 bg-gray-100 dark:bg-white/5 p-1.5 rounded-2xl md:rounded-full">
+                        {categories.map(cat => (
+                            <button
+                                key={cat}
+                                onClick={() => setFilter(cat)}
+                                className={`whitespace-nowrap px-5 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 ${filter === cat
+                                    ? 'bg-red-900 text-white shadow-md'
+                                    : 'text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/10'
+                                    }`}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
 
