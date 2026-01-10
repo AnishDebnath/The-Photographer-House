@@ -30,7 +30,7 @@ export const VideoShowcase: React.FC<VideoShowcaseProps> = ({ onNavigate }) => {
                 <p className="text-gray-300 mb-10 leading-relaxed text-base md:text-lg">
                     Experience the surprise, the laughter, and the unforgettable rush of raw emotions. Our cinematic films capture the essence of your celebration in a way that still images simply cannot.
                 </p>
-                <Button variant="primary" size="lg" className="rounded-full w-full sm:w-auto" onClick={() => onNavigate('films')}>
+                <Button variant="primary" size="lg" className="rounded-full" onClick={() => onNavigate('films')}>
                     <Play className="mr-2 h-4 w-4 fill-current" aria-hidden="true" />
                     Watch Our Films
                 </Button>

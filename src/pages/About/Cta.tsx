@@ -46,10 +46,10 @@ export const Cta: React.FC<CtaProps> = ({ onNavigate }) => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                        <Button variant="danger" size="lg" className="px-12 w-full sm:w-auto" onClick={() => onNavigate('booking')}>
+                        <Button variant="danger" size="lg" className="px-12" onClick={() => onNavigate('booking')}>
                             Book Your Session
                         </Button>
-                        <Button variant="outline" size="lg" onClick={() => onNavigate('portfolio')} className="w-full sm:w-auto">
+                        <Button variant="outline" size="lg" onClick={() => onNavigate('portfolio')}>
                             Explore Portfolio
                         </Button>
                     </div>

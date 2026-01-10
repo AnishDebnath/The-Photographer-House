@@ -20,7 +20,7 @@ export const Newsletter: React.FC = () => {
                                 placeholder="Enter your email address"
                                 className="w-full sm:w-auto min-w-[300px] px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 focus:bg-white/20 transition-all"
                             />
-                            <Button variant="primary" className="w-full sm:w-auto">Subscribe</Button>
+                            <Button variant="primary">Subscribe</Button>
                         </div>
                         <p className="mt-6 text-xs text-gray-600">
                             Are you a photographer? <button className="text-gold-500 hover:underline underline-offset-4">Write for us</button>

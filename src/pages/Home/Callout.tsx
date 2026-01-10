@@ -16,7 +16,7 @@ export const Callout: React.FC<CalloutProps> = ({ onNavigate }) => {
                 <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8 font-light italic text-sm md:text-base leading-relaxed transition-colors duration-300">
                     "Not just a claim. It's our way of life. We offer bespoke, breathtaking & elite wedding photography services across the globe."
                 </p>
-                <Button variant="outline" size="sm" className="w-full sm:w-auto" onClick={() => onNavigate('about-tph')}>Read Our Story</Button>
+                <Button variant="outline" size="sm" onClick={() => onNavigate('about-tph')}>Read Our Story</Button>
             </div>
         </section>
     );

@@ -34,12 +34,9 @@ export const WeddingFilms: React.FC<WeddingFilmsProps> = ({ onNavigate, setShowV
                     <p className="text-gray-400 leading-relaxed mb-8 text-sm md:text-base hidden sm:block">
                         More importantly, we tailor films per the personality of the wedding couples, making it a distinctive heirloom for your family.
                     </p>
-                    <Button variant="primary" className="w-full sm:w-auto" onClick={() => onNavigate('films')}>View Our Channel</Button>
+                    <Button variant="primary" onClick={() => onNavigate('films')}>View Our Channel</Button>
                 </div>
             </div>
         </section>
     );
 };
-
-
-

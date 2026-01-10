@@ -57,7 +57,7 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate, handleBlogNavigation }) 
                 ))}
             </div>
             <div className="text-center mt-12 md:mt-16 px-6">
-                <Button variant="dark-outline" className="w-full sm:w-auto" onClick={() => onNavigate('blog')}>View All Blog Posts</Button>
+                <Button variant="dark-outline" onClick={() => onNavigate('blog')}>View All Blog Posts</Button>
             </div>
         </section>
     );

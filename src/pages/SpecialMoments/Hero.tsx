@@ -29,7 +29,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     Every photograph has a story. These are the moments that defined our journey.
                 </p>
                 <div className="flex justify-center mt-8">
-                    <Button variant="outline" className="w-full sm:w-auto min-w-[200px]" onClick={() => onNavigate('portfolio')}>View Full Portfolio</Button>
+                    <Button variant="outline" onClick={() => onNavigate('portfolio')}>View Full Portfolio</Button>
                 </div>
             </div>
         </section>

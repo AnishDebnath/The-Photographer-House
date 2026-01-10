@@ -51,8 +51,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     Turning spare moments into lasting memories in Indian weddings, commodities, jewelry, and e-commerce photography since 2010.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <Button variant="primary" size="lg" className="w-full sm:w-auto min-w-[200px]" onClick={() => onNavigate('portfolio')}>Explore Portfolio</Button>
-                    <Button variant="dark-outline" size="lg" className="w-full sm:w-auto min-w-[200px]" onClick={() => onNavigate('services')}>Our Services</Button>
+                    <Button variant="primary" size="lg" onClick={() => onNavigate('portfolio')}>Explore Portfolio</Button>
+                    <Button variant="dark-outline" size="lg" onClick={() => onNavigate('services')}>Our Services</Button>
                 </div>
             </div>
 
