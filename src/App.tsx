@@ -208,7 +208,7 @@ function App() {
           } />
           <Route path="/about-tph" element={<AboutPage onNavigate={handleNavigation} />} />
           <Route path="/portfolio" element={<PortfolioPage initialCategory={portfolioCategory} initialFolder={portfolioFolder} />} />
-          <Route path="/services" element={<ServicesPage onNavigate={handleNavigation} />} />
+          <Route path="/services" element={<ServicesPage onNavigate={handleNavigation} setLightboxItem={setLightboxItem} />} />
           <Route path="/films" element={<FilmsPage />} />
           <Route path="/reviews" element={<ReviewsPage onNavigate={handleNavigation} />} />
           <Route path="/blog" element={<BlogPage onNavigate={handleNavigation} initialPostId={selectedBlogId} />} />

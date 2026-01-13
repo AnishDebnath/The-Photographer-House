@@ -1,52 +1,20 @@
 import React from 'react';
 import { Star, ArrowRight } from 'lucide-react';
 import { Button } from '../../components/Button';
+import { GalleryItem } from '../../types';
 
 import { LazyImage } from '../../components/LazyImage';
 
+import { galleryItems } from '../Home/data';
+
 interface SpecialWorkProps {
     onNavigate: (page: string) => void;
+    setLightboxItem: (item: GalleryItem | null) => void;
 }
 
-export const SpecialWork: React.FC<SpecialWorkProps> = ({ onNavigate }) => {
-    const specialWork = [
-        {
-            id: 1,
-            image: "https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?auto=format&fit=crop&q=80&w=800",
-            title: "Golden Solitude",
-            category: "Portrait"
-        },
-        {
-            id: 2,
-            image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=800",
-            title: "The Stare",
-            category: "Street"
-        },
-        {
-            id: 3,
-            image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=800",
-            title: "Vintage Lens",
-            category: "Studio"
-        },
-        {
-            id: 4,
-            image: "https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80&w=800",
-            title: "Urban Shadows",
-            category: "Street"
-        },
-        {
-            id: 5,
-            image: "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&q=80&w=800",
-            title: "Bridal Joy",
-            category: "Wedding"
-        },
-        {
-            id: 6,
-            image: "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?auto=format&fit=crop&q=80&w=800",
-            title: "Neon Drift",
-            category: "Creative"
-        }
-    ];
+export const SpecialWork: React.FC<SpecialWorkProps> = ({ onNavigate, setLightboxItem }) => {
+    const specialWork = galleryItems;
+
 
     return (
         <section className="py-32 bg-zinc-50 dark:bg-black border-t border-gray-200 dark:border-white/5 relative overflow-hidden transition-colors duration-500">
@@ -79,7 +47,7 @@ export const SpecialWork: React.FC<SpecialWorkProps> = ({ onNavigate }) => {
                         <div
                             key={item.id}
                             className={`group relative w-full cursor-pointer perspective-1000 ${idx % 3 === 1 ? 'md:-mt-16' : 'md:mt-8'}`}
-                            onClick={() => onNavigate('special-moments')}
+                            onClick={() => setLightboxItem(item)}
                         >
                             {/* Image Container - Using fixed height for consistent sizing + shadow effect */}
                             <div className="relative overflow-hidden h-[400px] w-full bg-gray-100 dark:bg-gray-900 shadow-xl group-hover:shadow-2xl transition-all duration-500 rounded-lg">
