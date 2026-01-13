@@ -9,17 +9,21 @@ interface ServiceListProps {
 
 export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
     const [filter, setFilter] = useState('All Services');
-    const categories = ['All Services', 'Wedding / Occasion', 'Jewellery', 'Product Shoot', 'Photo Albums'];
+    const categories = ['All Services', 'Engagement & Wedding', 'Birthday & Rice Ceremony', 'Jewellery', 'Product Shoot', 'Photo Albums'];
 
     const services: ServiceData[] = [
         {
-            id: 'wedding',
-            category: 'Wedding / Occasion',
-            title: 'Wedding & Occasion',
-            subtitle: 'CELEBRATIONS & MILESTONES',
+            id: 'engagement-wedding-full-package',
+            category: 'Engagement & Wedding',
+            title: 'Engagement – Wedding Full Package',
+            subtitle: 'PREMIUM & AFFORDABLE COMPLETE WEDDING COVERAGE',
             icon: Camera,
-            description: 'Comprehensive coverage for weddings, galas, private parties, and large-scale gatherings. We ensure every keynote, handshake, and candid smile is documented with precision.',
-            features: ['Multi-photographer coverage options', 'Cinematic video highlights', 'Online gallery for guest sharing'],
+            description: 'Our Engagement – Wedding Full Package in Kolkata provides complete photography and cinematography from engagement to reception, including candid, cinematic, and traditional Bengali wedding coverage at premium yet affordable pricing.',
+            features: [
+                'Engagement to wedding full photography package in Kolkata',
+                'Candid, traditional & cinematic wedding coverage',
+                'Premium quality with budget-friendly pricing'
+            ],
             images: [
                 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
                 'https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=800',
@@ -28,47 +32,211 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
             alignment: 'left'
         },
         {
-            id: 'jewellery',
-            category: 'Jewellery',
-            title: 'Jewellery Photography',
-            subtitle: 'LUXURY & DETAIL',
-            icon: Gem,
-            description: 'Highlighting the intricate craftsmanship of gold, diamond, and gemstone jewellery. We use specialized lighting to create dazzling reflections and sharp details that showcase luxury.',
-            features: ['Macro lens precision for details', 'Creative reflection styling', 'High-end retouching included'],
+            id: 'pre-wedding',
+            category: 'Engagement & Wedding',
+            title: 'Pre-Wedding Shoot in Kolkata',
+            subtitle: 'CINEMATIC LOVE STORIES',
+            icon: Camera,
+            description: 'We provide creative and cinematic pre-wedding photography in Kolkata with concept planning, romantic storytelling, and premium visuals. Our pre-wedding shoot packages are stylish, modern, and budget-friendly.',
+            features: [
+                'Pre-wedding photography in Kolkata',
+                'Concept-based cinematic shoots',
+                'Affordable pre-wedding packages'
+            ],
             images: [
-                'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1617038220319-88af1199b1e1?auto=format&fit=crop&q=80&w=800'
+                'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=800'
             ],
             alignment: 'right'
         },
         {
-            id: 'product',
-            category: 'Product Shoot',
-            title: 'Product Shoot',
-            subtitle: 'COMMERCIAL & E-COMMERCE',
-            icon: ShoppingBag,
-            description: 'Studio-quality images designed to elevate your brand and drive sales. From clean white-background e-commerce shots to stylized lifestyle compositions.',
-            features: ['High-resolution crisp details', 'Creative styling and prop sourcing', 'Fast turnaround for campaigns'],
+            id: 'engagement',
+            category: 'Engagement & Wedding',
+            title: 'Engagement & Ring Ceremony Photography in Kolkata',
+            subtitle: 'ELEGANT MOMENTS',
+            icon: Camera,
+            description: 'Professional engagement and ring ceremony photography in Kolkata capturing rituals, family emotions, and candid moments. Perfect for premium-quality coverage at budget-friendly rates.',
+            features: [
+                'Engagement photography in Kolkata',
+                'Ring ceremony candid moments',
+                'Premium yet affordable coverage'
+            ],
             images: [
-                'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800'
+                'https://images.unsplash.com/photo-1530023367847-a683933f4178?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1520962918287-7448c2868f65?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&q=80&w=800'
             ],
             alignment: 'left'
         },
         {
-            id: 'albums',
-            category: 'Photo Albums',
-            title: 'Photo Albums',
-            subtitle: 'PRINTED MEMORIES',
-            icon: Book,
-            description: 'Your memories deserve to be held. Our handcrafted albums feature lay-flat binding, archival-quality paper, and luxurious leather or linen covers to preserve your legacy.',
-            features: ['Custom cover embossing', 'Archival matte or glossy paper', 'Personalized design consultation'],
+            id: 'wedding-night',
+            category: 'Engagement & Wedding',
+            title: 'Wedding Night Photography in Kolkata',
+            subtitle: 'INTIMATE & ELEGANT PORTRAITS',
+            icon: Camera,
+            description: 'Elegant and artistic wedding night photography in Kolkata capturing romantic and intimate moments with a premium yet tasteful approach.',
+            features: [
+                'Low-light wedding night photography',
+                'Couple-focused portraits',
+                'Premium retouching'
+            ],
             images: [
-                'https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1532153955177-f59af40d6472?auto=format&fit=crop&q=80&w=800'
+                'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1505935428862-770b6f24f629?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'right'
+        },
+        {
+            id: 'reception',
+            category: 'Engagement & Wedding',
+            title: 'Reception Photography in Kolkata',
+            subtitle: 'GRAND CELEBRATIONS',
+            icon: Camera,
+            description: 'Professional reception photography and videography in Kolkata capturing stage moments, guest interactions, decor, and candid celebrations.',
+            features: [
+                'Reception photography in Kolkata',
+                'Multi-camera coverage',
+                'Cinematic highlight videos'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1545232979-6e0b3a9c5b4f?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'left'
+        },
+        {
+            id: 'birthday',
+            category: 'Birthday & Rice Ceremony',
+            title: 'Birthday Photography in Kolkata',
+            subtitle: 'JOYFUL CELEBRATIONS',
+            icon: Camera,
+            description: 'Fun and vibrant birthday photography in Kolkata for kids and adults, capturing cake cutting, decorations, and joyful moments at affordable prices.',
+            features: [
+                'Kids birthday photography in Kolkata',
+                'Candid birthday moments',
+                'Budget-friendly birthday packages'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'right'
+        },
+        {
+            id: 'rice-ceremony',
+            category: 'Birthday & Rice Ceremony',
+            title: 'Rice Ceremony Photography in Kolkata',
+            subtitle: 'TRADITIONAL MILESTONES',
+            icon: Camera,
+            description: 'Traditional rice ceremony photography in Kolkata capturing rituals, family emotions, and cultural moments with care and storytelling.',
+            features: [
+                'Rice ceremony photography in Kolkata',
+                'Traditional ritual coverage',
+                'Affordable family packages'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1606214174103-8f7e2d1d8f8a?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1606214174200-2d9d4f5f7e9c?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1606214173911-9b8f2a5d1e2f?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'left'
+        },
+        {
+            id: 'jewellery',
+            category: 'Jewellery',
+            title: 'Jewellery Photography in Kolkata',
+            subtitle: 'PREMIUM PRODUCT VISUALS',
+            icon: Camera,
+            description: 'High-end jewellery photography services in Kolkata focusing on fine details, craftsmanship, and shine for catalogs, websites, and social media.',
+            features: [
+                'Jewellery product photography in Kolkata',
+                'Macro and detail shots',
+                'Brand-ready premium images'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1606760227091-3dd870d97f1b?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1589987607627-616cac9cfa9b?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'right'
+        },
+        {
+            id: 'jewellery-model',
+            category: 'Jewellery',
+            title: 'Jewellery Photography on Models in Kolkata',
+            subtitle: 'LIFESTYLE & FASHION',
+            icon: Camera,
+            description: 'Lifestyle jewellery photography on professional models in Kolkata for advertisements, catalogs, and premium brand promotion.',
+            features: [
+                'Jewellery shoots with models',
+                'Fashion & lifestyle presentation',
+                'Studio & outdoor shoots'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1618354691229-4f5f3e4d2b5f?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1549366021-9f761d040a94?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'left'
+        },
+        {
+            id: 'product',
+            category: 'Product Shoot',
+            title: 'Product Photography in Kolkata',
+            subtitle: 'E-COMMERCE & SOCIAL MEDIA',
+            icon: Camera,
+            description: 'Professional product photography services in Kolkata for e-commerce websites, brands, and social media. Premium visuals at budget-friendly pricing.',
+            features: [
+                'E-commerce product photography in Kolkata',
+                'Social media product shoots',
+                'Affordable business packages'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1585386959984-a4155222f56c?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'right'
+        },
+        {
+            id: 'photo-albums',
+            category: 'Photo Albums',
+            title: 'Premium Photo Albums in Kolkata',
+            subtitle: 'MEMORIES FOREVER',
+            icon: Camera,
+            description: 'Premium photo album design and printing services in Kolkata with elegant layouts, high-quality materials, and long-lasting finishes.',
+            features: [
+                'Custom photo album design',
+                'Premium print quality',
+                'Multiple size options'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'left'
+        },
+        {
+            id: 'light-frame',
+            category: 'Photo Albums',
+            title: 'Light Photo Frame in Kolkata',
+            subtitle: 'MODERN DISPLAY',
+            icon: Camera,
+            description: 'Stylish LED light photo frames in Kolkata, perfect for home décor, gifting, and showcasing your favorite memories.',
+            features: [
+                'LED illuminated photo frames',
+                'Custom photo selection',
+                'Modern premium finish'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1582719478185-8f5c7f8a6a35?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1504198266285-165a16f82c0a?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&q=80&w=800'
             ],
             alignment: 'right'
         }

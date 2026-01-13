@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Check } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../../components/Button';
 import { ServiceData } from '../../types';
 
@@ -20,6 +20,16 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onNavigate })
 
         return () => clearInterval(interval);
     }, [service.images]);
+
+    const handleNext = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setCurrentImageIndex((prev) => (prev + 1) % service.images.length);
+    };
+
+    const handlePrev = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setCurrentImageIndex((prev) => (prev - 1 + service.images.length) % service.images.length);
+    };
 
     return (
         <div className={`flex flex-col ${service.alignment === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:items-center`}>
@@ -45,7 +55,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onNavigate })
                 </div>
             </div>
 
-            {/* Image Side with Slideshow */}
+            {/* Image Side with Manual Navigation */}
             <div className="lg:w-1/2">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl group aspect-[4/3] lg:aspect-square xl:aspect-[4/3]">
                     {service.images.map((img, index) => (
@@ -53,12 +63,42 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onNavigate })
                             key={index}
                             src={img}
                             alt={`${service.title} view ${index + 1}`}
-                            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+                            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
                         />
                     ))}
 
+                    {/* Navigation Buttons */}
+                    {service.images.length > 1 && (
+                        <>
+                            <button
+                                onClick={handlePrev}
+                                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                                aria-label="Previous image"
+                            >
+                                <ChevronLeft size={24} />
+                            </button>
+                            <button
+                                onClick={handleNext}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                                aria-label="Next image"
+                            >
+                                <ChevronRight size={24} />
+                            </button>
+
+                            {/* Indicators */}
+                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-1.5">
+                                {service.images.map((_, idx) => (
+                                    <div
+                                        key={idx}
+                                        className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImageIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/40'}`}
+                                    />
+                                ))}
+                            </div>
+                        </>
+                    )}
+
                     {/* Badge */}
-                    <div className="absolute bottom-6 right-6 z-20">
+                    <div className="absolute top-6 right-6 z-20">
                         <span className="bg-black/60 backdrop-blur-md text-white px-4 py-2 text-[10px] uppercase tracking-widest border border-white/20 rounded-full">
                             {service.subtitle}
                         </span>
