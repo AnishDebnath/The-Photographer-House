@@ -11,16 +11,33 @@ export const WeddingFilms: React.FC<WeddingFilmsProps> = ({ onNavigate, setShowV
     return (
         <section className="bg-black py-20" aria-labelledby="films-heading">
             <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-12 text-center md:text-left">
-                <div className="w-full md:w-1/2 relative rounded-[2rem] overflow-hidden shadow-2xl shadow-gold-900/10 group">
-                    <img src="https://picsum.photos/id/158/800/500" alt="Cinematic wedding film thumbnail" className="w-full aspect-video md:aspect-auto object-cover" />
+                <div
+                    className="w-full md:w-1/2 relative rounded-[2rem] overflow-hidden shadow-2xl shadow-gold-900/10 group aspect-video bg-zinc-900"
+                >
+                    {/* Permanent Video Preview */}
+                    <div className="absolute inset-0 z-0">
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src="https://www.youtube.com/embed/WA5XMy5jeKE?autoplay=1&mute=1&controls=0&loop=1&playlist=WA5XMy5jeKE&modestbranding=1&rel=0&start=37&showinfo=0&iv_load_policy=3"
+                            title="Wedding Film Preview"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            className="w-full h-full scale-[1.3] pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+                        ></iframe>
+                    </div>
+
+                    {/* Fallback/Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+
                     <div
-                        className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors cursor-pointer"
+                        className="absolute inset-0 z-10 flex items-center justify-center bg-black/10 group-hover:bg-black/30 transition-colors cursor-pointer"
                         role="button"
                         tabIndex={0}
                         aria-label="Play Wedding Film Masterpiece"
                         onClick={() => setShowVideoModal(true)}
                     >
-                        <div className="w-16 h-16 bg-white/20 backdrop-blur rounded-full flex items-center justify-center border border-white/40 transform group-hover:scale-110 transition-transform">
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 transform group-hover:scale-110 transition-all duration-300">
                             <Play className="ml-1 fill-white text-white" aria-hidden="true" />
                         </div>
                     </div>
