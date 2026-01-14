@@ -1,29 +1,33 @@
 import React from 'react';
-import { specialMoments } from './data';
-
+import { SpecialMoment } from '../../types';
 import { LazyImage } from '../../components/LazyImage';
 
 interface GridProps {
+    columns: (SpecialMoment & { actualIndex: number })[][];
     onImageClick: (index: number) => void;
 }
 
-export const Grid: React.FC<GridProps> = ({ onImageClick }) => {
+export const Grid: React.FC<GridProps> = ({ columns, onImageClick }) => {
     return (
-        <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
-            <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-8 space-y-4 md:space-y-8">
-                {specialMoments.map((item, index) => (
-                    <div
-                        key={item.id}
-                        className="break-inside-avoid group relative rounded-[1.5rem] md:rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 bg-gray-100 dark:bg-dark-800"
-                        onClick={() => onImageClick(index)}
-                    >
-                        <LazyImage
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                            containerClassName="w-full"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none"></div>
+        <div className="container mx-auto px-6 py-20">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+                {columns.map((colItems, colIndex) => (
+                    <div key={colIndex} className="flex-1 flex flex-col gap-6">
+                        {colItems.map((item) => (
+                            <div
+                                key={item.id}
+                                className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-500 bg-gray-100 dark:bg-dark-800"
+                                onClick={() => onImageClick(item.actualIndex)}
+                            >
+                                <LazyImage
+                                    src={item.image}
+                                    alt={item.title}
+                                    className="w-full h-auto block transition-transform duration-700 group-hover:scale-110"
+                                    containerClassName="w-full"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 pointer-events-none"></div>
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>

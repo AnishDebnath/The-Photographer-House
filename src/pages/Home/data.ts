@@ -83,10 +83,10 @@ export const faqs = [
 ];
 
 export const galleryItems = [
-    { id: 1, image: "/assets/home/latest work/latest work (1).jpg", title: "Rajasree & Bishal", category: "Wedding" },
-    { id: 2, image: "/assets/home/latest work/latest work (2).jpg", title: "Sourav & Swagata", category: "Wedding" },
-    { id: 3, image: "/assets/home/latest work/latest work (3).jpg", title: "Pooja & Anik", category: "Wedding" },
-    { id: 4, image: "/assets/home/latest work/latest work (4).jpg", title: "Arijit & Susmita", category: "Wedding" },
-    { id: 5, image: "/assets/home/latest work/latest work (5).jpg", title: "Biswanath & Niketa", category: "Wedding" },
-    { id: 6, image: "/assets/home/latest work/latest work (6).jpg", title: "Ayesha & Eliyaz", category: "Wedding" },
+    { id: 1, image: "/assets/latest work/latest work (1).jpg", title: "Susmita", category: "Wedding" },
+    { id: 2, image: "/assets/latest work/latest work (2).jpg", title: "Deb & Suchismita", category: "Pre-Wedding" },
+    { id: 3, image: "/assets/latest work/latest work (3).jpg", title: "Susanta & Iti", category: "Wedding" },
+    { id: 4, image: "/assets/latest work/latest work (4).jpg", title: "Pooja & Anik", category: "Wedding" },
+    { id: 5, image: "/assets/latest work/latest work (5).jpg", title: "Rajasree & Bishal", category: "Wedding" },
+    { id: 6, image: "/assets/latest work/latest work (6).jpg", title: "Swagata", category: "Wedding" },
 ];

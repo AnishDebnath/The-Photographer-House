@@ -27,7 +27,8 @@ export default defineConfig(({ mode }) => {
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
             if (req.url?.startsWith('/assets/')) {
-              const assetPath = path.resolve(__dirname, 'src', req.url.slice(1));
+              const decodedUrl = decodeURIComponent(req.url);
+              const assetPath = path.resolve(__dirname, 'src', decodedUrl.slice(1));
               if (fs.existsSync(assetPath)) {
                 res.setHeader('Content-Type', getMimeType(assetPath));
                 res.end(fs.readFileSync(assetPath));
