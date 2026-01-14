@@ -5,7 +5,7 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Rajasree & Bishal",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/rajasree & bishal wedding/rajasree & bishal wedding (17).jpg",
+        image: "/assets/portfolio/Wedding/rajasree & bishal wedding/rajasree & bishal wedding (19).jpg",
         description: "Serene moments in nature, reflecting the peace and love of their union."
     },
     {
@@ -14,7 +14,7 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Sourav & Swagata",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/sourav & swagata wedding/sourav & swagata wedding (8).jpg",
+        image: "/assets/portfolio/Wedding/sourav & swagata wedding/sourav & swagata wedding (1).jpg",
         description: "Captured the intimate glances and joyful beginnings of their forever."
     },
     {
@@ -23,7 +23,7 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Pooja & Anik",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/pooja & anik wedding/pooja & anik wedding (7).jpg",
+        image: "/assets/portfolio/Wedding/pooja & anik wedding/pooja & anik wedding (1).jpg",
         description: "A grand palace celebration in Jaipur, where royalty meets modern elegance."
     },
     {
@@ -32,16 +32,16 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Arijit & Susmita",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/arijit & susmita wedding/arijit & susmita wedding (2).jpg",
+        image: "/assets/portfolio/Wedding/arijit & susmita wedding/arijit & susmita wedding (1).jpg",
         description: "A candid evening walk capturing the anticipation of their new journey together."
     },
     {
         id: 5,
-        name: "Biswanath & Niketa",
+        name: "Susanta & Iti",
         category: "Wedding",
-        folderTitle: "Biswanath & Niketa",
+        folderTitle: "Susanta & Iti",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/biswanath & niketa wedding/biswanath & niketa wedding (8).jpg",
+        image: "/assets/portfolio/Wedding/susanta & iti wedding & reception/susanta & iti wedding & reception (10).jpg",
         description: "Elegance and tradition blended perfectly in a night of celebration and joy."
     },
     {
