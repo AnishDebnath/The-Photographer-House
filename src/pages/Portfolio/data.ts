@@ -2,6 +2,18 @@ import { PortfolioFolder } from '../../types';
 
 export const projectFolders: PortfolioFolder[] = [
     {
+        title: "Arijit & Susmita",
+        category: "Wedding",
+        coverImage: "/assets/portfolio/Wedding/arijit & susmita wedding/arijit & susmita wedding cover.jpg",
+        count: 13,
+        items: Array.from({ length: 13 }, (_, i) => ({
+            id: 201 + i,
+            image: `/assets/portfolio/Wedding/arijit & susmita wedding/arijit & susmita wedding (${i + 1}).jpg`,
+            title: "Arijit & Susmita",
+            category: "Wedding"
+        }))
+    },
+    {
         title: "Biswanath & Niketa",
         category: "Wedding",
         coverImage: "/assets/portfolio/Wedding/biswanath & niketa wedding/biswanath & niketa wedding (8).jpg",
@@ -10,18 +22,6 @@ export const projectFolders: PortfolioFolder[] = [
             id: 101 + i,
             image: `/assets/portfolio/Wedding/biswanath & niketa wedding/biswanath & niketa wedding (${i + 1}).jpg`,
             title: "Biswanath & Niketa",
-            category: "Wedding"
-        }))
-    },
-    {
-        title: "Arijit & Susmita",
-        category: "Wedding",
-        coverImage: "/assets/portfolio/Wedding/arijit & susmita wedding/arijit & susmita wedding (2).jpg",
-        count: 13,
-        items: Array.from({ length: 13 }, (_, i) => ({
-            id: 201 + i,
-            image: `/assets/portfolio/Wedding/arijit & susmita wedding/arijit & susmita wedding (${i + 1}).jpg`,
-            title: "Arijit & Susmita",
             category: "Wedding"
         }))
     },

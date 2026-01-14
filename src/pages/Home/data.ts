@@ -5,7 +5,7 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Rajasree & Bishal",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/rajasree & bishal wedding/rajasree & bishal wedding (19).jpg",
+        image: "/assets/portfolio/Wedding/rajasree & bishal wedding/rajasree & bishal wedding (2).jpg",
         description: "Serene moments in nature, reflecting the peace and love of their union."
     },
     {
@@ -41,7 +41,7 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Susanta & Iti",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/susanta & iti wedding & reception/susanta & iti wedding & reception (10).jpg",
+        image: "/assets/portfolio/Wedding/susanta & iti wedding & reception/susanta & iti wedding & reception (1).jpg",
         description: "Elegance and tradition blended perfectly in a night of celebration and joy."
     },
     {
@@ -50,7 +50,7 @@ export const clientStories = [
         category: "Wedding",
         folderTitle: "Ayesha & Eliyaz",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/ayesha & eliyaz nikha/ayesha & eliyaz nikha (8).jpg",
+        image: "/assets/portfolio/Wedding/ayesha & eliyaz nikha/ayesha & eliyaz nikha (2).jpg",
         description: "Serene moments in nature, reflecting the peace and love of their union."
     },
 ];
