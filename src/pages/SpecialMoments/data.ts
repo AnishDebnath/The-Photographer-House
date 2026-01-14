@@ -9,7 +9,7 @@ export const specialMoments: SpecialMoment[] = [
     //     date: "Dec 2025",
     //     location: "Kolkata, India"
     // },
-    ...Array.from({ length: 24 }, (_, i) => ({
+    ...Array.from({ length: 19 }, (_, i) => ({
         id: 1 + i,
         image: `/assets/special-moments/special moment (${i + 1}).jpg`,
         title: `Special Moment ${i + 1}`,

@@ -6,7 +6,7 @@ import { LazyImage } from '../../components/LazyImage';
 
 interface FolderViewProps {
     folders: PortfolioFolder[];
-    onFolderClick: (folderTitle: string) => void;
+    onFolderClick: (folderTitle: string, folderCategory?: string) => void;
 }
 
 export const FolderView: React.FC<FolderViewProps> = ({ folders, onFolderClick }) => {
@@ -16,7 +16,7 @@ export const FolderView: React.FC<FolderViewProps> = ({ folders, onFolderClick }
                 {folders.map((folder, idx) => (
                     <div
                         key={idx}
-                        onClick={() => onFolderClick(folder.title)}
+                        onClick={() => onFolderClick(folder.title, folder.category)}
                         className="group cursor-pointer relative aspect-[4/3] sm:aspect-[3/4] md:aspect-[4/3] rounded-[1.5rem] md:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
                     >
                         {/* Cover Image */}

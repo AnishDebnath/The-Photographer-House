@@ -23,6 +23,8 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
   const [numCols, setNumCols] = useState(1);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const [openedFolderCategory, setOpenedFolderCategory] = useState<string | null>(null);
+
   // Sync activeTab if initialCategory changes prop
   useEffect(() => {
     setActiveTab(initialCategory);
@@ -38,7 +40,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
     : projectFolders.filter(f => f.category === activeTab);
 
   const galleryImages = openedFolderTitle
-    ? allItems.filter(item => item.title === openedFolderTitle)
+    ? allItems.filter(item => item.title === openedFolderTitle && (!openedFolderCategory || item.category === openedFolderCategory))
     : [];
 
   // 3. Layout Helpers (Masonry)
@@ -66,11 +68,13 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
     setActiveTab(cat);
     setViewMode('folders'); // Reset to folder view when changing tabs
     setOpenedFolderTitle(null);
+    setOpenedFolderCategory(null);
     setTimeout(() => setIsAnimating(false), 500);
   };
 
-  const handleFolderClick = (folderTitle: string) => {
+  const handleFolderClick = (folderTitle: string, folderCategory?: string) => {
     setOpenedFolderTitle(folderTitle);
+    setOpenedFolderCategory(folderCategory || null);
     setViewMode('gallery');
     window.scrollTo(0, 400); // Scroll past hero
   };
@@ -78,6 +82,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
   const handleBackToFolders = () => {
     setViewMode('folders');
     setOpenedFolderTitle(null);
+    setOpenedFolderCategory(null);
   };
 
   const navigateLightbox = useCallback((direction: 'next' | 'prev') => {

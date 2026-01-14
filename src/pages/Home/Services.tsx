@@ -55,7 +55,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
 
             <div className="text-center mt-12 md:mt-20 px-6">
                 <Button variant="outline" onClick={() => onNavigate('services')}>
-                    View Comprehensive Pricing
+                    View All Services
                 </Button>
             </div>
         </section>
