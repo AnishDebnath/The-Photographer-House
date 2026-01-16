@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Camera, MapPin, Calendar, Phone, ArrowRight, ChevronDown } from 'lucide-react';
+import { Camera, MapPin, Calendar as CalendarIcon, Phone, ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './Button';
 import { LazyImage } from './LazyImage';
 import { eventTypes } from './data';
@@ -10,14 +10,21 @@ interface BookingProps {
 
 export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
     const [selectedType, setSelectedType] = useState(eventTypes[0]);
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
+
+    // Date Picker State
+    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+    const [currentMonth, setCurrentMonth] = useState(new Date());
+
     const formRef = useRef<HTMLDivElement>(null);
 
-    // Close dropdown on click outside
+    // Close dropdowns on click outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (formRef.current && !formRef.current.contains(event.target as Node)) {
-                setIsDropdownOpen(false);
+                setIsTypeDropdownOpen(false);
+                setIsCalendarOpen(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
@@ -26,11 +33,74 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
 
     const handleSelectType = (type: string) => {
         setSelectedType(type);
-        setIsDropdownOpen(false);
+        setIsTypeDropdownOpen(false);
+    };
+
+    // Calendar logic
+    const daysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = (year: number, month: number) => new Date(year, month, 1).getDay();
+
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const prevMonth = () => {
+        setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1));
+    };
+
+    const nextMonth = () => {
+        setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1));
+    };
+
+    const handleDateSelect = (day: number) => {
+        const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+        setSelectedDate(date);
+        setIsCalendarOpen(false);
+    };
+
+    const formatDate = (date: Date | null) => {
+        if (!date) return "";
+        const d = date.getDate().toString().padStart(2, '0');
+        const m = (date.getMonth() + 1).toString().padStart(2, '0');
+        const y = date.getFullYear();
+        return `${d}-${m}-${y}`;
+    };
+
+    const renderCalendar = () => {
+        const year = currentMonth.getFullYear();
+        const month = currentMonth.getMonth();
+        const totalDays = daysInMonth(year, month);
+        const startDay = firstDayOfMonth(year, month);
+        const days = [];
+
+        for (let i = 0; i < startDay; i++) {
+            days.push(<div key={`empty-${i}`} className="h-8 md:h-10"></div>);
+        }
+
+        for (let d = 1; d <= totalDays; d++) {
+            const isSelected = selectedDate?.getDate() === d && selectedDate?.getMonth() === month && selectedDate?.getFullYear() === year;
+            const isToday = new Date().getDate() === d && new Date().getMonth() === month && new Date().getFullYear() === year;
+
+            days.push(
+                <button
+                    key={d}
+                    type="button"
+                    onClick={() => handleDateSelect(d)}
+                    className={`h-8 w-8 md:h-10 md:w-10 rounded-full flex items-center justify-center text-xs md:text-sm transition-all duration-200
+                        ${isSelected ? 'bg-gold-500 text-black font-bold shadow-lg shadow-gold-500/20' :
+                            isToday ? 'border border-gold-500/50 text-gold-500' : 'text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                >
+                    {d}
+                </button>
+            );
+        }
+
+        return days;
     };
 
     return (
-        <section className="relative py-32 bg-dark-950 flex items-center justify-center border-t border-white/5 z-10">
+        <section className="relative py-32 bg-dark-950 flex items-center justify-center border-t border-white/5 z-[100] overflow-visible">
             {/* Custom Scrollbar Styles */}
             <style dangerouslySetInnerHTML={{
                 __html: `
@@ -50,7 +120,6 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                 }
             `}} />
 
-            {/* Background Layer */}
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <LazyImage
                     src="assets/booking banner.jpg"
@@ -62,14 +131,13 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-dark-950"></div>
             </div>
 
-            <div className="container mx-auto px-6 relative z-20 text-center" ref={formRef}>
+            <div className="container mx-auto px-6 relative z-[110] text-center" ref={formRef}>
 
                 {/* Availability Badge */}
                 <div className="inline-block border border-gold-500/30 bg-gold-500/10 px-6 py-1.5 rounded-full text-gold-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-8 backdrop-blur-md">
                     @ 2024 / 2025 Availability
                 </div>
 
-                {/* Heading */}
                 <h2 className="font-serif text-4xl md:text-6xl text-white mb-2 leading-tight">
                     "Let us capture your
                 </h2>
@@ -77,11 +145,11 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                     Perfect Moment."
                 </h2>
 
-                {/* Horizontal Form (Desktop) - Fixed Layout */}
-                <div className="hidden md:inline-flex items-center bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-full p-3 pl-10 max-w-5xl w-full shadow-2xl transition-all duration-300 hover:border-gold-500/30 hover:bg-zinc-900/80 relative">
+                {/* Horizontal Form (Desktop) */}
+                <div className="hidden md:inline-flex items-center bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-full p-3 pl-10 max-w-6xl w-full shadow-2xl transition-all duration-300 hover:border-gold-500/30 hover:bg-zinc-900/80 relative z-[120] overflow-visible">
 
-                    {/* Event Type - Column 1 */}
-                    <div className="flex-[1.2] min-w-0 flex flex-col items-start border-r border-white/10 pr-6 mr-6 group relative">
+                    {/* Event Type */}
+                    <div className="flex-[1.5] min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group relative">
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-1.5 opacity-80 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             <Camera size={12} /> Event Type
                         </label>
@@ -90,18 +158,18 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                                 type="button"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    setIsDropdownOpen(!isDropdownOpen);
+                                    setIsTypeDropdownOpen(!isTypeDropdownOpen);
+                                    setIsCalendarOpen(false);
                                 }}
                                 className="w-full flex items-center justify-between bg-transparent border-none text-white outline-none font-serif text-xl p-0 cursor-pointer text-left gap-2"
                             >
                                 <span className="truncate block flex-1">{selectedType}</span>
-                                <ChevronDown size={14} className={`text-gray-500 flex-shrink-0 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                                <ChevronDown size={14} className={`text-gray-500 flex-shrink-0 transition-transform duration-300 ${isTypeDropdownOpen ? 'rotate-180' : ''}`} />
                             </button>
 
-                            {/* Dropdown Menu - Desktop */}
-                            {isDropdownOpen && (
+                            {isTypeDropdownOpen && (
                                 <div
-                                    className="absolute top-[calc(100%+25px)] left-[-20px] w-72 bg-zinc-900 border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden z-[500] animate-in fade-in slide-in-from-top-4 duration-300"
+                                    className="absolute top-[calc(100%+25px)] left-[-20px] w-80 bg-zinc-100 dark:bg-zinc-900 border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden z-[999] animate-in fade-in slide-in-from-top-4 duration-300"
                                     onMouseDown={(e) => e.stopPropagation()}
                                 >
                                     <div className="max-h-64 overflow-y-auto py-3 custom-scrollbar">
@@ -110,7 +178,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                                                 key={type}
                                                 type="button"
                                                 onClick={() => handleSelectType(type)}
-                                                className={`w-full text-left px-6 py-3.5 text-sm font-medium transition-all hover:bg-gold-500 hover:text-black ${selectedType === type ? 'text-gold-500 bg-white/5' : 'text-zinc-400'}`}
+                                                className={`w-full text-left px-6 py-3.5 text-sm font-medium transition-all hover:bg-gold-500 hover:text-black ${selectedType === type ? 'text-gold-500 bg-white/5' : 'text-zinc-600 dark:text-zinc-400'}`}
                                             >
                                                 {type}
                                             </button>
@@ -121,36 +189,68 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         </div>
                     </div>
 
-                    {/* Location - Column 2 */}
-                    <div className="flex-1 min-w-0 flex flex-col items-start border-r border-white/10 pr-6 mr-6 group">
+                    {/* Location */}
+                    <div className="flex-1 min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group">
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-1.5 opacity-80 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             <MapPin size={12} /> Location
                         </label>
                         <input type="text" placeholder="City, Venue" className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 placeholder-zinc-600 focus:ring-0 truncate" />
                     </div>
 
-                    {/* Date - Column 3 */}
-                    <div className="flex-1 min-w-0 flex flex-col items-start border-r border-white/10 pr-6 mr-6 group">
+                    {/* Date Picker - Downward Opening */}
+                    <div className="flex-[1.3] min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group relative">
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-1.5 opacity-80 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                            <Calendar size={12} /> Date (Approx)
+                            <CalendarIcon size={12} /> Date (Approx)
                         </label>
-                        <input
-                            type="text"
-                            placeholder="dd-mm-yyyy"
-                            maxLength={10}
-                            onChange={(e) => {
-                                let v = e.target.value.replace(/[^0-9]/g, '');
-                                if (v.length > 8) v = v.slice(0, 8);
-                                if (v.length > 4) v = `${v.slice(0, 2)}-${v.slice(2, 4)}-${v.slice(4)}`;
-                                else if (v.length > 2) v = `${v.slice(0, 2)}-${v.slice(2)}`;
-                                e.target.value = v;
-                            }}
-                            className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 placeholder-zinc-600 focus:ring-0 truncate"
-                        />
+                        <div className="w-full relative">
+                            <button
+                                type="button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setIsCalendarOpen(!isCalendarOpen);
+                                    setIsTypeDropdownOpen(false);
+                                }}
+                                className="w-full flex items-center justify-between bg-transparent border-none text-white outline-none font-serif text-xl p-0 cursor-pointer text-left gap-2"
+                            >
+                                <span className={`${selectedDate ? 'text-white' : 'text-zinc-600'} truncate block flex-1`}>
+                                    {selectedDate ? formatDate(selectedDate) : "Pick a date"}
+                                </span>
+                                <ChevronDown size={14} className={`text-gray-500 flex-shrink-0 transition-transform duration-300 ${isCalendarOpen ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {isCalendarOpen && (
+                                <div
+                                    className="absolute top-[calc(100%+25px)] left-1/2 -translate-x-1/2 w-[300px] bg-zinc-900 border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7)] p-5 z-[999] animate-in fade-in slide-in-from-top-4 duration-300"
+                                    onMouseDown={(e) => e.stopPropagation()}
+                                >
+                                    <div className="flex items-center justify-between mb-4 px-1">
+                                        <button type="button" onClick={prevMonth} className="p-1 hover:bg-white/10 rounded-full text-zinc-400 hover:text-gold-500 transition-colors">
+                                            <ChevronLeft size={20} />
+                                        </button>
+                                        <span className="text-sm font-bold text-white tracking-widest uppercase">
+                                            {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+                                        </span>
+                                        <button type="button" onClick={nextMonth} className="p-1 hover:bg-white/10 rounded-full text-zinc-400 hover:text-gold-500 transition-colors">
+                                            <ChevronRight size={20} />
+                                        </button>
+                                    </div>
+                                    <div className="grid grid-cols-7 gap-1 mb-2">
+                                        {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
+                                            <div key={day} className="text-[10px] font-bold text-gold-600 uppercase text-center p-1">
+                                                {day}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="grid grid-cols-7 gap-1">
+                                        {renderCalendar()}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
-                    {/* Phone - Column 4 */}
-                    <div className="flex-1 min-w-0 flex flex-col items-start pr-6 mr-6 group">
+                    {/* Phone */}
+                    <div className="flex-1 min-w-0 flex flex-col items-start pr-8 mr-8 group">
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-1.5 opacity-80 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             <Phone size={12} /> Phone
                         </label>
@@ -168,7 +268,6 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         />
                     </div>
 
-                    {/* Check Availability Button */}
                     <button
                         type="button"
                         onClick={() => onNavigate('booking')}
@@ -180,8 +279,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                 </div>
 
                 {/* Stacked Form (Mobile) */}
-                <div className="md:hidden bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 space-y-6 text-left relative z-30">
-                    {/* Event Type (Mobile) */}
+                <div className="md:hidden bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 space-y-6 text-left relative z-[120]">
                     <div className="group relative">
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
                             <Camera size={12} /> Event Type
@@ -189,16 +287,19 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         <div className="relative border-b border-white/20 pb-2">
                             <button
                                 type="button"
-                                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                onClick={() => {
+                                    setIsTypeDropdownOpen(!isTypeDropdownOpen);
+                                    setIsCalendarOpen(false);
+                                }}
                                 className="w-full flex items-center justify-between bg-transparent border-none text-white outline-none font-serif text-lg p-0 cursor-pointer text-left"
                             >
                                 <span>{selectedType}</span>
-                                <ChevronDown className={`text-gray-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} size={16} />
+                                <ChevronDown className={`text-gray-500 transition-transform duration-300 ${isTypeDropdownOpen ? 'rotate-180' : ''}`} size={16} />
                             </button>
 
-                            {isDropdownOpen && (
+                            {isTypeDropdownOpen && (
                                 <div
-                                    className="absolute top-full left-0 mt-2 w-full bg-zinc-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden z-[200] animate-in fade-in slide-in-from-top-2 duration-200"
+                                    className="absolute top-full left-0 mt-2 w-full bg-zinc-900 border border-white/10 rounded-xl shadow-2xl overflow-hidden z-[999] animate-in fade-in slide-in-from-top-2 duration-200"
                                     onMouseDown={(e) => e.stopPropagation()}
                                 >
                                     <div className="max-h-60 overflow-y-auto py-2 custom-scrollbar">
@@ -218,7 +319,6 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         </div>
                     </div>
 
-                    {/* Location */}
                     <div className="group">
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
                             <MapPin size={12} /> Location
@@ -226,15 +326,56 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         <input type="text" placeholder="City, Venue" className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0" />
                     </div>
 
-                    {/* Date */}
-                    <div className="group">
+                    <div className="group relative">
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
-                            <Calendar size={12} /> Date (Approx)
+                            <CalendarIcon size={12} /> Date (Approx)
                         </label>
-                        <input type="date" className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0 [color-scheme:dark]" />
+                        <div className="relative border-b border-white/20 pb-2">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setIsCalendarOpen(!isCalendarOpen);
+                                    setIsTypeDropdownOpen(false);
+                                }}
+                                className="w-full flex items-center justify-between bg-transparent border-none text-white outline-none font-serif text-lg p-0 cursor-pointer text-left"
+                            >
+                                <span className={selectedDate ? 'text-white' : 'text-gray-600'}>
+                                    {selectedDate ? formatDate(selectedDate) : "dd-mm-yyyy"}
+                                </span>
+                                <ChevronDown className={`text-gray-500 transition-transform duration-300 ${isCalendarOpen ? 'rotate-180' : ''}`} size={16} />
+                            </button>
+
+                            {isCalendarOpen && (
+                                <div
+                                    className="absolute top-full left-0 mt-2 w-full bg-zinc-900 border border-white/10 rounded-xl shadow-2xl p-4 z-[999] animate-in fade-in slide-in-from-top-2 duration-200"
+                                    onMouseDown={(e) => e.stopPropagation()}
+                                >
+                                    <div className="flex items-center justify-between mb-4">
+                                        <button type="button" onClick={prevMonth} className="p-2 hover:bg-white/10 rounded-full text-zinc-400">
+                                            <ChevronLeft size={20} />
+                                        </button>
+                                        <span className="text-sm font-bold text-white tracking-widest uppercase">
+                                            {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+                                        </span>
+                                        <button type="button" onClick={nextMonth} className="p-2 hover:bg-white/10 rounded-full text-zinc-400">
+                                            <ChevronRight size={20} />
+                                        </button>
+                                    </div>
+                                    <div className="grid grid-cols-7 gap-1 mb-2">
+                                        {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
+                                            <div key={day} className="text-[10px] font-bold text-gold-600 uppercase text-center">
+                                                {day}
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="grid grid-cols-7 gap-1">
+                                        {renderCalendar()}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
-                    {/* Phone */}
                     <div className="group">
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
                             <Phone size={12} /> Phone
