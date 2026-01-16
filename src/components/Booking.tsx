@@ -94,8 +94,11 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                             type="tel"
                             placeholder="Phone No."
                             pattern="[0-9]*"
+                            maxLength={10}
                             onChange={(e) => {
-                                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                                let v = e.target.value.replace(/[^0-9]/g, '');
+                                if (v.length > 10) v = v.slice(0, 10);
+                                e.target.value = v;
                             }}
                             className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 placeholder-zinc-600 focus:ring-0"
                         />
@@ -153,8 +156,11 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                             type="tel"
                             placeholder="Phone No."
                             pattern="[0-9]*"
+                            maxLength={10}
                             onChange={(e) => {
-                                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                                let v = e.target.value.replace(/[^0-9]/g, '');
+                                if (v.length > 10) v = v.slice(0, 10);
+                                e.target.value = v;
                             }}
                             className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0"
                         />

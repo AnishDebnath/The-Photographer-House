@@ -17,7 +17,13 @@ export const Form: React.FC = () => {
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+
+        if (name === 'phone') {
+            value = value.replace(/[^0-9]/g, '');
+            if (value.length > 10) value = value.slice(0, 10);
+        }
+
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
@@ -87,8 +93,10 @@ ${formData.message}
                                 required
                                 value={formData.phone}
                                 onChange={handleChange}
+                                pattern="[0-9]*"
+                                maxLength={10}
                                 className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg"
-                                placeholder="+91 00000 00000"
+                                placeholder="10-digit Phone Number"
                             />
                         </div>
                     </div>
