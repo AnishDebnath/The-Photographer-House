@@ -16,12 +16,14 @@ export const Callout: React.FC<CalloutProps> = ({ onNavigate }) => {
                     backgroundImage: `url(${topoPattern})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
+                    backgroundRepeat: 'no-repeat',
+                    backgroundAttachment: 'fixed'
                 }}
             ></div>
 
             {/* Gradient Overlay for better text readability */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-black via-black/10 to-transparent"></div>
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-black via-black/10 to-transparent"></div>
 
             <div className="container mx-auto px-6 text-center relative z-10">
                 <p className="text-gold-500 text-[10px] md:text-xs font-bold tracking-[0.2em] mb-4">WANT TO KNOW WHAT'S POSSIBLE?</p>
