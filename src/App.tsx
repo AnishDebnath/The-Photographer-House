@@ -16,6 +16,7 @@ import { BookingPage } from './pages/Booking';
 import { AboutPage } from './pages/About';
 import { GalleryItem } from './types';
 import { galleryItems } from './pages/Home/data';
+import { ChatWidget } from './components/ChatWidget';
 import { LoadingBar } from './components/LoadingBar';
 
 function App() {
@@ -300,6 +301,7 @@ function App() {
       )}
 
       <Footer onNavigate={handleNavigation} />
+      <ChatWidget />
     </div>
   );
 }
