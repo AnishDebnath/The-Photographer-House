@@ -3,6 +3,8 @@ import { Camera, MapPin, Calendar, Phone, ArrowRight, ChevronDown } from 'lucide
 import { Button } from './Button';
 import { LazyImage } from './LazyImage';
 
+import { eventTypes } from './data';
+
 interface BookingProps {
     onNavigate: (page: string) => void;
 }
@@ -47,10 +49,9 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         </label>
                         <div className="w-full relative">
                             <select className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 cursor-pointer appearance-none focus:ring-0 placeholder-gray-500">
-                                <option className="bg-dark-900">Wedding</option>
-                                <option className="bg-dark-900">Pre-Wedding</option>
-                                <option className="bg-dark-900">Fashion</option>
-                                <option className="bg-dark-900">Product</option>
+                                {eventTypes.map(type => (
+                                    <option key={type} className="bg-dark-900" value={type}>{type}</option>
+                                ))}
                             </select>
                             <ChevronDown size={14} className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
                         </div>
@@ -111,9 +112,9 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         </label>
                         <div className="relative border-b border-white/20 pb-2">
                             <select className="w-full bg-transparent border-none text-white outline-none font-serif text-lg p-0 cursor-pointer appearance-none focus:ring-0">
-                                <option className="bg-dark-900">Wedding</option>
-                                <option className="bg-dark-900">Pre-Wedding</option>
-                                <option className="bg-dark-900">Fashion</option>
+                                {eventTypes.map(type => (
+                                    <option key={type} className="bg-dark-900" value={type}>{type}</option>
+                                ))}
                             </select>
                             <ChevronDown className="absolute right-0 top-1 text-gray-500 pointer-events-none" size={16} />
                         </div>

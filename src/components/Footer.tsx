@@ -2,43 +2,14 @@ import React from 'react';
 import { Instagram, Facebook, Twitter, Youtube, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import logo from '../assets/logo/logo.png';
 
+import { footerLinks, socialLinks } from './data';
+
 interface FooterProps {
     onNavigate: (page: string, sectionId?: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     const currentYear = new Date().getFullYear();
-
-    const footerLinks = {
-        company: [
-            { name: 'About us', page: 'about-tph' },
-            { name: 'Our Team', page: 'about-tph' },
-            { name: 'Reviews', page: 'reviews' },
-            { name: 'Journal', page: 'blog' },
-            { name: 'Contact', page: 'booking' },
-        ],
-        services: [
-            { name: 'Wedding Photography', page: 'services' },
-            { name: 'Cinematography', page: 'films' },
-            { name: 'Special Moments', page: 'special-moments' },
-            { name: 'Photo Albums', page: 'albums' },
-            { name: 'Commercial', page: 'services' },
-        ],
-        experience: [
-            { name: 'Portfolio', page: 'portfolio' },
-            { name: 'Real Stories', page: 'home', sectionId: 'stories' },
-            { name: 'FAQ', page: 'home', sectionId: 'faq' },
-            { name: 'Investment', page: 'services' },
-            { name: 'Booking', page: 'booking' },
-        ]
-    };
-
-    const socialLinks = [
-        { icon: Instagram, href: '#', label: 'Instagram' },
-        { icon: Facebook, href: '#', label: 'Facebook' },
-        { icon: Youtube, href: '#', label: 'Youtube' },
-        { icon: Twitter, href: '#', label: 'Twitter' },
-    ];
 
     return (
         <footer className="bg-white dark:bg-zinc-950 pt-20 pb-12 border-t border-gray-100 dark:border-white/5 transition-colors duration-300">

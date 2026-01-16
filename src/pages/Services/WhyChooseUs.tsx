@@ -1,16 +1,7 @@
 import React from 'react';
-import { Clock, Award, Users, Aperture, ShieldCheck, Star, Tag } from 'lucide-react';
+import { servicesWhyChooseUs } from '../../components/data';
 
 export const WhyChooseUs: React.FC = () => {
-    const whyChooseUs = [
-        { icon: Clock, title: "Always On Time", desc: "We value every second of your special day. Punctuality is our promise, ensuring we are ready before the first light hits." },
-        { icon: Award, title: "Years Of Experience", desc: "Over a decade of capturing love stories with technical mastery, artistic vision, and calm professionalism." },
-        { icon: Users, title: "Friendly Photographers", desc: "We blend in like old friends. Our team creates a relaxed atmosphere so you can be your authentic, joyful self." },
-        { icon: Aperture, title: "Attention to Detail", desc: "From the intricate mehendi patterns to the tear in a father's eye, nothing escapes our lens." },
-        { icon: ShieldCheck, title: "Professional Standards", desc: "We use top-tier equipment, maintain rigorous backups, and follow a seamless workflow from booking to delivery." },
-        { icon: Star, title: "Client Reviews", desc: "Hundreds of 5-star testimonials from happy couples across the globe testify to our dedication." },
-        { icon: Tag, title: "Packages And Pricing", desc: "Transparent, competitive packages with no hidden costs. We offer exceptional value for your investment." }
-    ];
 
     return (
         <div className="mt-20 py-32 bg-dark-950 relative overflow-hidden">
@@ -26,7 +17,7 @@ export const WhyChooseUs: React.FC = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {whyChooseUs.map((item, idx) => (
+                    {servicesWhyChooseUs.map((item, idx) => (
                         <div key={idx} className={`bg-white/5 backdrop-blur-sm p-10 rounded-3xl border border-white/10 hover:border-gold-500/50 hover:bg-white/10 transition-all duration-500 group ${idx === 6 ? 'md:col-span-2 lg:col-span-3 lg:w-2/3 lg:mx-auto' : ''}`}>
                             <div className="flex items-start justify-between mb-6">
                                 <div className="w-14 h-14 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl flex items-center justify-center text-black shadow-lg shadow-gold-500/20 group-hover:scale-110 transition-transform duration-500">

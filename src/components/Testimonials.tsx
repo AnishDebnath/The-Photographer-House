@@ -2,7 +2,7 @@ import React from 'react';
 import { Quote, Star, MapPin, ArrowRight } from 'lucide-react';
 import { Button } from './Button';
 import { SectionHeader } from './SectionHeader';
-import { testimonials } from '../pages/About/data';
+import { testimonials } from './data';
 
 interface TestimonialsProps {
     onNavigate: (page: string) => void;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Heart, Aperture, ShieldCheck, Clock } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
+import { philosophyItems } from './data';
 
 export const WhyChooseUs: React.FC = () => {
     return (
@@ -16,28 +16,7 @@ export const WhyChooseUs: React.FC = () => {
                 />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
-                    {[
-                        {
-                            icon: Heart,
-                            title: "Client-Centric Approach",
-                            desc: "Your comfort is our priority. We create a relaxed atmosphere so your authentic self shines through in every frame."
-                        },
-                        {
-                            icon: Aperture,
-                            title: "Artistic Vision",
-                            desc: "We don't just capture scenes; we compose art. We see light, shadow, and angles that others simply miss."
-                        },
-                        {
-                            icon: ShieldCheck,
-                            title: "Reliability & Safety",
-                            desc: "With dual-slot backups and professional-grade gear, your memories are safe with us. No compromises."
-                        },
-                        {
-                            icon: Clock,
-                            title: "Timely Delivery",
-                            desc: "We know you are excited. We deliver high-quality, curated, and edited galleries within our promised timeline."
-                        }
-                    ].map((item, i) => (
+                    {philosophyItems.map((item, i) => (
                         <div key={i} className="group p-8 rounded-[2.5rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/5 hover:border-gold-500/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:hover:shadow-gold-900/10 relative overflow-hidden">
 
                             <div className="w-16 h-16 bg-gray-50 dark:bg-white/5 rounded-2xl flex items-center justify-center text-gray-900 dark:text-white mb-8 shadow-sm group-hover:bg-gold-500 group-hover:text-black transition-all duration-500 relative z-10">

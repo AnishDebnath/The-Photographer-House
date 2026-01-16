@@ -1,6 +1,6 @@
 import React from 'react';
-import { MapPin, Mail, Phone } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
+import { contactInfo } from './data';
 
 export const Contact: React.FC = () => {
     return (
@@ -31,38 +31,17 @@ export const Contact: React.FC = () => {
                         </p>
 
                         <div className="space-y-6 md:space-y-8">
-                            {/* Address */}
-                            <div className="flex items-start gap-4 md:gap-5 group">
-                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold-900/20 flex items-center justify-center text-gold-500 shrink-0 mt-1 group-hover:bg-gold-500 group-hover:text-black transition-colors duration-300">
-                                    <MapPin size={18} className="md:w-5 md:h-5" />
+                            {contactInfo.map((item, idx) => (
+                                <div key={idx} className="flex items-start gap-4 md:gap-5 group">
+                                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold-900/20 flex items-center justify-center text-gold-500 shrink-0 mt-1 group-hover:bg-gold-500 group-hover:text-black transition-colors duration-300">
+                                        <item.icon size={18} className="md:w-5 md:h-5" />
+                                    </div>
+                                    <div className="flex-grow">
+                                        <p className="text-[10px] md:text-xs text-gold-500 font-bold uppercase tracking-widest mb-1">{item.label}</p>
+                                        <p className="text-gray-300 text-sm md:text-base break-all md:break-normal">{item.value}</p>
+                                    </div>
                                 </div>
-                                <div className="flex-grow">
-                                    <p className="text-[10px] md:text-xs text-gold-500 font-bold uppercase tracking-widest mb-1">Address</p>
-                                    <p className="text-gray-300 text-sm md:text-base">Kolkata, West Bengal, 700126</p>
-                                </div>
-                            </div>
-
-                            {/* Email */}
-                            <div className="flex items-start gap-4 md:gap-5 group">
-                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold-900/20 flex items-center justify-center text-gold-500 shrink-0 mt-1 group-hover:bg-gold-500 group-hover:text-black transition-colors duration-300">
-                                    <Mail size={18} className="md:w-5 md:h-5" />
-                                </div>
-                                <div className="flex-grow">
-                                    <p className="text-[10px] md:text-xs text-gold-500 font-bold uppercase tracking-widest mb-1">Email Us</p>
-                                    <p className="text-gray-300 text-sm md:text-base break-all md:break-normal">hello@photographerhouse.com</p>
-                                </div>
-                            </div>
-
-                            {/* Call */}
-                            <div className="flex items-start gap-4 md:gap-5 group">
-                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold-900/20 flex items-center justify-center text-gold-500 shrink-0 mt-1 group-hover:bg-gold-500 group-hover:text-black transition-colors duration-300">
-                                    <Phone size={18} className="md:w-5 md:h-5" />
-                                </div>
-                                <div className="flex-grow">
-                                    <p className="text-[10px] md:text-xs text-gold-500 font-bold uppercase tracking-widest mb-1">Call Us</p>
-                                    <p className="text-gray-300 text-sm md:text-base">+91 98306 93939</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Button } from './Button';
-import { faqs } from '../pages/Home/data';
+import { faqs } from './data';
 
 interface FaqProps {
     onNavigate: (page: string) => void;

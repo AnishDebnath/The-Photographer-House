@@ -3,6 +3,8 @@ import { Menu, X } from 'lucide-react';
 import { Button } from './Button';
 import logo from '../assets/logo/logo.png';
 
+import { navLinks } from './data';
+
 interface NavBarProps {
   currentPage: string;
   onNavigate: (page: string, sectionId?: string) => void;
@@ -36,18 +38,6 @@ export const NavBar: React.FC<NavBarProps> = ({ currentPage, onNavigate }) => {
     setIsOpen(false);
     onNavigate(page, sectionId);
   };
-
-  const navLinks = [
-    { name: 'Home', page: 'home', sectionId: 'root' },
-    { name: 'Special Moments', page: 'special-moments', sectionId: '' },
-    { name: 'Portfolio', page: 'portfolio', sectionId: '' },
-    { name: 'Films', page: 'films', sectionId: '' },
-    { name: 'Albums', page: 'albums', sectionId: '' },
-    { name: 'Services', page: 'services', sectionId: '' },
-    { name: 'About us', page: 'about-tph', sectionId: '' },
-    { name: 'Reviews', page: 'reviews', sectionId: '' },
-    { name: 'Blog', page: 'blog', sectionId: '' },
-  ];
 
   return (
     <>
