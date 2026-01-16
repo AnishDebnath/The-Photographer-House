@@ -1,9 +1,20 @@
 export const eventTypes = [
-    "Wedding",
-    "Pre-Wedding",
-    "Fashion",
-    "Product",
+    "Full Wedding Package",
+    "Pre-Wedding Shoot",
+    "Engagement & Ring Ceremony",
+    "Wedding Night Shoot",
+    "Reception",
+    "Birthday Shoot",
+    "Rice Ceremony",
+    "Baby / Newborn Shoot",
+    "Maternity Shoot",
     "Anniversary Shoot",
-    "Maternity",
-    "Baby Shower"
+    "Jewellery Retouch & Editing",
+    "Jewellery Photoshoot with Models",
+    "Portfolio / Fashion Shoot",
+    "Product / E-commerce Shoot",
+    "Food Photography",
+    "Corporate Event Coverage",
+    "Album Design & Printing",
+    "Custom LED Photo Frames"
 ];

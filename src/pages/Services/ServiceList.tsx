@@ -72,7 +72,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
         {
             id: 'wedding-night',
             category: 'Engagement & Wedding',
-            title: 'Wedding Night',
+            title: 'Wedding Night Shoot',
             subtitle: 'INTIMATE & ELEGANT PORTRAITS',
             icon: Camera,
             description: 'Elegant and artistic wedding night photography in Kolkata capturing romantic and intimate moments with a premium yet tasteful approach.',
@@ -108,6 +108,25 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
             alignment: 'left'
         },
         {
+            id: 'anniversary-shoot',
+            category: 'Engagement & Wedding',
+            title: 'Anniversary Shoot',
+            subtitle: 'GRAND CELEBRATIONS',
+            icon: Camera,
+            description: 'Professional reception photography and videography in Kolkata capturing stage moments, guest interactions, decor, and candid celebrations.',
+            features: [
+                'Reception photography in Kolkata',
+                'Multi-camera coverage',
+                'Cinematic highlight videos'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1545232979-6e0b3a9c5b4f?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'right'
+        },
+        {
             id: 'birthday',
             category: 'Birthday & Rice Ceremony',
             title: 'Birthday Shoot',
@@ -124,7 +143,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=800',
                 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=800'
             ],
-            alignment: 'right'
+            alignment: 'left'
         },
         {
             id: 'rice-ceremony',
@@ -143,12 +162,31 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'https://images.unsplash.com/photo-1606214174200-2d9d4f5f7e9c?auto=format&fit=crop&q=80&w=800',
                 'https://images.unsplash.com/photo-1606214173911-9b8f2a5d1e2f?auto=format&fit=crop&q=80&w=800'
             ],
-            alignment: 'left'
+            alignment: 'right'
         },
         {
             id: 'baby-shoot',
             category: 'Birthday & Rice Ceremony',
-            title: 'Baby Shoot',
+            title: 'Baby / Newborn Shoot',
+            subtitle: 'PRECIOUS BEGINNINGS',
+            icon: Camera,
+            description: 'Capturing the innocence and tiny details of your little ones with patience and creativity. Professional baby and newborn photography that preserves their earliest milestones.',
+            features: [
+                'Newborn & toddler photography in Kolkata',
+                'Creative props and theme-based setups',
+                'Patient and gentle photography approach'
+            ],
+            images: [
+                'https://images.unsplash.com/photo-1519689680058-324335c77eb2?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1544126592-807daa2b565b?auto=format&fit=crop&q=80&w=800',
+                'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&q=80&w=800'
+            ],
+            alignment: 'left'
+        },
+        {
+            id: 'maternity-shoot',
+            category: 'Birthday & Rice Ceremony',
+            title: 'Maternity Shoot',
             subtitle: 'PRECIOUS BEGINNINGS',
             icon: Camera,
             description: 'Capturing the innocence and tiny details of your little ones with patience and creativity. Professional baby and newborn photography that preserves their earliest milestones.',
@@ -205,7 +243,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
         {
             id: 'product-shoot',
             category: 'Product & Event',
-            title: 'Product Shoot',
+            title: 'Product / E-commerce Shoot',
             subtitle: 'E-COMMERCE & SOCIAL MEDIA',
             icon: Camera,
             description: 'Professional product photography services in Kolkata for e-commerce websites and brands. We highlight textures, colors, and design to make your products stand out.',
@@ -224,7 +262,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
         {
             id: 'portfolio-shoot',
             category: 'Product & Event',
-            title: 'Portfolio Shoot',
+            title: 'Portfolio / Fashion Shoot',
             subtitle: 'FASHION & TALENT',
             icon: Camera,
             description: 'Professional portfolio shoots for aspiring models, actors, and professionals. We capture your best angles to help you build a compelling visual identity.',
@@ -260,25 +298,6 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
             alignment: 'left'
         },
         {
-            id: 'ecommerce-shoot',
-            category: 'Product & Event',
-            title: 'E-commerce Shoot',
-            subtitle: 'MARKETPLACE OPTIMIZED',
-            icon: Camera,
-            description: 'Bulk product shoots optimized for Amazon, Flipkart, and other marketplaces. Fast turnaround and consistent quality for higher conversion rates.',
-            features: [
-                'Bulk e-commerce photography in Kolkata',
-                'Standardized white background shots',
-                'Amazon & Flipkart compliance'
-            ],
-            images: [
-                'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1585386959984-a4155222f56c?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&q=80&w=800'
-            ],
-            alignment: 'right'
-        },
-        {
             id: 'corporate-event',
             category: 'Product & Event',
             title: 'Corporate Event',
@@ -295,7 +314,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'https://images.unsplash.com/photo-1475721027187-402ad2989a38?auto=format&fit=crop&q=80&w=800',
                 'https://images.unsplash.com/photo-1505373633560-fa9aee362cf1?auto=format&fit=crop&q=80&w=800'
             ],
-            alignment: 'left'
+            alignment: 'right'
         },
         {
             id: 'photo-albums',
@@ -314,7 +333,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=800',
                 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=800'
             ],
-            alignment: 'right'
+            alignment: 'left'
         },
         {
             id: 'light-frame',
@@ -333,7 +352,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'https://images.unsplash.com/photo-1504198266285-165a16f82c0a?auto=format&fit=crop&q=80&w=800',
                 'https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&q=80&w=800'
             ],
-            alignment: 'left'
+            alignment: 'right'
         }
     ];
 
