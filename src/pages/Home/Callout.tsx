@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../../components/Button';
-import topoPattern from '../../assets/patterns/topo.png';
+import patternbanner from '../../assets/home/pattern banner.jpg';
 
 interface CalloutProps {
     onNavigate: (page: string) => void;
@@ -13,7 +13,7 @@ export const Callout: React.FC<CalloutProps> = ({ onNavigate }) => {
             <div
                 className="absolute inset-0 z-0 opacity-40"
                 style={{
-                    backgroundImage: `url(${topoPattern})`,
+                    backgroundImage: `url(${patternbanner})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',

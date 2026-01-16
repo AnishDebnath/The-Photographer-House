@@ -90,7 +90,15 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
                             <Phone size={12} /> Phone
                         </label>
-                        <input type="tel" placeholder="+91..." className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 placeholder-zinc-600 focus:ring-0" />
+                        <input
+                            type="tel"
+                            placeholder="Phone No."
+                            pattern="[0-9]*"
+                            onChange={(e) => {
+                                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                            }}
+                            className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 placeholder-zinc-600 focus:ring-0"
+                        />
                     </div>
 
                     {/* Button */}
@@ -113,7 +121,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         <div className="relative border-b border-white/20 pb-2">
                             <select className="w-full bg-transparent border-none text-white outline-none font-serif text-lg p-0 cursor-pointer appearance-none focus:ring-0">
                                 {eventTypes.map(type => (
-                                    <option key={type} className="bg-dark-900" value={type}>{type}</option>
+                                    <option key={type} className="bg-dark-950 text-white py-4" value={type}>{type}</option>
                                 ))}
                             </select>
                             <ChevronDown className="absolute right-0 top-1 text-gray-500 pointer-events-none" size={16} />
@@ -141,7 +149,15 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
                             <Phone size={12} /> Phone
                         </label>
-                        <input type="tel" placeholder="+91..." className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0" />
+                        <input
+                            type="tel"
+                            placeholder="Phone No."
+                            pattern="[0-9]*"
+                            onChange={(e) => {
+                                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                            }}
+                            className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0"
+                        />
                     </div>
 
                     <Button variant="primary" className="w-full" onClick={() => onNavigate('booking')}>Check Availability</Button>

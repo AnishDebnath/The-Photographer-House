@@ -9,9 +9,9 @@ export const Stats: React.FC = () => {
             {/* Rich Background */}
             <div className="absolute inset-0 opacity-20">
                 <img
-                    src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1920"
+                    src="/assets/home/stats background.jpg"
                     alt="Background Texture"
-                    className="w-full h-full object-cover grayscale"
+                    className="w-full h-full object-cover"
                 />
             </div>
             <div className="absolute inset-0 bg-gradient-to-r from-dark-950/95 via-dark-950/80 to-dark-950/95"></div>
