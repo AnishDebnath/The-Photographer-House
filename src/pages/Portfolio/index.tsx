@@ -5,12 +5,42 @@ import { Hero } from './Hero';
 import { FolderView } from './FolderView';
 import { GalleryView } from './GalleryView';
 import { Lightbox } from './Lightbox';
-import { projectFolders, allItems } from './data';
+import { projectFolders } from './data';
 
 interface PortfolioPageProps {
   initialCategory?: string;
   initialFolder?: string | null;
 }
+
+const categoryOrder = [
+  'Wedding',
+  'Pre-wedding',
+  'Engagement',
+  'Reception',
+  'Haldi',
+  'Rice Ceremony',
+  'Birthday',
+  'Jewellery Photography'
+];
+
+const getSortedFolders = (folders: PortfolioFolder[]) => {
+  return [...folders].sort((a, b) => {
+    const catA = a.category || '';
+    const catB = b.category || '';
+
+    if (catA !== catB) {
+      const indexA = categoryOrder.indexOf(catA);
+      const indexB = categoryOrder.indexOf(catB);
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+      return catA.localeCompare(catB);
+    }
+
+    // Within same category, sort by title alphabetical
+    return a.title.localeCompare(b.title);
+  });
+};
 
 export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 'All', initialFolder = null }) => {
   // State for Navigation & View Modes
@@ -31,16 +61,27 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
   }, [initialCategory]);
 
   // 1. Define Data Structure
-  const uniqueCategories = Array.from(new Set(projectFolders.map(f => f.category || 'Uncategorized')));
+  const uniqueCategories = Array.from(new Set(projectFolders.map(f => f.category || 'Uncategorized')))
+    .sort((a, b) => {
+      const indexA = categoryOrder.indexOf(a);
+      const indexB = categoryOrder.indexOf(b);
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+      return a.localeCompare(b);
+    });
+
   const categories = ['All', ...uniqueCategories];
 
   // 2. Logic for what to display based on state
   const displayedFolders = activeTab === 'All'
-    ? projectFolders
-    : projectFolders.filter(f => f.category === activeTab);
+    ? getSortedFolders(projectFolders)
+    : getSortedFolders(projectFolders.filter(f => f.category === activeTab));
 
-  const galleryImages = openedFolderTitle
-    ? allItems.filter(item => item.title === openedFolderTitle && (!openedFolderCategory || item.category === openedFolderCategory))
+  const currentFolder = projectFolders.find(f => f.title === openedFolderTitle && (!openedFolderCategory || f.category === openedFolderCategory));
+
+  const galleryImages = currentFolder
+    ? currentFolder.items.filter(item => item.image !== currentFolder.coverImage)
     : [];
 
   // 3. Layout Helpers (Masonry)

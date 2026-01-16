@@ -12,7 +12,7 @@ export const Cta: React.FC<CtaProps> = ({ onNavigate }) => {
             {/* Parallax Background */}
             <div className="absolute inset-0 opacity-30">
                 <img
-                    src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=1920"
+                    src="/assets/booking banner.jpg"
                     className="w-full h-full object-cover"
                     alt="Booking Background"
                 />
