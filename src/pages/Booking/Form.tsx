@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Camera, MapPin, Clock, ChevronDown, ChevronLeft, ChevronRight, Calendar as CalendarIcon, AlertCircle } from 'lucide-react';
 import { Button } from '../../components/Button';
 import { eventTypes } from '../../components/data';
+import { sendBookingInquiry } from '../../services/emailBooking';
 
 export const Form: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -18,6 +19,8 @@ export const Form: React.FC = () => {
     });
 
     const [errors, setErrors] = useState<string[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     // Dropdown & Calendar States
     const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
@@ -54,6 +57,7 @@ export const Form: React.FC = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
         // Clear errors when user types
         setErrors([]);
+        setSubmitStatus('idle');
     };
 
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +69,7 @@ export const Form: React.FC = () => {
             toDate: null
         }));
         setErrors([]);
+        setSubmitStatus('idle');
     };
 
     // Calendar logic
@@ -109,6 +114,7 @@ export const Form: React.FC = () => {
         }
         setActiveCalendar(null);
         setErrors([]);
+        setSubmitStatus('idle');
     };
 
     const formatDate = (date: Date | null) => {
@@ -174,7 +180,7 @@ export const Form: React.FC = () => {
         return days;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         // Validation
@@ -200,16 +206,33 @@ export const Form: React.FC = () => {
 
         if (newErrors.length > 0) {
             setErrors(newErrors);
-            // Scroll to top of form to show errors
             formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             return;
         }
+
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
 
         const dateStr = formData.isMultiDay
             ? `From ${formatDate(formData.fromDate)} to ${formatDate(formData.toDate)}`
             : `On ${formatDate(formData.date)}`;
 
-        const messageBody = `
+        try {
+            // 1. Submit via EmailJS
+            await sendBookingInquiry({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                shootType: formData.shootType,
+                location: formData.location,
+                dateStr: dateStr,
+                message: formData.message
+            });
+
+            setSubmitStatus('success');
+
+            // 2. Prepare WhatsApp/Direct Email Message
+            const messageBody = `
 *New Booking Inquiry*
 ------------------------
 *Name:* ${formData.name}
@@ -221,15 +244,25 @@ export const Form: React.FC = () => {
 ------------------------
 *Message:*
 ${formData.message}
-        `.trim();
+            `.trim();
 
-        const encodedMessage = encodeURIComponent(messageBody);
-        const whatsappUrl = `https://wa.me/919876543210?text=${encodedMessage}`;
-        window.open(whatsappUrl, '_blank');
+            const encodedMessage = encodeURIComponent(messageBody);
+            const whatsappUrl = `https://wa.me/919876543210?text=${encodedMessage}`;
 
-        setTimeout(() => {
-            window.location.href = `mailto:contact@photographerhouse.com?subject=Booking Inquiry: ${formData.shootType} - ${formData.name}&body=${encodedMessage}`;
-        }, 1000);
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+
+            // Fallback Email Client
+            setTimeout(() => {
+                window.location.href = `mailto:contact@photographerhouse.com?subject=Booking Inquiry: ${formData.shootType} - ${formData.name}&body=${encodedMessage}`;
+            }, 1000);
+
+        } catch (error) {
+            setSubmitStatus('error');
+            console.error('Submission failed:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -289,6 +322,20 @@ ${formData.message}
                     </div>
                 )}
 
+                {/* Success Message */}
+                {submitStatus === 'success' && (
+                    <div className="mb-8 p-4 bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20 rounded-xl animate-in fade-in slide-in-from-top-4 text-green-600 dark:text-green-400 text-sm font-medium">
+                        Thank you! Your inquiry has been sent successfully.
+                    </div>
+                )}
+
+                {/* Error Global Message */}
+                {submitStatus === 'error' && (
+                    <div className="mb-8 p-4 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 rounded-xl animate-in fade-in slide-in-from-top-4 text-red-600 dark:text-red-400 text-sm font-medium">
+                        Something went wrong. Please try again or contact us on WhatsApp or Call.
+                    </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-8" noValidate>
                     {/* Personal Info */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -301,7 +348,8 @@ ${formData.message}
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Name")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg`}
+                                disabled={isSubmitting}
+                                className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Name")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg disabled:opacity-50`}
                                 placeholder="John Doe"
                             />
                         </div>
@@ -314,9 +362,10 @@ ${formData.message}
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
+                                disabled={isSubmitting}
                                 pattern="[0-9]*"
                                 maxLength={10}
-                                className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Phone")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg`}
+                                className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Phone")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg disabled:opacity-50`}
                                 placeholder="10-digit Phone Number"
                             />
                         </div>
@@ -329,7 +378,8 @@ ${formData.message}
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Email")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg`}
+                            disabled={isSubmitting}
+                            className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Email")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg disabled:opacity-50`}
                             placeholder="john@example.com (Optional)"
                         />
                     </div>
@@ -343,6 +393,7 @@ ${formData.message}
                                 className="sr-only peer"
                                 checked={formData.isMultiDay}
                                 onChange={handleCheckboxChange}
+                                disabled={isSubmitting}
                             />
                             <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-gold-500/30 dark:peer-focus:ring-gold-500/20 rounded-full peer dark:bg-white/10 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gold-500 shadow-inner"></div>
                             <span className="ms-3 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gold-500 transition-colors">Multi-day event</span>
@@ -358,8 +409,9 @@ ${formData.message}
                                 </label>
                                 <button
                                     type="button"
+                                    disabled={isSubmitting}
                                     onClick={() => { setActiveCalendar(activeCalendar === 'single' ? null : 'single'); setIsTypeDropdownOpen(false); }}
-                                    className={`w-full flex items-center justify-between bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Event Date")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none hover:border-gold-500 transition-colors rounded-lg text-left`}
+                                    className={`w-full flex items-center justify-between bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Event Date")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none hover:border-gold-500 transition-colors rounded-lg text-left disabled:opacity-50`}
                                 >
                                     <span className={formData.date ? 'opacity-100' : 'opacity-40'}>{formatDate(formData.date)}</span>
                                     <CalendarIcon size={18} className="text-gray-400" />
@@ -394,8 +446,9 @@ ${formData.message}
                                     </label>
                                     <button
                                         type="button"
+                                        disabled={isSubmitting}
                                         onClick={() => { setActiveCalendar(activeCalendar === 'from' ? null : 'from'); setIsTypeDropdownOpen(false); }}
-                                        className={`w-full flex items-center justify-between bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Start Date")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none hover:border-gold-500 transition-colors rounded-lg text-left`}
+                                        className={`w-full flex items-center justify-between bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Start Date")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none hover:border-gold-500 transition-colors rounded-lg text-left disabled:opacity-50`}
                                     >
                                         <span className={formData.fromDate ? 'opacity-100' : 'opacity-40'}>{formatDate(formData.fromDate)}</span>
                                         <CalendarIcon size={18} className="text-gray-400" />
@@ -426,8 +479,9 @@ ${formData.message}
                                     </label>
                                     <button
                                         type="button"
+                                        disabled={isSubmitting}
                                         onClick={() => { setActiveCalendar(activeCalendar === 'to' ? null : 'to'); setIsTypeDropdownOpen(false); }}
-                                        className={`w-full flex items-center justify-between bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("End Date")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none hover:border-gold-500 transition-colors rounded-lg text-left`}
+                                        className={`w-full flex items-center justify-between bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("End Date")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none hover:border-gold-500 transition-colors rounded-lg text-left disabled:opacity-50`}
                                     >
                                         <span className={formData.toDate ? 'opacity-100' : 'opacity-40'}>{formatDate(formData.toDate)}</span>
                                         <CalendarIcon size={18} className="text-gray-400" />
@@ -465,8 +519,9 @@ ${formData.message}
                             <div className="relative">
                                 <button
                                     type="button"
+                                    disabled={isSubmitting}
                                     onClick={() => { setIsTypeDropdownOpen(!isTypeDropdownOpen); setActiveCalendar(null); }}
-                                    className="w-full flex items-center justify-between bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 px-4 py-3 text-gray-900 dark:text-white outline-none hover:border-gold-500 transition-colors rounded-lg text-left"
+                                    className="w-full flex items-center justify-between bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 px-4 py-3 text-gray-900 dark:text-white outline-none hover:border-gold-500 transition-colors rounded-lg text-left disabled:opacity-50"
                                 >
                                     <span>{formData.shootType}</span>
                                     <ChevronDown size={18} className={`text-gray-400 transition-transform duration-300 ${isTypeDropdownOpen ? 'rotate-180' : ''}`} />
@@ -478,7 +533,7 @@ ${formData.message}
                                                 <button
                                                     key={type}
                                                     type="button"
-                                                    onClick={() => { setFormData(prev => ({ ...prev, shootType: type })); setIsTypeDropdownOpen(false); setErrors([]); }}
+                                                    onClick={() => { setFormData(prev => ({ ...prev, shootType: type })); setIsTypeDropdownOpen(false); setErrors([]); setSubmitStatus('idle'); }}
                                                     className={`w-full text-left px-5 py-3 text-sm transition-colors hover:bg-gold-500 hover:text-black ${formData.shootType === type ? 'text-gold-500 bg-gray-50 dark:bg-white/5' : 'text-gray-700 dark:text-zinc-300'}`}
                                                 >
                                                     {type}
@@ -500,7 +555,8 @@ ${formData.message}
                                     name="location"
                                     value={formData.location}
                                     onChange={handleChange}
-                                    className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Location")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg pr-10`}
+                                    disabled={isSubmitting}
+                                    className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Location")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg pr-10 disabled:opacity-50`}
                                     placeholder="City, Venue"
                                 />
                                 <MapPin size={18} className="absolute right-4 top-3.5 text-gray-400 pointer-events-none" />
@@ -514,7 +570,8 @@ ${formData.message}
                             name="message"
                             value={formData.message}
                             onChange={handleChange}
-                            className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg min-h-[120px]"
+                            disabled={isSubmitting}
+                            className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg min-h-[120px] disabled:opacity-50"
                             placeholder="Tell us more about your event, specific requirements, or any questions you have..."
                         ></textarea>
                     </div>
@@ -524,11 +581,17 @@ ${formData.message}
                             <div className="flex items-center gap-2 text-gold-600 dark:text-gold-400">
                                 <Clock size={16} />
                                 <p className="text-xs font-bold uppercase tracking-widest">
-                                    We respond within 24 hours
+                                    {isSubmitting ? 'Sending inquiry...' : 'We respond within 24 hours'}
                                 </p>
                             </div>
-                            <Button variant="primary" size="lg" className="px-10 w-full md:w-auto shadow-lg shadow-gold-500/20" type="submit">
-                                Submit Inquiry
+                            <Button
+                                variant="primary"
+                                size="lg"
+                                className="px-10 w-full md:w-auto shadow-lg shadow-gold-500/20 disabled:grayscale disabled:opacity-50"
+                                type="submit"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? 'Submitting...' : 'Submit Inquiry'}
                             </Button>
                         </div>
                     </div>

@@ -8,9 +8,17 @@ interface BookingProps {
     onNavigate: (page: string) => void;
 }
 
+import { sendAvailabilityInquiry } from '../services/emailAvailability';
+
 export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
     const [selectedType, setSelectedType] = useState(eventTypes[0]);
     const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
+
+    // Form States
+    const [location, setLocation] = useState('');
+    const [phone, setPhone] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     // Date Picker State
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -40,6 +48,38 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
+
+    const handleSubmitAvailability = async (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+
+        if (!selectedDate || !phone.trim() || phone.length < 10 || !location.trim()) {
+            alert("Please fill in all fields (Type, Location, Date, and 10-digit Phone)");
+            return;
+        }
+
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+
+        try {
+            await sendAvailabilityInquiry({
+                shootType: selectedType,
+                location: location,
+                date: formatDate(selectedDate),
+                phone: phone
+            });
+            setSubmitStatus('success');
+
+            // Optional: Auto-navigate after slight delay
+            setTimeout(() => {
+                onNavigate('booking');
+            }, 2000);
+        } catch (error) {
+            setSubmitStatus('error');
+            console.error('Availability submission failed:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const handleSelectType = (type: string) => {
         setSelectedType(type);
@@ -167,8 +207,20 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                     Perfect Moment."
                 </h2>
 
+                {/* Status Message */}
+                {submitStatus === 'success' && (
+                    <div className="mb-8 text-green-400 font-bold animate-pulse">
+                        Inquiry Sent! Redirecting to full booking form...
+                    </div>
+                )}
+                {submitStatus === 'error' && (
+                    <div className="mb-8 text-red-400 font-bold">
+                        Something went wrong. Please try again or contact us on WhatsApp or Call.
+                    </div>
+                )}
+
                 {/* Horizontal Form (Desktop) */}
-                <div className="hidden md:inline-flex items-center bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-full p-3 pl-10 max-w-6xl w-full shadow-2xl transition-all duration-300 hover:border-gold-500/30 hover:bg-zinc-900/80 relative z-[120] overflow-visible">
+                <div className={`hidden md:inline-flex items-center bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-full p-3 pl-10 max-w-6xl w-full shadow-2xl transition-all duration-300 hover:border-gold-500/30 hover:bg-zinc-900/80 relative z-[120] overflow-visible ${isSubmitting ? 'opacity-50 pointer-events-none' : ''}`}>
 
                     {/* Event Type */}
                     <div className="flex-[1.5] min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group relative" ref={typeRef}>
@@ -216,7 +268,13 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-1.5 opacity-80 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             <MapPin size={12} /> Location
                         </label>
-                        <input type="text" placeholder="City, Venue" className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 placeholder-zinc-600 focus:ring-0 truncate" />
+                        <input
+                            type="text"
+                            placeholder="City, Venue"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 placeholder-zinc-600 focus:ring-0 truncate"
+                        />
                     </div>
 
                     {/* Date Picker - Downward Opening */}
@@ -281,10 +339,11 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                             placeholder="Phone No."
                             pattern="[0-9]*"
                             maxLength={10}
+                            value={phone}
                             onChange={(e) => {
                                 let v = e.target.value.replace(/[^0-9]/g, '');
                                 if (v.length > 10) v = v.slice(0, 10);
-                                e.target.value = v;
+                                setPhone(v);
                             }}
                             className="w-full bg-transparent border-none text-white outline-none font-serif text-xl p-0 placeholder-zinc-600 focus:ring-0 truncate"
                         />
@@ -292,11 +351,12 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
 
                     <button
                         type="button"
-                        onClick={() => onNavigate('booking')}
-                        className="bg-gold-500 hover:bg-white text-black font-bold text-xs uppercase tracking-widest px-10 py-5 rounded-full transition-all duration-300 shadow-[0_0_20px_-5px_theme(colors.gold.500)] hover:shadow-white/50 flex items-center gap-2 whitespace-nowrap group/btn flex-shrink-0"
+                        onClick={handleSubmitAvailability}
+                        disabled={isSubmitting}
+                        className="bg-gold-500 hover:bg-white text-black font-bold text-xs uppercase tracking-widest px-10 py-5 rounded-full transition-all duration-300 shadow-[0_0_20px_-5px_theme(colors.gold.500)] hover:shadow-white/50 flex items-center gap-2 whitespace-nowrap group/btn flex-shrink-0 disabled:opacity-50 disabled:grayscale"
                     >
-                        <span>Check Availability</span>
-                        <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
+                        <span>{isSubmitting ? 'Checking...' : 'Check Availability'}</span>
+                        {!isSubmitting && <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />}
                     </button>
                 </div>
 
@@ -345,7 +405,13 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
                             <MapPin size={12} /> Location
                         </label>
-                        <input type="text" placeholder="City, Venue" className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0" />
+                        <input
+                            type="text"
+                            placeholder="City, Venue"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0"
+                        />
                     </div>
 
                     <div className="group relative" ref={calendarMobileRef}>
@@ -407,16 +473,24 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                             placeholder="Phone No."
                             pattern="[0-9]*"
                             maxLength={10}
+                            value={phone}
                             onChange={(e) => {
                                 let v = e.target.value.replace(/[^0-9]/g, '');
                                 if (v.length > 10) v = v.slice(0, 10);
-                                e.target.value = v;
+                                setPhone(v);
                             }}
                             className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0"
                         />
                     </div>
 
-                    <Button variant="primary" className="w-full" onClick={() => onNavigate('booking')}>Check Availability</Button>
+                    <Button
+                        variant="primary"
+                        className="w-full"
+                        disabled={isSubmitting}
+                        onClick={handleSubmitAvailability}
+                    >
+                        {isSubmitting ? 'Checking...' : 'Check Availability'}
+                    </Button>
                 </div>
             </div>
         </section>
