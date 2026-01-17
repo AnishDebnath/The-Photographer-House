@@ -247,14 +247,14 @@ ${formData.message}
             `.trim();
 
             const encodedMessage = encodeURIComponent(messageBody);
-            const whatsappUrl = `https://wa.me/919876543210?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/918910092451?text=${encodedMessage}`;
 
             // Open WhatsApp
             window.open(whatsappUrl, '_blank');
 
             // Fallback Email Client
             setTimeout(() => {
-                window.location.href = `mailto:contact@photographerhouse.com?subject=Booking Inquiry: ${formData.shootType} - ${formData.name}&body=${encodedMessage}`;
+                window.location.href = `mailto:okimarphotography@gmail.com?subject=Booking Inquiry: ${formData.shootType} - ${formData.name}&body=${encodedMessage}`;
             }, 1000);
 
         } catch (error) {

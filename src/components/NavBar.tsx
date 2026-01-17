@@ -56,19 +56,19 @@ export const NavBar: React.FC<NavBarProps> = ({ currentPage, onNavigate }) => {
                 className="w-10 h-10 object-contain relative z-10"
               />
             </div>
-            <div className={`text-xl md:text-2xl font-serif tracking-tight ${isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
+            <div className={`text-md lg:text-lg xl:text-xl 2xl:text-2xl font-serif tracking-tight ${isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}>
               The Photographer <span className="text-gold-500 italic font-semibold">House</span>
             </div>
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center lg:gap-2 xl:gap-4 2xl:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={`#${link.sectionId}`}
                 onClick={(e) => handleNavClick(e, link.page, link.sectionId)}
-                className={`text-xs uppercase tracking-widest hover:text-gold-500 transition-colors relative group ${isScrolled ? 'text-gray-600 dark:text-gray-300' : 'text-gray-300'}`}
+                className={`lg:text-[9px] xl:text-[10px] 2xl:text-xs uppercase tracking-widest hover:text-gold-500 transition-colors relative group ${isScrolled ? 'text-gray-600 dark:text-gray-300' : 'text-gray-300'}`}
               >
                 {link.name}
                 <span className={`absolute -bottom-2 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300 group-hover:w-full ${currentPage === link.page ? 'w-full' : ''}`}></span>
@@ -78,7 +78,7 @@ export const NavBar: React.FC<NavBarProps> = ({ currentPage, onNavigate }) => {
             <Button
               variant="danger"
               size="sm"
-              className="hover:scale-105 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-red-900/30 transition-all duration-500 ease-out"
+              className="lg:px-2 xl:px-4 2xl:px-6 hover:scale-105 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-red-900/30 transition-all duration-500 ease-out lg:text-[10px] 2xl:text-xs"
               onClick={(e) => handleNavClick(e, 'booking')}
             >
               Book Now
@@ -86,19 +86,19 @@ export const NavBar: React.FC<NavBarProps> = ({ currentPage, onNavigate }) => {
           </div>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="lg:hidden flex items-center gap-4">
             <button
               className={`${isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'}`}
               onClick={() => setIsOpen(!isOpen)}
             >
-              <Menu />
+              <Menu size={28} />
             </button>
           </div>
         </div>
       </nav>
 
       {/* Mobile Menu - Moved outside <nav> to avoid clipping from backdrop-filter */}
-      <div className={`md:hidden fixed inset-0 z-[110] transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`lg:hidden fixed inset-0 z-[110] transition-all duration-500 ease-in-out ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <div
           className="absolute inset-0 bg-black/60 backdrop-blur-md"
           onClick={() => setIsOpen(false)}

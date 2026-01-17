@@ -19,7 +19,7 @@ export const ContactInfo: React.FC = () => {
                     </div>
                     <div>
                         <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Studio Address</p>
-                        <p className="text-gray-900 dark:text-white font-serif text-lg">101 Photography Lane, Kolkata, West Bengal</p>
+                        <p className="text-gray-900 dark:text-white font-serif text-lg">2, P.O, 49, Ashok Nagar, Regent Park, Kolkata, West Bengal 700040</p>
                     </div>
                 </div>
 
@@ -29,8 +29,10 @@ export const ContactInfo: React.FC = () => {
                     </div>
                     <div>
                         <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Phone</p>
-                        <p className="text-gray-900 dark:text-white font-serif text-lg">+91 98765 43210</p>
-                        <p className="text-gray-500 text-sm">Mon - Sat, 10am - 7pm</p>
+                        <a href="tel:+918910092451" className="text-gray-900 dark:text-white font-serif text-lg hover:text-gold-500 transition-colors">
+                            +91 89100 92451
+                        </a>
+                        <p className="text-gray-500 text-sm">Mon - Sun, 09am - 09pm</p>
                     </div>
                 </div>
 
@@ -40,7 +42,9 @@ export const ContactInfo: React.FC = () => {
                     </div>
                     <div>
                         <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Email</p>
-                        <p className="text-gray-900 dark:text-white font-serif text-lg">contact@photographerhouse.com</p>
+                        <a href="mailto:okimarphotography@gmail.com" className="text-gray-900 dark:text-white font-serif text-lg hover:text-gold-500 transition-colors break-all md:break-normal">
+                            okimarphotography@gmail.com
+                        </a>
                     </div>
                 </div>
             </div>

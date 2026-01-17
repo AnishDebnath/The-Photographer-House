@@ -1,19 +1,24 @@
-import { MapPin, Mail, Phone } from 'lucide-react';
+import { MapPin, Mail, Phone, Clock } from 'lucide-react';
 
 export const contactInfo = [
     {
         icon: MapPin,
         label: "Address",
-        value: "Kolkata, West Bengal, 700126"
+        value: "2, P.O, 49, Ashok Nagar, Regent Park, Kolkata, West Bengal 700040"
     },
     {
         icon: Mail,
         label: "Email Us",
-        value: "hello@photographerhouse.com"
+        value: "okimarphotography@gmail.com"
     },
     {
         icon: Phone,
         label: "Call Us",
-        value: "+91 98306 93939"
+        value: "+91 8910092451"
+    },
+    {
+        icon: Clock,
+        label: "Opening Hours",
+        value: "Mon - Sun, 09am - 09pm"
     }
 ];

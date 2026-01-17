@@ -100,19 +100,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                             <li className="flex items-start gap-3">
                                 <MapPin size={18} className="text-gold-500 shrink-0 mt-0.5" />
                                 <span className="text-sm text-gray-500 dark:text-gray-400 font-light leading-snug">
-                                    Kolkata, West Bengal,<br />700126, India
+                                    2, P.O, 49, Ashok Nagar,<br />Regent Park, Kolkata,<br />West Bengal 700040
                                 </span>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Phone size={18} className="text-gold-500 shrink-0" />
-                                <a href="tel:+919830693939" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gold-500 transition-colors truncate">
-                                    +91 98306 93939
+                                <a href="tel:+918910092451" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gold-500 transition-colors truncate">
+                                    +91 8910092451
                                 </a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail size={18} className="text-gold-500 shrink-0" />
-                                <a href="mailto:hello@thephotographerhouse.com" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gold-500 transition-colors truncate">
-                                    hello@tph.com
+                                <a href="mailto:okimarphotography@gmail.com" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gold-500 transition-colors truncate">
+                                    okimarphotography@gmail.com
                                 </a>
                             </li>
                         </ul>
