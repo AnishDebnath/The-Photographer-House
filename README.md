@@ -8,10 +8,12 @@ A premium, modern photography portfolio and business management platform built w
 - **🎬 Wedding Films**: Integrated video showcase with custom-styled YouTube modal players.
 - **📂 Client Project Folders**: Organized client-specific galleries (Wedding, Engagement, etc.) for a personalized experience.
 - **✨ Special Moments**: A curated collection of artistic shots with a dedicated distraction-free viewing mode.
-- **📅 Advanced Booking**: Integrated inquiry system for clients to book sessions easily.
+- **📅 Advanced Booking**: Integrated inquiry system with **EmailJS** for direct client communication.
+- **💬 Centered Chat Widget**: Responsive floating chat support with multi-channel contact options (WhatsApp, Call, Maps).
+- **🌪️ Smooth Scrolling**: Premium momentum scrolling experience powered by **Lenis**.
 - **🌓 Adaptive Theme**: Full Dark/Light mode support with smooth transitions.
-- **📱 Fully Responsive**: Optimized for everything from large studio monitors to mobile devices.
-- **🎨 Rich Aesthetics**: Elegant typography (Playfair Display & Lato) and glassmorphism effects for a premium feel.
+- **📱 Fully Responsive**: Optimized for everything from 4K studio monitors to mobile devices, with refined layouts for 1024px and 1440px widths.
+- **🎨 Rich Aesthetics**: Elegant typography (Playfair Display & Outfit) and glassmorphism effects for a premium feel.
 
 ## 🚀 Tech Stack
 
@@ -19,24 +21,29 @@ A premium, modern photography portfolio and business management platform built w
 - **Build Tool**: [Vite 6](https://vitejs.dev/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Lenis](https://lenis.darkroom.engineering/) (Smooth Scroll)
+- **Email Service**: [EmailJS](https://www.emailjs.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **State Management**: React Hooks (useState, useEffect, useCallback)
+- **State Management**: React Hooks (useState, useEffect, useRef)
 
 ## 📁 Project Structure
 
 ```text
 src/
-├── assets/             # Local optimized images
+├── assets/             # Local optimized images and branding
 │   ├── portfolio/      # Client-specific project folders
-│   └── hero/           # High-resolution landing visuals
-├── components/         # Shared UI components (NavBar, Button, etc.)
+│   └── logo/           # Brand assets
+├── components/         # Shared UI components (NavBar, ChatWidget, etc.)
+│   ├── data/           # Component-specific static data
+│   └── ...
+├── services/           # External API services (EmailJS)
 ├── pages/              # Individual page modules
 │   ├── Home/           # Landing page sections
 │   ├── Portfolio/      # Interactive gallery views
-│   ├── Films/          # Cinematic video grid
+│   ├── Booking/        # Inquiry forms and contact info
 │   └── ...
-├── types.ts            # Centralized TypeScript definitions
-└── data.ts             # Application content and project metadata
+├── types/              # Centralized TypeScript definitions
+└── App.tsx             # Main application entry and routing
 ```
 
 ## 🛠️ Installation & Setup
@@ -54,18 +61,29 @@ To run this project locally, follow these steps:
    npm install
    ```
 
-3. **Start the development server**:
+3. **Configure EmailJS**:
+   Update your credentials in `src/services/emailAvailability.ts` and `src/services/emailBooking.ts`:
+   ```typescript
+   const SERVICE_ID = "your_service_id";
+   const TEMPLATE_ID = "your_template_id";
+   const PUBLIC_KEY = "your_public_key";
+   ```
+
+4. **Start the development server**:
    ```bash
    npm run dev
    ```
 
-4. **Open in Browser**:
-   Navigate to `http://localhost:3000` (or the port shown in your terminal).
+5. **Build for Production**:
+   ```bash
+   npm run build
+   ```
 
 ## 💡 Usage
 
-- **Adding Photos**: Place your images in `src/assets/portfolio/[Category]/[ProjectName]` and update the data in `src/pages/Portfolio/index.tsx` or `src/data.ts`.
-- **Customizing Style**: Global colors and fonts can be adjusted in `index.html` (Tailwind Config) and `index.css`.
+- **Adding Photos**: Place your images in `src/assets/portfolio/[Category]/[ProjectName]` and update the metadata in `src/pages/Portfolio/data.ts`.
+- **Contact Details**: Update global business info (Phone, Email, Address) in `src/components/data/contact.ts`.
+- **Customizing Style**: Global animations and Lenis styles can be adjusted in `index.css`.
 
 ## 🤝 Contributing
 
@@ -79,8 +97,8 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## 📄 License
 
-Distributed under the Copyright Rights Reserved License of The Photographer House.
+Distributed under the Copyright Rights Reserved License of **The Photographer House**.
 
 ---
 
-<p align="center">Design & Developed by ❤️ by Anish Debnath</p>
+<p align="center">Designed & Developed with ❤️ by <b>Anish Debnath</b></p>
