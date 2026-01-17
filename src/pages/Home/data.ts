@@ -10,11 +10,11 @@ export const clientStories = [
     },
     {
         id: 2,
-        name: "Sourav & Swagata",
+        name: "Biswanath & Niketa",
         category: "Wedding",
-        folderTitle: "Sourav & Swagata",
+        folderTitle: "Biswanath & Niketa",
         location: "Kolkata",
-        image: "/assets/portfolio/Wedding/sourav & swagata wedding/sourav & swagata wedding (1).jpg",
+        image: "/assets/portfolio/Wedding/biswanath & niketa wedding/biswanath & niketa wedding (2).jpg",
         description: "Captured the intimate glances and joyful beginnings of their forever."
     },
     {
