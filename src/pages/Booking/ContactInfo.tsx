@@ -19,7 +19,7 @@ export const ContactInfo: React.FC = () => {
                     </div>
                     <div>
                         <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-1">Studio Address</p>
-                        <p className="text-gray-900 dark:text-white font-serif text-lg">2, P.O, 49, Ashok Nagar, Regent Park, Kolkata, West Bengal 700040</p>
+                        <p className="text-gray-900 dark:text-white font-serif text-lg">2/49, Ashok Nagar, Regent Park, Kolkata, West Bengal 700040</p>
                     </div>
                 </div>
 

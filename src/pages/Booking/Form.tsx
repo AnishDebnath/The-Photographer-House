@@ -231,32 +231,6 @@ export const Form: React.FC = () => {
 
             setSubmitStatus('success');
 
-            // 2. Prepare WhatsApp/Direct Email Message
-            const messageBody = `
-*New Booking Inquiry*
-------------------------
-*Name:* ${formData.name}
-*Email:* ${formData.email}
-*Phone:* ${formData.phone}
-*Type:* ${formData.shootType}
-*Location:* ${formData.location}
-*Date:* ${dateStr}
-------------------------
-*Message:*
-${formData.message}
-            `.trim();
-
-            const encodedMessage = encodeURIComponent(messageBody);
-            const whatsappUrl = `https://wa.me/918910092451?text=${encodedMessage}`;
-
-            // Open WhatsApp
-            window.open(whatsappUrl, '_blank');
-
-            // Fallback Email Client
-            setTimeout(() => {
-                window.location.href = `mailto:okimarphotography@gmail.com?subject=Booking Inquiry: ${formData.shootType} - ${formData.name}&body=${encodedMessage}`;
-            }, 1000);
-
         } catch (error) {
             setSubmitStatus('error');
             console.error('Submission failed:', error);

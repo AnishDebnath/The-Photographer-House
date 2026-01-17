@@ -100,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                             <li className="flex items-start gap-3">
                                 <MapPin size={18} className="text-gold-500 shrink-0 mt-0.5" />
                                 <span className="text-sm text-gray-500 dark:text-gray-400 font-light leading-snug">
-                                    2, P.O, 49, Ashok Nagar,<br />Regent Park, Kolkata,<br />West Bengal 700040
+                                    2/49, Ashok Nagar,<br />Regent Park, Kolkata,<br />West Bengal 700040
                                 </span>
                             </li>
                             <li className="flex items-center gap-3">

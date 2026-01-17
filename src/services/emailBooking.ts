@@ -1,9 +1,9 @@
 import emailjs from '@emailjs/browser';
 
 // EmailJS Credentials - Replace with your actual IDs
-const SERVICE_ID = "YOUR_SERVICE_ID";
-const TEMPLATE_ID = "YOUR_BOOKING_TEMPLATE_ID";
-const PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+const SERVICE_ID = "service_jzhgu32";
+const TEMPLATE_ID = "template_dvp2of9";
+const PUBLIC_KEY = "C0yz8u3KR5wLj-aN1";
 
 /**
  * Sends detailed booking inquiry from the Book Now page

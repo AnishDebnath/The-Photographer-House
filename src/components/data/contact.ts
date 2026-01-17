@@ -4,7 +4,7 @@ export const contactInfo = [
     {
         icon: MapPin,
         label: "Address",
-        value: "2, P.O, 49, Ashok Nagar, Regent Park, Kolkata, West Bengal 700040"
+        value: "2/49, Ashok Nagar, Regent Park, Kolkata, West Bengal 700040"
     },
     {
         icon: Mail,
