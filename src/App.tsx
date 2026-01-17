@@ -18,6 +18,7 @@ import { GalleryItem } from './types';
 import { galleryItems } from './pages/Home/data';
 import { ChatWidget } from './components/ChatWidget';
 import { LoadingBar } from './components/LoadingBar';
+import { SmoothScroll } from './components/SmoothScroll';
 
 function App() {
   const navigate = useNavigate();
@@ -86,17 +87,36 @@ function App() {
           // Allow render to happen then scroll
           setTimeout(() => {
             const element = document.getElementById(sectionId);
+            const lenis = (window as any).lenis;
             if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
+              if (lenis) {
+                lenis.scrollTo(element, { duration: 1.5 });
+              } else {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
             } else if (sectionId === 'root' || !sectionId) {
-              window.scrollTo(0, 0);
+              if (lenis) {
+                lenis.scrollTo(0, { duration: 1.2 });
+              } else {
+                window.scrollTo(0, 0);
+              }
             }
           }, 100);
         } else {
-          window.scrollTo(0, 0);
+          const lenis = (window as any).lenis;
+          if (lenis) {
+            lenis.scrollTo(0, { duration: 1.2, immediate: true });
+          } else {
+            window.scrollTo(0, 0);
+          }
         }
       } else {
-        window.scrollTo(0, 0);
+        const lenis = (window as any).lenis;
+        if (lenis) {
+          lenis.scrollTo(0, { duration: 1.2, immediate: true });
+        } else {
+          window.scrollTo(0, 0);
+        }
       }
 
       // Stop the loading animation after a slight delay for better UX
@@ -112,7 +132,12 @@ function App() {
 
     setTimeout(() => {
       navigate('/portfolio');
-      window.scrollTo(0, 0);
+      const lenis = (window as any).lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
       setTimeout(() => setIsNavigating(false), 300);
     }, 600);
   };
@@ -124,7 +149,12 @@ function App() {
 
     setTimeout(() => {
       navigate('/portfolio');
-      window.scrollTo(0, 0);
+      const lenis = (window as any).lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
       setTimeout(() => setIsNavigating(false), 300);
     }, 600);
   };
@@ -135,7 +165,12 @@ function App() {
 
     setTimeout(() => {
       navigate('/blog');
-      window.scrollTo(0, 0);
+      const lenis = (window as any).lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
       setTimeout(() => setIsNavigating(false), 300);
     }, 600);
   };
@@ -179,6 +214,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
+      <SmoothScroll />
       <LoadingBar isNavigating={isNavigating} />
       <NavBar
         currentPage={currentPage}
