@@ -135,7 +135,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
 
                 {/* Availability Badge */}
                 <div className="inline-block border border-gold-500/30 bg-gold-500/10 px-6 py-1.5 rounded-full text-gold-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-8 backdrop-blur-md">
-                    @ 2024 / 2025 Availability
+                    @ 2026 / 2027 Availability
                 </div>
 
                 <h2 className="font-serif text-4xl md:text-6xl text-white mb-2 leading-tight">
