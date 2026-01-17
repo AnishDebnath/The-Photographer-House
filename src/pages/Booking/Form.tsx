@@ -25,12 +25,17 @@ export const Form: React.FC = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date());
 
     const formRef = useRef<HTMLDivElement>(null);
+    const typeRef = useRef<HTMLDivElement>(null);
+    const dateRef = useRef<HTMLDivElement>(null);
 
     // Close dropdowns on click outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (formRef.current && !formRef.current.contains(event.target as Node)) {
+            const target = event.target as Node;
+            if (typeRef.current && !typeRef.current.contains(target)) {
                 setIsTypeDropdownOpen(false);
+            }
+            if (dateRef.current && !dateRef.current.contains(target)) {
                 setActiveCalendar(null);
             }
         };
@@ -81,6 +86,10 @@ export const Form: React.FC = () => {
 
     const handleDateSelect = (day: number) => {
         const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (date < today) return;
 
         if (activeCalendar === 'single') {
             setFormData(prev => ({ ...prev, date }));
@@ -117,6 +126,9 @@ export const Form: React.FC = () => {
         const startDay = firstDayOfMonth(year, month);
         const days = [];
 
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
         for (let i = 0; i < startDay; i++) {
             days.push(<div key={`empty-${i}`} className="h-8 md:h-10"></div>);
         }
@@ -125,19 +137,23 @@ export const Form: React.FC = () => {
             const date = new Date(year, month, d);
             let isSelected = false;
             let isDisabled = false;
+            const isPast = date < today;
 
             if (activeCalendar === 'single') {
                 isSelected = formData.date?.toDateString() === date.toDateString();
+                if (isPast) isDisabled = true;
             } else if (activeCalendar === 'from') {
                 isSelected = formData.fromDate?.toDateString() === date.toDateString();
+                if (isPast) isDisabled = true;
             } else if (activeCalendar === 'to') {
                 isSelected = formData.toDate?.toDateString() === date.toDateString();
-                if (formData.fromDate && date < formData.fromDate) {
+                // Disable if past OR before fromDate
+                if (isPast || (formData.fromDate && date < formData.fromDate)) {
                     isDisabled = true;
                 }
             }
 
-            const isToday = new Date().toDateString() === date.toDateString();
+            const isTodayDate = today.toDateString() === date.toDateString();
 
             days.push(
                 <button
@@ -148,7 +164,7 @@ export const Form: React.FC = () => {
                     className={`h-8 w-8 md:h-10 md:w-10 rounded-full flex items-center justify-center text-xs md:text-sm transition-all duration-200
                         ${isSelected ? 'bg-gold-500 text-black font-bold shadow-lg shadow-gold-500/20' :
                             isDisabled ? 'opacity-10 cursor-not-allowed grayscale' :
-                                isToday ? 'border border-gold-500/50 text-gold-500' : 'text-zinc-600 dark:text-zinc-400 hover:bg-gold-500/10 hover:text-gold-500'}`}
+                                isTodayDate ? 'border border-gold-500/50 text-gold-500' : 'text-zinc-600 dark:text-zinc-400 hover:bg-gold-500/10 hover:text-gold-500'}`}
                 >
                     {d}
                 </button>
@@ -164,6 +180,14 @@ export const Form: React.FC = () => {
         // Validation
         const newErrors: string[] = [];
         if (!formData.name.trim()) newErrors.push("Full Name is required");
+
+        if (formData.email.trim()) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                newErrors.push("Please enter a valid email address (e.g., example@gmail.com)");
+            }
+        }
+
         if (!formData.phone.trim() || formData.phone.length < 10) newErrors.push("Valid 10-digit Phone Number is required");
         if (!formData.location.trim()) newErrors.push("Location is required");
 
@@ -227,6 +251,24 @@ ${formData.message}
                     background: #d4af37;
                     border-radius: 10px;
                 }
+                
+                /* Prevent Autofill Background Color Change */
+                input:-webkit-autofill,
+                input:-webkit-autofill:hover, 
+                input:-webkit-autofill:focus, 
+                input:-webkit-autofill:active {
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: inherit !important;
+                    transition: background-color 5000s ease-in-out 0s;
+                    box-shadow: inset 0 0 20px 20px transparent;
+                }
+
+                .dark input:-webkit-autofill,
+                .dark input:-webkit-autofill:hover, 
+                .dark input:-webkit-autofill:focus, 
+                .dark input:-webkit-autofill:active {
+                    -webkit-text-fill-color: white !important;
+                }
             `}} />
 
             <div className="bg-white dark:bg-dark-800 rounded-[2rem] p-8 md:p-12 shadow-2xl border border-gray-100 dark:border-white/5 transition-colors duration-300 relative overflow-visible">
@@ -287,7 +329,7 @@ ${formData.message}
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full bg-gray-50 dark:bg-black/20 border border-gray-200 dark:border-white/10 px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg"
+                            className={`w-full bg-gray-50 dark:bg-black/20 border ${errors.some(e => e.includes("Email")) ? 'border-red-500/50' : 'border-gray-200 dark:border-white/10'} px-4 py-3 text-gray-900 dark:text-white outline-none focus:border-gold-500 transition-colors rounded-lg`}
                             placeholder="john@example.com (Optional)"
                         />
                     </div>
@@ -308,7 +350,7 @@ ${formData.message}
                     </div>
 
                     {/* Date Pickers */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8" ref={dateRef}>
                         {!formData.isMultiDay ? (
                             <div className="group relative">
                                 <label className="block text-[10px] uppercase tracking-widest text-gold-500 mb-2 font-bold">
@@ -416,7 +458,7 @@ ${formData.message}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Type of Shoot Dropdown */}
-                        <div className="group relative">
+                        <div className="group relative" ref={typeRef}>
                             <label className="block text-[10px] uppercase tracking-widest text-gold-500 mb-2 font-bold">
                                 Type of Shoot <span className="text-red-500">*</span>
                             </label>

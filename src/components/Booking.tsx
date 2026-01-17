@@ -17,15 +17,25 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
     const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const [currentMonth, setCurrentMonth] = useState(new Date());
 
-    const formRef = useRef<HTMLDivElement>(null);
+    const typeRef = useRef<HTMLDivElement>(null);
+    const calendarRef = useRef<HTMLDivElement>(null);
+    const typeMobileRef = useRef<HTMLDivElement>(null);
+    const calendarMobileRef = useRef<HTMLDivElement>(null);
 
     // Close dropdowns on click outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (formRef.current && !formRef.current.contains(event.target as Node)) {
-                setIsTypeDropdownOpen(false);
-                setIsCalendarOpen(false);
-            }
+            const target = event.target as Node;
+            const isOutsideType =
+                (!typeRef.current || !typeRef.current.contains(target)) &&
+                (!typeMobileRef.current || !typeMobileRef.current.contains(target));
+
+            const isOutsideCalendar =
+                (!calendarRef.current || !calendarRef.current.contains(target)) &&
+                (!calendarMobileRef.current || !calendarMobileRef.current.contains(target));
+
+            if (isOutsideType) setIsTypeDropdownOpen(false);
+            if (isOutsideCalendar) setIsCalendarOpen(false);
         };
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -55,6 +65,11 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
 
     const handleDateSelect = (day: number) => {
         const date = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (date < today) return;
+
         setSelectedDate(date);
         setIsCalendarOpen(false);
     };
@@ -74,22 +89,29 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
         const startDay = firstDayOfMonth(year, month);
         const days = [];
 
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
         for (let i = 0; i < startDay; i++) {
             days.push(<div key={`empty-${i}`} className="h-8 md:h-10"></div>);
         }
 
         for (let d = 1; d <= totalDays; d++) {
-            const isSelected = selectedDate?.getDate() === d && selectedDate?.getMonth() === month && selectedDate?.getFullYear() === year;
-            const isToday = new Date().getDate() === d && new Date().getMonth() === month && new Date().getFullYear() === year;
+            const date = new Date(year, month, d);
+            const isSelected = selectedDate?.toDateString() === date.toDateString();
+            const isToday = today.toDateString() === date.toDateString();
+            const isPast = date < today;
 
             days.push(
                 <button
                     key={d}
                     type="button"
+                    disabled={isPast}
                     onClick={() => handleDateSelect(d)}
                     className={`h-8 w-8 md:h-10 md:w-10 rounded-full flex items-center justify-center text-xs md:text-sm transition-all duration-200
                         ${isSelected ? 'bg-gold-500 text-black font-bold shadow-lg shadow-gold-500/20' :
-                            isToday ? 'border border-gold-500/50 text-gold-500' : 'text-zinc-400 hover:bg-white/10 hover:text-white'}`}
+                            isToday ? 'border border-gold-500/50 text-gold-500' :
+                                isPast ? 'opacity-20 cursor-not-allowed' : 'text-zinc-400 hover:bg-white/10 hover:text-white'}`}
                 >
                     {d}
                 </button>
@@ -131,7 +153,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-dark-950"></div>
             </div>
 
-            <div className="container mx-auto px-6 relative z-[110] text-center" ref={formRef}>
+            <div className="container mx-auto px-6 relative z-[110] text-center">
 
                 {/* Availability Badge */}
                 <div className="inline-block border border-gold-500/30 bg-gold-500/10 px-6 py-1.5 rounded-full text-gold-500 text-[10px] font-bold tracking-[0.2em] uppercase mb-8 backdrop-blur-md">
@@ -149,7 +171,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                 <div className="hidden md:inline-flex items-center bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-full p-3 pl-10 max-w-6xl w-full shadow-2xl transition-all duration-300 hover:border-gold-500/30 hover:bg-zinc-900/80 relative z-[120] overflow-visible">
 
                     {/* Event Type */}
-                    <div className="flex-[1.5] min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group relative">
+                    <div className="flex-[1.5] min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group relative" ref={typeRef}>
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-1.5 opacity-80 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             <Camera size={12} /> Event Type
                         </label>
@@ -198,7 +220,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                     </div>
 
                     {/* Date Picker - Downward Opening */}
-                    <div className="flex-[1.3] min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group relative">
+                    <div className="flex-[1.3] min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group relative" ref={calendarRef}>
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-1.5 opacity-80 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             <CalendarIcon size={12} /> Date (Approx)
                         </label>
@@ -280,7 +302,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
 
                 {/* Stacked Form (Mobile) */}
                 <div className="md:hidden bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 space-y-6 text-left relative z-[120]">
-                    <div className="group relative">
+                    <div className="group relative" ref={typeMobileRef}>
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
                             <Camera size={12} /> Event Type
                         </label>
@@ -326,7 +348,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                         <input type="text" placeholder="City, Venue" className="w-full bg-transparent border-b border-white/20 pb-2 text-white outline-none font-serif text-lg p-0 placeholder-gray-600 focus:ring-0" />
                     </div>
 
-                    <div className="group relative">
+                    <div className="group relative" ref={calendarMobileRef}>
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
                             <CalendarIcon size={12} /> Date (Approx)
                         </label>
