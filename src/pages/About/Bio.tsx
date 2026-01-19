@@ -9,13 +9,12 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
     return (
         <section className="py-24 bg-white dark:bg-dark-900 overflow-hidden">
             <div className="container mx-auto px-6">
-                <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
-
+                <div className="flex flex-col lg:flex-row items-center md:items-start lg:items-center gap-12 lg:gap-16 max-w-6xl mx-auto">
                     {/* Text Side (Left) */}
-                    <div className="lg:w-1/2 relative z-10">
+                    <div className="w-full lg:w-1/2 relative z-10">
                         <div className="mb-8">
                             <span className="text-gold-500 font-bold tracking-[0.2em] uppercase text-xs mb-3 block">Since 2010</span>
-                            <h2 className="font-serif text-4xl md:text-5xl text-gray-900 dark:text-white leading-tight mb-6">
+                            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-gray-900 dark:text-white leading-tight mb-6">
                                 Capturing Life's <br />
                                 <span className="italic text-gold-500">Masterpiece</span>
                             </h2>
@@ -23,13 +22,13 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
                         </div>
 
                         <div className="prose dark:prose-invert text-gray-600 dark:text-gray-300 leading-relaxed space-y-6">
-                            <p className="text-xl font-light text-gray-900 dark:text-white">
+                            <p className="text-lg md:text-xl lg:text-lg xl:text-xl font-light text-gray-900 dark:text-white">
                                 Founded in 2010, <strong>The Photographer House</strong> began with a simple philosophy: that every photograph should not just prove you were there, but prove how it <em>felt</em> to be there.
                             </p>
-                            <p>
+                            <p className="text-base md:text-lg lg:text-base xl:text-lg">
                                 We are a collective of dreamers, storytellers, and technical perfectionists. Led by Alex Richardson, our team has traveled to over 20 countries, documenting everything from royal weddings in Rajasthan to intimate elopements in the Swiss Alps.
                             </p>
-                            <p>
+                            <p className="text-base md:text-lg lg:text-base xl:text-lg">
                                 We don't believe in cookie-cutter templates. We believe in shadow and light, in the raw emotion of a tear, and the explosive joy of a laugh. When you choose us, you aren't just hiring a person with a camera; you are commissioning an artist to curate your legacy.
                             </p>
                         </div>
@@ -41,7 +40,7 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
                     </div>
 
                     {/* Image Side (Right) */}
-                    <div className="lg:w-1/2 relative w-full flex justify-center lg:justify-center">
+                    <div className="w-full md:w-3/4 lg:w-1/2 relative flex justify-center">
                         <div className="relative w-full">
                             {/* Decorative Frame Elements */}
                             <div className="absolute -top-6 -right-6 w-full h-full border border-gold-500/30 rounded-[2rem] hidden md:block"></div>

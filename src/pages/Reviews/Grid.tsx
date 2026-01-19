@@ -90,7 +90,7 @@ const VideoReviewCard: React.FC<{ review: FullReview }> = ({ review }) => {
 
     return (
         <div
-            className="relative h-full min-h-[400px] bg-dark-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1 block"
+            className="relative h-full aspect-[3/4] md:aspect-auto md:min-h-[400px] bg-dark-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1 block"
         >
             <video
                 ref={videoRef}

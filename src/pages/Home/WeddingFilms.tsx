@@ -10,9 +10,9 @@ interface WeddingFilmsProps {
 export const WeddingFilms: React.FC<WeddingFilmsProps> = ({ onNavigate, setShowVideoModal }) => {
     return (
         <section className="bg-black py-20" aria-labelledby="films-heading">
-            <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-12 text-center md:text-left">
+            <div className="container mx-auto px-6 flex flex-col lg:flex-row items-center gap-10 lg:gap-20 text-center lg:text-left">
                 <div
-                    className="w-full md:w-1/2 relative rounded-[2rem] overflow-hidden shadow-2xl shadow-gold-900/10 group aspect-video bg-zinc-900"
+                    className="w-full lg:w-1/2 relative rounded-[2rem] overflow-hidden shadow-2xl shadow-gold-900/10 group aspect-video bg-zinc-900"
                 >
                     {/* Permanent Video Preview */}
                     <div className="absolute inset-0 z-0">
@@ -42,13 +42,13 @@ export const WeddingFilms: React.FC<WeddingFilmsProps> = ({ onNavigate, setShowV
                         </div>
                     </div>
                 </div>
-                <div className="w-full md:w-1/2">
+                <div className="w-full lg:w-1/2">
                     <h3 className="text-gold-500 tracking-[0.2em] text-[10px] md:text-xs uppercase mb-4">Cinematic Masterpieces</h3>
                     <h2 id="films-heading" className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">Wedding Films</h2>
                     <p className="text-gray-400 leading-relaxed mb-6 text-sm md:text-base">
                         "We don't just record events; we capture moments." Our wedding films are timeless structures that house precious memories for a lifetime. With the colors of India and modern narrative techniques, we craft art.
                     </p>
-                    <p className="text-gray-400 leading-relaxed mb-8 text-sm md:text-base hidden sm:block">
+                    <p className="text-gray-400 leading-relaxed mb-8 text-sm md:text-base">
                         More importantly, we tailor films per the personality of the wedding couples, making it a distinctive heirloom for your family.
                     </p>
                     <Button variant="primary" onClick={() => onNavigate('films')}>View Our Channel</Button>

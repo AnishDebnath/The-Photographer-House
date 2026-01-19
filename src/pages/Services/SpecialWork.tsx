@@ -17,7 +17,7 @@ export const SpecialWork: React.FC<SpecialWorkProps> = ({ onNavigate, setLightbo
 
 
     return (
-        <section className="py-32 bg-zinc-50 dark:bg-black border-t border-gray-200 dark:border-white/5 relative overflow-hidden transition-colors duration-500">
+        <section className="py-24 lg:py-32 bg-zinc-50 dark:bg-black border-t border-gray-200 dark:border-white/5 relative overflow-hidden transition-colors duration-500">
             {/* Architectural Lines - subtle background detail */}
             <div className="absolute inset-0 pointer-events-none opacity-30 dark:opacity-20">
                 <div className="absolute left-1/4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-300 dark:via-white/10 to-transparent"></div>
@@ -27,30 +27,30 @@ export const SpecialWork: React.FC<SpecialWorkProps> = ({ onNavigate, setLightbo
 
             <div className="container mx-auto px-6 relative z-10">
                 {/* Header */}
-                <div className="flex flex-col items-center text-center mb-24">
+                <div className="flex flex-col items-center text-center mb-16 lg:mb-24">
                     <div className="inline-flex items-center gap-3 mb-6 animate-fade-in-up">
                         <Star className="w-3 h-3 text-gold-500 fill-gold-500" />
-                        <span className="text-gold-500 text-xs font-bold tracking-[0.3em] uppercase">Curated Portfolio</span>
+                        <span className="text-gold-500 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase">Curated Portfolio</span>
                         <Star className="w-3 h-3 text-gold-500 fill-gold-500" />
                     </div>
-                    <h2 className="font-serif text-5xl md:text-7xl text-gray-900 dark:text-white mb-8 leading-tight">
+                    <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl xl:text-7xl text-gray-900 dark:text-white mb-6 md:mb-8 leading-tight">
                         Signature <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600">Masterpieces</span>
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-400 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base lg:text-lg font-light leading-relaxed max-w-2xl mx-auto">
                         A selection of our most technically demanding and artistically fulfilling work. Moments that transcend the ordinary.
                     </p>
                 </div>
 
                 {/* Grid - Architectural Staggered Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 xl:gap-12 mb-20">
                     {specialWork.map((item, idx) => (
                         <div
                             key={item.id}
-                            className={`group relative w-full cursor-pointer perspective-1000 ${idx % 3 === 1 ? 'md:-mt-16' : 'md:mt-8'}`}
+                            className={`group relative w-full cursor-pointer perspective-1000 ${idx % 2 === 1 ? 'md:-mt-12' : 'md:mt-6'} ${idx % 3 === 1 ? 'lg:-mt-16' : 'lg:mt-8'}`}
                             onClick={() => setLightboxItem(item)}
                         >
                             {/* Image Container - Using fixed height for consistent sizing + shadow effect */}
-                            <div className="relative overflow-hidden h-[400px] w-full bg-gray-100 dark:bg-gray-900 shadow-xl group-hover:shadow-2xl transition-all duration-500 rounded-lg">
+                            <div className="relative overflow-hidden aspect-square w-full bg-gray-100 dark:bg-gray-900 shadow-xl group-hover:shadow-2xl transition-all duration-500 rounded-lg">
                                 <LazyImage
                                     src={item.image}
                                     alt={item.title}

@@ -362,15 +362,15 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
 
     return (
         <div className="container mx-auto px-6 py-12 md:py-20">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 border-b border-gray-200 dark:border-white/10 pb-8 gap-8">
+            <div className="flex flex-col items-start mb-12 md:mb-16 border-b border-gray-200 dark:border-white/10 pb-8 gap-8">
                 <div className="text-left">
                     <h2 className="font-serif text-3xl md:text-4xl text-gray-900 dark:text-white mb-2">Our Expertise</h2>
                     <p className="text-gray-500 italic text-sm md:text-base">Choose the perfect package for your needs</p>
                 </div>
 
-                {/* Category Menu with Horizontal Scroll on Mobile */}
-                <div className="w-full md:w-auto">
-                    <div className="flex overflow-x-auto no-scrollbar gap-2 bg-gray-100 dark:bg-white/5 p-1.5 rounded-2xl md:rounded-full">
+                {/* Category Menu with Horizontal Scroll */}
+                <div className="w-full overflow-hidden">
+                    <div className="inline-flex overflow-x-auto no-scrollbar gap-2 bg-gray-100 dark:bg-white/5 p-1.5 rounded-2xl md:rounded-full max-w-full">
                         {categories.map(cat => (
                             <button
                                 key={cat}

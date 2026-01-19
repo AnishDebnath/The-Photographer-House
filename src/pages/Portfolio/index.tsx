@@ -171,7 +171,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
             <button
               key={cat}
               onClick={() => handleTabChange(cat)}
-              className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-widest transition-all duration-300 ${activeTab === cat
+              className={`px-3 py-1.5 md:px-5 md:py-2 lg:px-6 lg:py-2.5 rounded-full text-[10px] md:text-xs lg:text-sm font-bold uppercase tracking-widest transition-all duration-300 ${activeTab === cat
                 ? 'bg-gold-500 text-black shadow-md transform scale-105'
                 : 'text-gray-500 hover:text-gray-900 dark:hover:text-white bg-gray-100 dark:bg-white/5 hover:bg-white/50 dark:hover:bg-white/10'
                 }`}

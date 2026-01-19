@@ -21,11 +21,11 @@ export const LatestWork: React.FC<LatestWorkProps> = ({ onNavigate, setLightboxI
             />
             <h2 id="portfolio-heading" className="sr-only">Latest Work Portfolio</h2>
 
-            <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[300px] md:auto-rows-[400px]">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {galleryItems.map((item, idx) => (
                     <article
                         key={item.id}
-                        className={`group relative overflow-hidden rounded-2xl cursor-pointer ${idx === 1 ? 'sm:col-span-2 md:col-span-1' : ''}`}
+                        className="group relative overflow-hidden rounded-2xl cursor-pointer aspect-square"
                         role="article"
                         aria-label={`Project: ${item.title} - ${item.category}`}
                         onClick={() => setLightboxItem(item)}

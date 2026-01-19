@@ -15,7 +15,7 @@ export const WhyChooseUs: React.FC = () => {
                     description="Because photography is not just about clicking a button. It's about vision, experience, and the art of storytelling."
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 mt-16">
                     {philosophyItems.map((item, i) => (
                         <div key={i} className="group p-8 rounded-[2.5rem] bg-white dark:bg-white/5 border border-gray-100 dark:border-white/5 hover:border-gold-500/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:hover:shadow-gold-900/10 relative overflow-hidden">
 

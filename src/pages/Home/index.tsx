@@ -50,7 +50,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <Contact />
             <WhyChooseUs />
             <Faq onNavigate={onNavigate} />
-            <Blog onNavigate={onNavigate} handleBlogNavigation={handleBlogNavigation} />
+            {/* <Blog onNavigate={onNavigate} handleBlogNavigation={handleBlogNavigation} /> */}
         </>
     );
 };

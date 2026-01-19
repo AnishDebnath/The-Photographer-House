@@ -2,25 +2,25 @@ import { Camera, Globe, Users, Award } from 'lucide-react';
 
 export const statItems = [
     {
-        value: 800,
+        value: 50,
         label: "Weddings Captured",
         suffix: "+",
         icon: Camera,
     },
     {
-        value: 24,
+        value: 10,
         label: "Cities Traveled",
         suffix: "",
         icon: Globe,
     },
     {
-        value: 5000,
+        value: 500,
         label: "Happy Clients",
         suffix: "+",
         icon: Users,
     },
     {
-        value: 14,
+        value: 15,
         label: "Years Experience",
         suffix: "+",
         icon: Award,

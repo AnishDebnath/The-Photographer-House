@@ -14,6 +14,7 @@ export const BlogListView: React.FC<BlogListViewProps> = ({ onPostClick }) => {
     const [activeCategory, setActiveCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
 
+    //edit category section for future use
     const categories = ['All', 'Weddings', 'Photography Tips', 'Gear Talk', 'Travel', 'Behind the Scenes'];
 
     const filteredPosts = blogPosts.filter(post => {

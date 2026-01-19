@@ -1,70 +1,70 @@
 import { BlogPost } from '../../types';
 
 export const blogPosts: BlogPost[] = [
+    // {
+    //     id: 1,
+    //     title: "The Art of the Candid Moment: Why Unposed Photos Matter",
+    //     excerpt: "In a world of curated feeds, the raw, unfiltered emotion of a candid photograph stands out. Here is how we blend into the background to capture the real you.",
+    //     content: `
+    //     <p class="lead text-xl md:text-2xl font-light leading-relaxed mb-8 text-gray-700 dark:text-gray-200">Photography, at its core, is about memory. It is about freezing a split second in time that would otherwise be lost forever. While posed portraits have their place—they are grand, beautiful, and often what hangs on the wall—candid photography captures the <em class="text-gold-500 not-italic font-serif">soul</em> of an event.</p>
+
+    //     <figure class="my-12">
+    //         <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200" alt="Candid laughter at a wedding" class="w-full h-auto max-h-[600px] object-cover rounded-2xl shadow-2xl" />
+    //         <figcaption class="text-center text-sm text-gray-500 mt-4 italic">The moments in between the poses often tell the truest story.</figcaption>
+    //     </figure>
+
+    //     <h3 class="text-3xl font-serif mt-12 mb-6 text-gray-900 dark:text-white">The Invisible Photographer</h3>
+    //     <p class="mb-6 text-lg leading-loose">The key to great candid photography is invisibility. Not literally, of course, but energetically. When a photographer can blend into the room, becoming part of the flow rather than an interruption to it, people let their guard down. They laugh louder, cry freer, and hug tighter.</p>
+    //     <p class="mb-6 text-lg leading-loose">We use long lenses (often 70-200mm) and silent shutters to ensure we aren't intruding on intimate whispers or tearful toasts. The result? Images that actually feel like the moment they depict, free from the stiffness of "hold that pose."</p>
+
+    //     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-16">
+    //       <div class="space-y-4">
+    //          <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=800" alt="Couple whispering" class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg hover:scale-[1.02] transition-transform duration-500" />
+    //          <p class="text-xs text-center text-gray-500 uppercase tracking-widest">Intimate Whispers</p>
+    //       </div>
+    //       <div class="space-y-4 md:mt-12">
+    //          <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&q=80&w=800" alt="Guests dancing" class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg hover:scale-[1.02] transition-transform duration-500" />
+    //          <p class="text-xs text-center text-gray-500 uppercase tracking-widest">Unfiltered Joy</p>
+    //       </div>
+    //     </div>
+
+    //     <h3 class="text-3xl font-serif mt-16 mb-6 text-gray-900 dark:text-white">Why Candids Age Better</h3>
+    //     <p class="mb-6 text-lg leading-loose">Trends in editing and posing come and go. Remember selective color? Or the extreme Dutch angles of the early 2000s? What never goes out of style is genuine emotion. A photo of your grandmother laughing at a joke, head thrown back, is timeless. It connects you to her personality, not just her appearance on that day.</p>
+
+    //     <blockquote class="border-l-4 border-gold-500 pl-8 italic text-2xl md:text-3xl font-serif text-gray-800 dark:text-gray-200 my-16 bg-gray-50 dark:bg-white/5 py-10 pr-8 rounded-r-2xl leading-relaxed shadow-sm">
+    //       "The best thing about a picture is that it never changes, even when the people in it do."
+    //     </blockquote>
+
+    //     <h3 class="text-3xl font-serif mt-16 mb-6 text-gray-900 dark:text-white">Creating the Environment</h3>
+    //     <p class="mb-6 text-lg leading-loose">Even "candid" moments can be encouraged. During our sessions, we often give prompts rather than poses. "Whisper your favorite vegetable in her ear" usually gets a better smile than "Say cheese." It's about creating an environment where authentic connection can happen.</p>
+
+    //     <figure class="my-12">
+    //         <img src="https://images.unsplash.com/photo-1529636721157-d488f5d623a4?auto=format&fit=crop&q=80&w=1200" alt="Atmospheric wedding shot" class="w-full h-auto max-h-[600px] object-cover rounded-2xl shadow-2xl" />
+    //     </figure>
+
+    //     <h3 class="text-3xl font-serif mt-16 mb-6 text-gray-900 dark:text-white">The Technical Side of Spontaneity</h3>
+    //     <p class="mb-6 text-lg leading-loose">Capturing these fleeting moments requires a mastery of camera settings. We shoot in manual mode to adapt instantly to changing light—from the harsh sun of an outdoor ceremony to the moody, romantic lighting of a reception dinner. High shutter speeds are non-negotiable to freeze laughter or dance moves without blur.</p>
+    //     <p class="mb-6 text-lg leading-loose">But beyond settings, it requires anticipation. A good candid photographer watches the room, predicting where the next laugh or tear will come from. We don't just look through the lens; we feel the energy of the room.</p>
+
+    //     <div class="bg-gray-100 dark:bg-white/5 p-8 md:p-10 rounded-3xl mt-16 border border-gray-200 dark:border-white/10">
+    //         <h4 class="font-bold text-xl mb-6 text-gold-500 uppercase tracking-widest border-b border-gray-200 dark:border-white/10 pb-4 inline-block">Our Approach to Candids</h4>
+    //         <ul class="list-none space-y-4 m-0 p-0 text-lg">
+    //             <li class="flex items-start gap-4"><span class="text-gold-500 text-2xl leading-none">•</span> <span>We dress like guests to blend in seamlessly.</span></li>
+    //             <li class="flex items-start gap-4"><span class="text-gold-500 text-2xl leading-none">•</span> <span>Silent mode on cameras is always active.</span></li>
+    //             <li class="flex items-start gap-4"><span class="text-gold-500 text-2xl leading-none">•</span> <span>We prioritize reaction shots during speeches.</span></li>
+    //             <li class="flex items-start gap-4"><span class="text-gold-500 text-2xl leading-none">•</span> <span>We never interrupt a genuine moment for a photo op.</span></li>
+    //         </ul>
+    //     </div>
+    //   `,
+    //     category: "Weddings",
+    //     author: "Alex Richardson",
+    //     date: "Jan 03, 2026",
+    //     readTime: "8 min read",
+    //     image: "https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=1200",
+    //     featured: true
+    // },
     {
         id: 1,
-        title: "The Art of the Candid Moment: Why Unposed Photos Matter",
-        excerpt: "In a world of curated feeds, the raw, unfiltered emotion of a candid photograph stands out. Here is how we blend into the background to capture the real you.",
-        content: `
-        <p class="lead text-xl md:text-2xl font-light leading-relaxed mb-8 text-gray-700 dark:text-gray-200">Photography, at its core, is about memory. It is about freezing a split second in time that would otherwise be lost forever. While posed portraits have their place—they are grand, beautiful, and often what hangs on the wall—candid photography captures the <em class="text-gold-500 not-italic font-serif">soul</em> of an event.</p>
-
-        <figure class="my-12">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200" alt="Candid laughter at a wedding" class="w-full h-auto max-h-[600px] object-cover rounded-2xl shadow-2xl" />
-            <figcaption class="text-center text-sm text-gray-500 mt-4 italic">The moments in between the poses often tell the truest story.</figcaption>
-        </figure>
-
-        <h3 class="text-3xl font-serif mt-12 mb-6 text-gray-900 dark:text-white">The Invisible Photographer</h3>
-        <p class="mb-6 text-lg leading-loose">The key to great candid photography is invisibility. Not literally, of course, but energetically. When a photographer can blend into the room, becoming part of the flow rather than an interruption to it, people let their guard down. They laugh louder, cry freer, and hug tighter.</p>
-        <p class="mb-6 text-lg leading-loose">We use long lenses (often 70-200mm) and silent shutters to ensure we aren't intruding on intimate whispers or tearful toasts. The result? Images that actually feel like the moment they depict, free from the stiffness of "hold that pose."</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-16">
-          <div class="space-y-4">
-             <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=800" alt="Couple whispering" class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg hover:scale-[1.02] transition-transform duration-500" />
-             <p class="text-xs text-center text-gray-500 uppercase tracking-widest">Intimate Whispers</p>
-          </div>
-          <div class="space-y-4 md:mt-12">
-             <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&q=80&w=800" alt="Guests dancing" class="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg hover:scale-[1.02] transition-transform duration-500" />
-             <p class="text-xs text-center text-gray-500 uppercase tracking-widest">Unfiltered Joy</p>
-          </div>
-        </div>
-
-        <h3 class="text-3xl font-serif mt-16 mb-6 text-gray-900 dark:text-white">Why Candids Age Better</h3>
-        <p class="mb-6 text-lg leading-loose">Trends in editing and posing come and go. Remember selective color? Or the extreme Dutch angles of the early 2000s? What never goes out of style is genuine emotion. A photo of your grandmother laughing at a joke, head thrown back, is timeless. It connects you to her personality, not just her appearance on that day.</p>
-
-        <blockquote class="border-l-4 border-gold-500 pl-8 italic text-2xl md:text-3xl font-serif text-gray-800 dark:text-gray-200 my-16 bg-gray-50 dark:bg-white/5 py-10 pr-8 rounded-r-2xl leading-relaxed shadow-sm">
-          "The best thing about a picture is that it never changes, even when the people in it do."
-        </blockquote>
-
-        <h3 class="text-3xl font-serif mt-16 mb-6 text-gray-900 dark:text-white">Creating the Environment</h3>
-        <p class="mb-6 text-lg leading-loose">Even "candid" moments can be encouraged. During our sessions, we often give prompts rather than poses. "Whisper your favorite vegetable in her ear" usually gets a better smile than "Say cheese." It's about creating an environment where authentic connection can happen.</p>
-        
-        <figure class="my-12">
-            <img src="https://images.unsplash.com/photo-1529636721157-d488f5d623a4?auto=format&fit=crop&q=80&w=1200" alt="Atmospheric wedding shot" class="w-full h-auto max-h-[600px] object-cover rounded-2xl shadow-2xl" />
-        </figure>
-
-        <h3 class="text-3xl font-serif mt-16 mb-6 text-gray-900 dark:text-white">The Technical Side of Spontaneity</h3>
-        <p class="mb-6 text-lg leading-loose">Capturing these fleeting moments requires a mastery of camera settings. We shoot in manual mode to adapt instantly to changing light—from the harsh sun of an outdoor ceremony to the moody, romantic lighting of a reception dinner. High shutter speeds are non-negotiable to freeze laughter or dance moves without blur.</p>
-        <p class="mb-6 text-lg leading-loose">But beyond settings, it requires anticipation. A good candid photographer watches the room, predicting where the next laugh or tear will come from. We don't just look through the lens; we feel the energy of the room.</p>
-        
-        <div class="bg-gray-100 dark:bg-white/5 p-8 md:p-10 rounded-3xl mt-16 border border-gray-200 dark:border-white/10">
-            <h4 class="font-bold text-xl mb-6 text-gold-500 uppercase tracking-widest border-b border-gray-200 dark:border-white/10 pb-4 inline-block">Our Approach to Candids</h4>
-            <ul class="list-none space-y-4 m-0 p-0 text-lg">
-                <li class="flex items-start gap-4"><span class="text-gold-500 text-2xl leading-none">•</span> <span>We dress like guests to blend in seamlessly.</span></li>
-                <li class="flex items-start gap-4"><span class="text-gold-500 text-2xl leading-none">•</span> <span>Silent mode on cameras is always active.</span></li>
-                <li class="flex items-start gap-4"><span class="text-gold-500 text-2xl leading-none">•</span> <span>We prioritize reaction shots during speeches.</span></li>
-                <li class="flex items-start gap-4"><span class="text-gold-500 text-2xl leading-none">•</span> <span>We never interrupt a genuine moment for a photo op.</span></li>
-            </ul>
-        </div>
-      `,
-        category: "Weddings",
-        author: "Alex Richardson",
-        date: "Jan 03, 2026",
-        readTime: "8 min read",
-        image: "https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=1200",
-        featured: true
-    },
-    {
-        id: 2,
         title: "5 Essential Lenses for Low Light Receptions",
         excerpt: "When the sun goes down and the party lights come on, you need glass that performs. We break down our kit bag favorites.",
         content: `
@@ -82,7 +82,7 @@ export const blogPosts: BlogPost[] = [
         featured: false
     },
     {
-        id: 3,
+        id: 2,
         title: "Planning Your Destination Wedding in Rajasthan",
         excerpt: "From Udaipur's lakes to Jaipur's palaces, here is everything you need to know about lighting and logistics in India's royal state.",
         content: `<p class="text-lg leading-loose">Rajasthan is the jewel of Indian destination weddings. The colors, the architecture, the history—it is a photographer's playground. However, the harsh midday sun can be a challenge.</p>`,
@@ -94,7 +94,7 @@ export const blogPosts: BlogPost[] = [
         featured: false
     },
     {
-        id: 4,
+        id: 3,
         title: "Golden Hour: The Magician's Trick",
         excerpt: "Why we insist on stealing you away for 15 minutes during sunset, and why you will thank us later.",
         content: `<p class="text-lg leading-loose">It happens quickly. The sun dips low, the light turns soft and warm, and for about 20 minutes, the world looks magical. This is the Golden Hour.</p>`,
@@ -106,7 +106,7 @@ export const blogPosts: BlogPost[] = [
         featured: false
     },
     {
-        id: 5,
+        id: 4,
         title: "Preserving Colors: The Significance of Print",
         excerpt: "In the digital age, the photo album is a rebellious act of permanence. Discover our heirloom quality binding process.",
         content: `<p class="text-lg leading-loose">A hard drive can fail. A cloud password can be forgotten. But a leather-bound album sitting on your coffee table invites you to open it.</p>`,
@@ -118,7 +118,7 @@ export const blogPosts: BlogPost[] = [
         featured: false
     },
     {
-        id: 6,
+        id: 4,
         title: "What to Wear for Your Pre-Wedding Shoot",
         excerpt: "Color coordination without matching. Textures, layers, and movement. A style guide for couples.",
         content: `<p class="text-lg leading-loose">The number one question we get asked: 'What should we wear?' The answer is simple: Wear what makes you feel like the best version of yourself.</p>`,

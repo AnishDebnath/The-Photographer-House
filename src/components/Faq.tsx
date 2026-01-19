@@ -62,7 +62,7 @@ export const Faq: React.FC<FaqProps> = ({ onNavigate }) => {
 
                     <div className="text-center mt-12">
                         <p className="text-gray-500 text-sm mb-4">Still have questions?</p>
-                        <Button variant="outline" onClick={() => onNavigate('booking')}>Contact Support</Button>
+                        <Button variant="outline" onClick={() => window.open('https://wa.me/918910092451', '_blank')}>Contact on WhatsApp</Button>
                     </div>
                 </div>
             </div>

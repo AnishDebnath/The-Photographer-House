@@ -220,7 +220,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                 )}
 
                 {/* Horizontal Form (Desktop) */}
-                <div className={`hidden md:inline-flex items-center bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-full p-3 pl-10 max-w-6xl w-full shadow-2xl transition-all duration-300 hover:border-gold-500/30 hover:bg-zinc-900/80 relative z-[120] overflow-visible ${isSubmitting ? 'opacity-50 pointer-events-none' : ''}`}>
+                <div className={`hidden xl:inline-flex items-center bg-zinc-900/60 backdrop-blur-xl border border-white/10 rounded-full p-3 pl-10 max-w-6xl w-full shadow-2xl transition-all duration-300 hover:border-gold-500/30 hover:bg-zinc-900/80 relative z-[120] overflow-visible ${isSubmitting ? 'opacity-50 pointer-events-none' : ''}`}>
 
                     {/* Event Type */}
                     <div className="flex-[1.5] min-w-0 flex flex-col items-start border-r border-white/10 pr-8 mr-8 group relative" ref={typeRef}>
@@ -360,8 +360,8 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
                     </button>
                 </div>
 
-                {/* Stacked Form (Mobile) */}
-                <div className="md:hidden bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 space-y-6 text-left relative z-[120]">
+                {/* Stacked Form (Mobile & Tablet & Laptop) */}
+                <div className="xl:hidden bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 grid grid-cols-1 md:grid-cols-2 gap-6 text-left relative z-[120]">
                     <div className="group relative" ref={typeMobileRef}>
                         <label className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-gold-500 font-bold mb-2">
                             <Camera size={12} /> Event Type
@@ -485,7 +485,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
 
                     <Button
                         variant="primary"
-                        className="w-full"
+                        className="w-full md:col-span-2"
                         disabled={isSubmitting}
                         onClick={handleSubmitAvailability}
                     >

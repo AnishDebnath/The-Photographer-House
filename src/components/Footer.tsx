@@ -14,10 +14,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     return (
         <footer className="bg-white dark:bg-zinc-950 pt-20 pb-12 border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 md:mb-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-12 gap-12 xl:gap-8 mb-16 md:mb-20">
 
                     {/* Brand Info */}
-                    <div className="lg:col-span-4 sm:col-span-2 lg:max-w-sm">
+                    <div className="xl:col-span-4 sm:col-span-2 xl:max-w-sm">
                         <div className="flex items-center gap-3 mb-6 md:mb-8 cursor-pointer group" onClick={() => onNavigate('home')}>
                             <img src={logo} alt="The Photographer House Logo" className="w-10 h-10 md:w-12 md:h-12 object-contain" />
                             <div className="text-xl md:text-2xl font-serif tracking-tight text-gray-900 dark:text-white">
@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     </div>
 
                     {/* Links Sections */}
-                    <div className="lg:col-span-2">
+                    <div className="xl:col-span-2">
                         <h4 className="text-gray-900 dark:text-white font-serif text-lg mb-6">Company</h4>
                         <ul className="space-y-4">
                             {footerLinks.company.map((link) => (
@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                         </ul>
                     </div>
 
-                    <div className="lg:col-span-2">
+                    <div className="xl:col-span-2">
                         <h4 className="text-gray-900 dark:text-white font-serif text-lg mb-6">Services</h4>
                         <ul className="space-y-4">
                             {footerLinks.services.map((link) => (
@@ -76,7 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                         </ul>
                     </div>
 
-                    <div className="lg:col-span-2">
+                    <div className="xl:col-span-2">
                         <h4 className="text-gray-900 dark:text-white font-serif text-lg mb-6">Experience</h4>
                         <ul className="space-y-4">
                             {footerLinks.experience.map((link) => (
@@ -94,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     </div>
 
                     {/* Contact Info */}
-                    <div className="lg:col-span-2">
+                    <div className="xl:col-span-2">
                         <h4 className="text-gray-900 dark:text-white font-serif text-lg mb-6">Connect</h4>
                         <ul className="space-y-6">
                             <li className="flex items-start gap-3">
@@ -120,11 +120,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="pt-10 md:pt-12 border-t border-gray-100 dark:border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+                <div className="pt-10 md:pt-12 border-t border-gray-100 dark:border-white/5 flex flex-col lg:flex-row justify-between items-center gap-6 text-center lg:text-left">
                     <p className="text-[10px] md:text-xs text-gray-500 dark:text-gray-500 tracking-wider">
                         © {currentYear} THE PHOTOGRAPHER HOUSE. ALL RIGHTS RESERVED.
                     </p>
-                    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8">
+                    <div className="flex flex-wrap justify-center items-center gap-4 lg:gap-8">
                         <button className="text-[10px] uppercase tracking-[0.2em] text-gray-400 hover:text-gold-500 transition-colors">Privacy Policy</button>
                         <button className="text-[10px] uppercase tracking-[0.2em] text-gray-400 hover:text-gold-500 transition-colors">Terms of Service</button>
                         <button className="text-[10px] uppercase tracking-[0.2em] text-gray-400 hover:text-gold-500 transition-colors">Cookies</button>
