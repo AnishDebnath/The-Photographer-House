@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Camera, Gem, ShoppingBag, Book } from 'lucide-react';
 import { ServiceData } from '../../types';
 import { ServiceCard } from './ServiceCard';
+
+// Eagerly import all service images
+const serviceImages = import.meta.glob('../../assets/services/**/*.{jpg,jpeg,png,webp}', { eager: true, as: 'url' });
+const albumImages = import.meta.glob('../../assets/albums/**/*.{jpg,jpeg,png,webp}', { eager: true, as: 'url' });
 
 interface ServiceListProps {
     onNavigate: (page: string, sectionId?: string) => void;
@@ -11,7 +15,43 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
     const [filter, setFilter] = useState('All Services');
     const categories = ['All Services', 'Engagement & Wedding', 'Birthday & Rice Ceremony', 'Jewellery', 'Product & Event', 'Photo Album'];
 
-    const services: ServiceData[] = [
+    const getImagesForService = (serviceId: string): string[] => {
+        const folderMapping: Record<string, string> = {
+            'engagement-wedding-full-package': 'wedding',
+            'pre-wedding': 'pre wedding',
+            'engagement': 'ring ceremony',
+            'wedding-night': 'Wedding nights',
+            'reception': 'reception',
+            'anniversary-shoot': 'reception', // Fallback
+            'birthday': 'birthday',
+            'rice-ceremony': 'rice ceremony',
+            'baby-shoot': 'newborn baby shoot',
+            'maternity-shoot': 'newborn baby shoot', // Fallback
+            'jewellery': 'jewellery',
+            'jewellery-model': 'jewellery with model',
+            'product-shoot': 'products with model',
+            'portfolio-shoot': 'products with model', // Fallback
+            'food-photography': 'food photography',
+            'corporate-event': 'corporate event',
+            'photo-albums': 'albums',
+            'light-frame': 'led photoframe',
+        };
+
+        const folderName = folderMapping[serviceId];
+        if (!folderName) return [];
+
+        if (serviceId === 'photo-albums') {
+            return Object.entries(albumImages)
+                .filter(([path]) => path.includes(`/albums/`))
+                .map(([_, url]) => url as string);
+        }
+
+        return Object.entries(serviceImages)
+            .filter(([path]) => path.toLowerCase().includes(`/services/${folderName.toLowerCase()}/`))
+            .map(([_, url]) => url as string);
+    };
+
+    const services: ServiceData[] = useMemo(() => [
         {
             id: 'engagement-wedding-full-package',
             category: 'Engagement & Wedding',
@@ -24,11 +64,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Candid, traditional & cinematic wedding coverage',
                 'Premium quality with budget-friendly pricing'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('engagement-wedding-full-package'),
             alignment: 'left'
         },
         {
@@ -43,11 +79,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Concept-based cinematic shoots',
                 'Affordable pre-wedding packages'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('pre-wedding'),
             alignment: 'right'
         },
         {
@@ -62,11 +94,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Ring ceremony candid moments',
                 'Premium yet affordable coverage'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1530023367847-a683933f4178?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1520962918287-7448c2868f65?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('engagement'),
             alignment: 'left'
         },
         {
@@ -81,11 +109,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Couple-focused portraits',
                 'Premium retouching'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1505935428862-770b6f24f629?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('wedding-night'),
             alignment: 'right'
         },
         {
@@ -100,11 +124,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Multi-camera coverage',
                 'Cinematic highlight videos'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1545232979-6e0b3a9c5b4f?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('reception'),
             alignment: 'left'
         },
         {
@@ -113,17 +133,13 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
             title: 'Anniversary Shoot',
             subtitle: 'GRAND CELEBRATIONS',
             icon: Camera,
-            description: 'Professional reception photography and videography in Kolkata capturing stage moments, guest interactions, decor, and candid celebrations.',
+            description: 'Celebrate your lasting love with a professional anniversary photoshoot. We capture the enduring bond and beautiful journey of your relationship.',
             features: [
-                'Reception photography in Kolkata',
-                'Multi-camera coverage',
-                'Cinematic highlight videos'
+                'Romantic couple portraits',
+                'Indoor & outdoor locations',
+                'Artistic anniversary highlights'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1545232979-6e0b3a9c5b4f?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('anniversary-shoot'),
             alignment: 'right'
         },
         {
@@ -138,11 +154,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Candid birthday moments',
                 'Budget-friendly birthday packages'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('birthday'),
             alignment: 'left'
         },
         {
@@ -157,11 +169,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Traditional ritual coverage',
                 'Affordable family packages'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1606214174103-8f7e2d1d8f8a?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1606214174200-2d9d4f5f7e9c?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1606214173911-9b8f2a5d1e2f?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('rice-ceremony'),
             alignment: 'right'
         },
         {
@@ -176,30 +184,22 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Creative props and theme-based setups',
                 'Patient and gentle photography approach'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1519689680058-324335c77eb2?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1544126592-807daa2b565b?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('baby-shoot'),
             alignment: 'left'
         },
         {
             id: 'maternity-shoot',
             category: 'Birthday & Rice Ceremony',
             title: 'Maternity Shoot',
-            subtitle: 'PRECIOUS BEGINNINGS',
+            subtitle: 'THE JOURNEY TO MOTHERHOOD',
             icon: Camera,
-            description: 'Capturing the innocence and tiny details of your little ones with patience and creativity. Professional baby and newborn photography that preserves their earliest milestones.',
+            description: 'Celebrate the beautiful journey of motherhood with an artistic maternity photoshoot. We capture the glow and emotion of this special time in your life.',
             features: [
-                'Newborn & toddler photography in Kolkata',
-                'Creative props and theme-based setups',
-                'Patient and gentle photography approach'
+                'Elegant maternity portraits',
+                'Comfortable and creative sessions',
+                'Professional styling and posing'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1519689680058-324335c77eb2?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1544126592-807daa2b565b?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('maternity-shoot'),
             alignment: 'right'
         },
         {
@@ -214,11 +214,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Macro and detail shots',
                 'Brand-ready premium images'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1606760227091-3dd870d97f1b?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1589987607627-616cac9cfa9b?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('jewellery'),
             alignment: 'left'
         },
         {
@@ -233,11 +229,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Fashion & lifestyle presentation',
                 'Studio & outdoor shoots'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1618354691229-4f5f3e4d2b5f?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1549366021-9f761d040a94?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('jewellery-model'),
             alignment: 'right'
         },
         {
@@ -252,11 +244,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Clean white or creative backgrounds',
                 'Web-ready optimized images'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('product-shoot'),
             alignment: 'left'
         },
         {
@@ -271,11 +259,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Guidance on posing and styling',
                 'Professional high-end retouching'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('portfolio-shoot'),
             alignment: 'right'
         },
         {
@@ -290,11 +274,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Professional food styling guidance',
                 'High-resolution promotional shots'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1476224483472-1b8dc9ed1301?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('food-photography'),
             alignment: 'left'
         },
         {
@@ -309,11 +289,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Candid networking & keynote shots',
                 'Quick delivery for PR and social media'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1475721027187-402ad2989a38?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1505373633560-fa9aee362cf1?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('corporate-event'),
             alignment: 'right'
         },
         {
@@ -328,11 +304,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Premium print quality',
                 'Multiple size options'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('photo-albums'),
             alignment: 'left'
         },
         {
@@ -347,18 +319,14 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Custom photo selection',
                 'Modern premium finish'
             ],
-            images: [
-                'https://images.unsplash.com/photo-1582719478185-8f5c7f8a6a35?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1504198266285-165a16f82c0a?auto=format&fit=crop&q=80&w=800',
-                'https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&q=80&w=800'
-            ],
+            images: getImagesForService('light-frame'),
             alignment: 'right'
         }
-    ];
+    ], []);
 
-    const filteredServices = filter === 'All Services'
+    const filteredServices = useMemo(() => filter === 'All Services'
         ? services
-        : services.filter(s => s.category === filter);
+        : services.filter(s => s.category === filter), [filter, services]);
 
     return (
         <div className="container mx-auto px-6 py-12 md:py-20">
