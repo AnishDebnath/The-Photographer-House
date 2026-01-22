@@ -19,7 +19,7 @@ export const WeddingFilms: React.FC<WeddingFilmsProps> = ({ onNavigate, setShowV
                         <iframe
                             width="100%"
                             height="100%"
-                            src="https://www.youtube.com/embed/WA5XMy5jeKE?autoplay=1&mute=1&controls=0&loop=1&playlist=WA5XMy5jeKE&modestbranding=1&rel=0&start=37&showinfo=0&iv_load_policy=3"
+                            src="https://www.youtube.com/embed/VYAcW1UxTOc?autoplay=1&mute=1&controls=0&loop=1&playlist=VYAcW1UxTOc&modestbranding=1&rel=0&start=8&showinfo=0&iv_load_policy=3&vq=hd1080"
                             title="Wedding Film Preview"
                             frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

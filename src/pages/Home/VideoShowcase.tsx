@@ -15,12 +15,23 @@ export const VideoShowcase: React.FC<VideoShowcaseProps> = ({ onNavigate }) => {
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover opacity-60"
+                    className="w-full h-full object-cover opacity-100"
                 >
-                    <source src="https://videos.pexels.com/video-files/3205915/3205915-hd_1920_1080_25fps.mp4" type="video/mp4" />
+                    <source src="/assets/home/Video background.webm" type="video/webm" />
                     Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black/60"></div>
+
+                {/* <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/4WHACREjwN0?autoplay=1&mute=1&controls=0&loop=1&playlist=4WHACREjwN0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&vq=hd1440p60"
+                    title="Video Showcase Background"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    className="w-full h-full scale-[1.5] pointer-events-none opacity-100"
+                ></iframe> */}
+                <div className="absolute inset-0 bg-black/20"></div>
             </div>
             <div className="relative z-10 text-center max-w-4xl px-6">
                 <span className="inline-block border border-gold-500/50 text-gold-500 px-4 py-1 rounded-full text-[10px] md:text-xs uppercase tracking-widest mb-6">

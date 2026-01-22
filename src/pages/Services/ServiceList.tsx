@@ -17,7 +17,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
 
     const getImagesForService = (serviceId: string): string[] => {
         const folderMapping: Record<string, string> = {
-            'engagement-wedding-full-package': 'wedding',
+            'wedding-full-package': 'wedding',
             'pre-wedding': 'pre wedding',
             'engagement': 'ring ceremony',
             'wedding-night': 'Wedding nights',
@@ -53,18 +53,18 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
 
     const services: ServiceData[] = useMemo(() => [
         {
-            id: 'engagement-wedding-full-package',
+            id: 'wedding-full-package',
             category: 'Engagement & Wedding',
-            title: 'Engagement – Wedding Full Package',
+            title: 'Wedding Full Package',
             subtitle: 'PREMIUM & AFFORDABLE',
             icon: Camera,
-            description: 'Our Engagement – Wedding Full Package in Kolkata provides complete photography and cinematography from engagement to reception, including candid, cinematic, and traditional Bengali wedding coverage at premium yet affordable pricing.',
+            description: 'Our Wedding Full Package in Kolkata provides complete photography and cinematography from engagement to reception, including candid, cinematic, and traditional Bengali wedding coverage at premium yet affordable pricing.',
             features: [
                 'Engagement to wedding full photography package in Kolkata',
                 'Candid, traditional & cinematic wedding coverage',
                 'Premium quality with budget-friendly pricing'
             ],
-            images: getImagesForService('engagement-wedding-full-package'),
+            images: getImagesForService('wedding-full-package'),
             alignment: 'left'
         },
         {
