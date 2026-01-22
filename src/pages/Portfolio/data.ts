@@ -134,6 +134,18 @@ export const projectFolders: PortfolioFolder[] = [
         }))
     },
     {
+        title: "Baby / Newborn Shoot",
+        category: "Baby Shoot",
+        coverImage: "/assets/portfolio/Baby Shoot/baby & newborn shoot/baby shoot cover.jpg",
+        count: 8,
+        items: Array.from({ length: 8 }, (_, i) => ({
+            id: 7101 + i,
+            image: `/assets/portfolio/Baby Shoot/baby & newborn shoot/baby shoot (${i + 1}).jpg`,
+            title: "Baby Shoot",
+            category: "Baby Shoot"
+        }))
+    },
+    {
         title: "Baby Birthday",
         category: "Birthday",
         coverImage: "/assets/portfolio/Birthday/baby birthday/baby birthday cover.jpg",

@@ -19,6 +19,7 @@ const categoryOrder = [
   'Reception',
   'Haldi',
   'Rice Ceremony',
+  'Baby Shoot',
   'Birthday',
   'Jewellery Photography'
 ];
