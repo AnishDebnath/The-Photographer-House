@@ -38,8 +38,8 @@ export const LatestWork: React.FC<LatestWorkProps> = ({ onNavigate, setLightboxI
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                         <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent md:opacity-0 group-hover:opacity-100 transition-opacity">
-                            <p className="text-white text-xs font-bold uppercase tracking-widest">{item.category}</p>
-                            <h4 className="text-white font-serif text-lg">{item.title}</h4>
+                            {/* <p className="text-white text-xs font-bold uppercase tracking-widest">{item.category}</p>
+                            <h4 className="text-white font-serif text-lg">{item.title}</h4> */}
                         </div>
                     </article>
                 ))}
