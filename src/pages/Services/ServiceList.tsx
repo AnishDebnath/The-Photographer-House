@@ -56,7 +56,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
             id: 'engagement-wedding-full-package',
             category: 'Engagement & Wedding',
             title: 'Engagement – Wedding Full Package',
-            subtitle: 'PREMIUM & AFFORDABLE COMPLETE WEDDING COVERAGE',
+            subtitle: 'PREMIUM & AFFORDABLE',
             icon: Camera,
             description: 'Our Engagement – Wedding Full Package in Kolkata provides complete photography and cinematography from engagement to reception, including candid, cinematic, and traditional Bengali wedding coverage at premium yet affordable pricing.',
             features: [
