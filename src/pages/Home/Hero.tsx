@@ -20,7 +20,17 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     return (
         <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black" aria-label="Hero Section">
             <div className="absolute inset-0 z-0">
-                <iframe
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover opacity-100"
+                >
+                    <source src="/assets/home/Banner video.webm" type="video/webm" />
+                    Your browser does not support the video tag.
+                </video>
+                {/* <iframe
                     width="100%"
                     height="100%"
                     src="https://www.youtube.com/embed/rjgcZ_mzeOA?autoplay=1&mute=1&controls=0&loop=1&playlist=rjgcZ_mzeOA&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&vq=hd1440p60"
@@ -28,7 +38,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     className="w-full h-full scale-[1.5] pointer-events-none opacity-80"
-                ></iframe>
+                ></iframe> */}
                 <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-900/40 to-dark-900/90"></div>
             </div>
 
