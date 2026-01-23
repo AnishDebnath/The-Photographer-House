@@ -17,7 +17,7 @@ export const VideoShowcase: React.FC<VideoShowcaseProps> = ({ onNavigate }) => {
                     playsInline
                     className="w-full h-full object-cover opacity-100"
                 >
-                    <source src="/assets/home/Video background.webm" type="video/webm" />
+                    <source src="/assets/home/video background.webm" type="video/webm" />
                     Your browser does not support the video tag.
                 </video>
                 <div className="absolute inset-0 bg-black/60"></div>
