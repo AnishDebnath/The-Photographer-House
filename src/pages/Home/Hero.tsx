@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     playsInline
                     className="w-full h-full object-cover opacity-100"
                 >
-                    <source src="/assets/home/Banner video.webm" type="video/webm" />
+                    <source src="/assets/home/banner-video.webm" type="video/webm" />
                     Your browser does not support the video tag.
                 </video>
                 {/* <iframe

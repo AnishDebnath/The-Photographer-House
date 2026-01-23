@@ -9,7 +9,7 @@ export const contactInfo = [
     {
         icon: Mail,
         label: "Email Us",
-        value: "okimarphotography@gmail.com"
+        value: "tphkolkata@gmail.com"
     },
     {
         icon: Phone,

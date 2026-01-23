@@ -49,9 +49,9 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
 
                             <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group aspect-square">
                                 <img
-                                    src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800"
+                                    src="/assets/about-us/Founder - Preetam Chakraborty.jpeg"
                                     alt="Photographer in action"
-                                    className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105 grayscale-[20%] group-hover:grayscale-0"
+                                    className="w-full h-full object-cover object-bottom transition-transform duration-1000 hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
 
@@ -61,7 +61,7 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
                                         <div className="w-1 h-8 bg-gold-500 rounded-full"></div>
                                         <div>
                                             <p className="text-gold-500 text-[10px] font-bold uppercase tracking-[0.2em] mb-0.5">Founder</p>
-                                            <p className="font-serif text-lg text-white leading-none">Alex Richardson</p>
+                                            <p className="font-serif text-lg text-white leading-none">Preetam Chakraborty</p>
                                         </div>
                                     </div>
                                 </div>

@@ -98,11 +98,11 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, onNavigate })
                     )}
 
                     {/* Badge */}
-                    <div className="absolute top-6 right-6 z-20">
+                    {/* <div className="absolute top-6 right-6 z-20">
                         <span className="bg-black/60 backdrop-blur-md text-white px-4 py-2 text-[10px] uppercase tracking-widest border border-white/20 rounded-full">
                             {service.subtitle}
                         </span>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

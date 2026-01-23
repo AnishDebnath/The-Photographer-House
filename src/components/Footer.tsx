@@ -111,8 +111,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                             </li>
                             <li className="flex items-center gap-3">
                                 <Mail size={18} className="text-gold-500 shrink-0" />
-                                <a href="mailto:okimarphotography@gmail.com" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gold-500 transition-colors truncate">
-                                    okimarphotography@gmail.com
+                                <a href="mailto:tphkolkata@gmail.com" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gold-500 transition-colors truncate">
+                                    tphkolkata@gmail.com
                                 </a>
                             </li>
                         </ul>

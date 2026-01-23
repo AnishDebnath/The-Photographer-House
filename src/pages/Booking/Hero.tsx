@@ -5,7 +5,7 @@ export const Hero: React.FC = () => {
         <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
                 <img
-                    src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?auto=format&fit=crop&q=80&w=1920"
+                    src="/assets/booking banner.jpg"
                     alt="Booking Hero"
                     className="w-full h-full object-cover"
                 />

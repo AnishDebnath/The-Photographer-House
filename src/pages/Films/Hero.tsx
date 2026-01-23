@@ -4,11 +4,21 @@ export const Hero: React.FC = () => {
     return (
         <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
-                <img
-                    src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover opacity-100"
+                >
+                    <source src="/assets/home/video-background.webm" type="video/webm" />
+                    Your browser does not support the video tag.
+                </video>
+                {/* <img
+                    src="/assets/booking banner.jpg"
                     alt="Films Hero"
                     className="w-full h-full object-cover"
-                />
+                /> */}
                 <div className="absolute inset-0 bg-black/50"></div>
             </div>
             <div className="relative z-10 text-center px-4 pt-20">
