@@ -9,7 +9,7 @@ export const Stats: React.FC = () => {
             {/* Rich Background */}
             <div className="absolute inset-0 opacity-20">
                 <img
-                    src="/assets/home/stats background.jpg"
+                    src="/assets/home/stats-background.jpg"
                     alt="Background Texture"
                     className="w-full h-full object-cover"
                 />

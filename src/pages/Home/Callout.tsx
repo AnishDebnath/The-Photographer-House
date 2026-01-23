@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../../components/Button';
-import patternbanner from '../../assets/home/pattern banner.jpg';
+import patternbanner from '../../assets/home/pattern-banner.jpg';
 
 interface CalloutProps {
     onNavigate: (page: string) => void;
