@@ -6,7 +6,7 @@ export const Hero: React.FC = () => {
         <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
                 <LazyImage
-                    src="/assets/booking banner.jpg"
+                    src="/assets/booking-banner.jpg"
                     alt="Portfolio Hero"
                     className="w-full h-full object-cover"
                     containerClassName="w-full h-full"

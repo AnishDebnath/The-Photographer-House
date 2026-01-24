@@ -49,7 +49,7 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
 
                             <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-gray-100 dark:bg-gray-800 group aspect-square">
                                 <img
-                                    src="/assets/about-us/Founder - Preetam Chakraborty.jpeg"
+                                    src="/assets/about-us/founder-preetam-chakraborty.jpeg"
                                     alt="Photographer in action"
                                     className="w-full h-full object-cover object-bottom transition-transform duration-1000 hover:scale-105"
                                 />

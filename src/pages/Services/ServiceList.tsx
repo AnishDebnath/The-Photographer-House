@@ -18,23 +18,23 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
     const getImagesForService = (serviceId: string): string[] => {
         const folderMapping: Record<string, string> = {
             'wedding-full-package': 'wedding',
-            'pre-wedding': 'pre wedding',
-            'engagement': 'ring ceremony',
-            'wedding-night': 'Wedding nights',
+            'pre-wedding': 'pre-wedding',
+            'engagement': 'ring-ceremony',
+            'wedding-night': 'wedding-nights',
             'reception': 'reception',
             'anniversary-shoot': 'reception', // Fallback
             'birthday': 'birthday',
-            'rice-ceremony': 'rice ceremony',
-            'baby-shoot': 'newborn baby shoot',
-            'maternity-shoot': 'newborn baby shoot', // Fallback
+            'rice-ceremony': 'rice-ceremony',
+            'baby-shoot': 'newborn-baby-shoot',
+            'maternity-shoot': 'newborn-baby-shoot', // Fallback
             'jewellery': 'jewellery',
-            'jewellery-model': 'jewellery with model',
-            'product-shoot': 'products with model',
-            'portfolio-shoot': 'products with model', // Fallback
-            'food-photography': 'food photography',
-            'corporate-event': 'corporate event',
+            'jewellery-model': 'jewellery-with-model',
+            'product-shoot': 'products-with-model',
+            'portfolio-shoot': 'products-with-model', // Fallback
+            'food-photography': 'food-photography',
+            'corporate-event': 'corporate-event',
             'photo-albums': 'albums',
-            'light-frame': 'led photoframe',
+            'light-frame': 'led-photoframe',
         };
 
         const folderName = folderMapping[serviceId];

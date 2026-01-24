@@ -79,7 +79,7 @@ export const reviews: FullReview[] = [
         rating: 5,
         image: "https://picsum.photos/id/1005/100/100",
         eventImage: "",
-        video: "/assets/home/homepage hero.mp4",
+        video: "/assets/home/video-background.webm",
         text: "The team captured the soul of our wedding. Every photo brings back a flood of memories. They were invisible yet present everywhere, capturing moments we didn't even know happened. The cinematic film is something our family watches every weekend!",
         source: 'youtube'
     },
