@@ -3,7 +3,7 @@ import { LazyImage } from '../../components/LazyImage';
 
 export const Hero: React.FC = () => {
     return (
-        <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[40vh] md:h-[50vh] min-h-[300px] md:min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
                 <LazyImage
                     src="/assets/booking-banner.jpg"
@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-black/50"></div>
             </div>
-            <div className="relative z-10 text-center px-6 pt-20">
+            <div className="relative z-10 text-center px-6 pt-10 md:pt-20">
                 <p className="text-gold-500 text-[10px] md:text-sm font-bold tracking-[0.2em] uppercase mb-4 animate-fade-in-up">
                     Our Masterpieces
                 </p>

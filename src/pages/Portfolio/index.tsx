@@ -165,9 +165,9 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
       <Hero />
 
       {/* Main Content */}
-      <div className="container mx-auto px-6 py-20 min-h-[500px]">
+      <div className="container mx-auto px-6 py-10 md:py-20 min-h-[500px]">
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12 flex-row animate-in fade-in duration-700">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 flex-row animate-in fade-in duration-700">
           {categories.map(cat => (
             <button
               key={cat}

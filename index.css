@@ -3,7 +3,8 @@ html {
   scroll-behavior: smooth;
 }
 
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -37,6 +38,7 @@ html.lenis, html.lenis body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -46,6 +48,7 @@ html.lenis, html.lenis body {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -56,9 +59,11 @@ html.lenis, html.lenis body {
     transform: translateY(0);
     opacity: 0;
   }
+
   30% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(15px);
     opacity: 0;

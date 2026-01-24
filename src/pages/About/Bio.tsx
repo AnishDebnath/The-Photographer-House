@@ -23,13 +23,16 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
 
                         <div className="prose dark:prose-invert text-gray-600 dark:text-gray-300 leading-relaxed space-y-6">
                             <p className="text-lg md:text-xl lg:text-lg xl:text-xl font-light text-gray-900 dark:text-white">
-                                Founded in 2010, <strong>The Photographer House</strong> began with a simple philosophy: that every photograph should not just prove you were there, but prove how it <em>felt</em> to be there.
-                            </p>
-                            <p className="text-base md:text-lg lg:text-base xl:text-lg">
-                                We are a collective of dreamers, storytellers, and technical perfectionists. Led by Alex Richardson, our team has traveled to over 20 countries, documenting everything from royal weddings in Rajasthan to intimate elopements in the Swiss Alps.
-                            </p>
-                            <p className="text-base md:text-lg lg:text-base xl:text-lg">
-                                We don't believe in cookie-cutter templates. We believe in shadow and light, in the raw emotion of a tear, and the explosive joy of a laugh. When you choose us, you aren't just hiring a person with a camera; you are commissioning an artist to curate your legacy.
+                                Founded in 2010, <strong>The Photographer House</strong> is a professional photography and videography company based in Kolkata, India, dedicated to capturing real moments and genuine emotions.
+                                <p className="text-base md:text-lg lg:text-base xl:text-lg">
+                                    Led by <strong>Preetam Chakraborty</strong>, our skilled team of photographers and cinematographers works across India, offering premium wedding photography, cinematic wedding films, and candid photography that tell authentic, emotion-driven stories.
+                                </p>
+                                <p className="text-base md:text-lg lg:text-base xl:text-lg">
+                                    Beyond weddings, we specialize in jewelry photography, corporate events, birthday parties, ring ceremonies, rice ceremonies (Annaprashan), and e-commerce product shoots, serving both personal and commercial needs.
+                                </p>
+                                <p className="text-base md:text-lg lg:text-base xl:text-lg">
+                                    Known for our natural storytelling, cinematic lighting, creative visuals, and professional approach, The Photographer House is a trusted choice for clients seeking a reliable and creative photographer in Kolkata and across India.
+                                </p>
                             </p>
                         </div>
 
@@ -56,7 +59,7 @@ export const Bio: React.FC<BioProps> = ({ onNavigate }) => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
 
                                 {/* Name and Title Card - Compact */}
-                                <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-xl border border-white/10 py-3 px-5 rounded-xl shadow-2xl transform transition-transform duration-500 hover:scale-105">
+                                <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-xl border border-white/10 py-3 px-4 rounded-xl shadow-2xl transform transition-transform duration-500 hover:scale-105">
                                     <div className="flex items-center gap-3">
                                         <div className="w-1 h-8 bg-gold-500 rounded-full"></div>
                                         <div>

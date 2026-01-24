@@ -7,5 +7,5 @@ export const navLinks = [
     { name: 'Services', page: 'services', sectionId: '' },
     { name: 'About us', page: 'about-tph', sectionId: '' },
     { name: 'Reviews', page: 'reviews', sectionId: '' },
-    { name: 'Blog', page: 'blog', sectionId: '' },
+    // { name: 'Blog', page: 'blog', sectionId: '' },
 ];
