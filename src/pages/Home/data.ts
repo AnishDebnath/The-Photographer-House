@@ -10,21 +10,21 @@ export const clientStories = [
     },
     {
         id: 2,
-        name: "Biswanath & Niketa",
-        category: "Wedding",
-        folderTitle: "Biswanath & Niketa",
+        name: "Harshita & Yash",
+        category: "Reception",
+        folderTitle: "Harshita & Yash",
         location: "Kolkata",
-        image: "/assets/portfolio/wedding/biswanath&niketa-wedding/biswanath&niketa-wedding(2).jpg",
-        description: "Captured the intimate glances and joyful beginnings of their forever."
+        image: "/assets/portfolio/reception/harshita&yash-reception/harshita&yash-reception(1).jpg",
+        description: "Serene moments in nature, reflecting the peace and love of their union."
     },
     {
         id: 3,
-        name: "Pooja & Anik",
+        name: "Deb & Suchismita",
         category: "Wedding",
-        folderTitle: "Pooja & Anik",
+        folderTitle: "Deb & Suchismita",
         location: "Kolkata",
-        image: "/assets/portfolio/wedding/pooja&anik-wedding/pooja&anik-wedding(1).jpg",
-        description: "A grand palace celebration in Jaipur, where royalty meets modern elegance."
+        image: "/assets/portfolio/wedding/deb&suchismita-wedding&reception/deb&suchismita-wedding&reception(1).jpg",
+        description: "A grand palace celebration, where royalty meets modern elegance."
     },
     {
         id: 4,
@@ -46,12 +46,12 @@ export const clientStories = [
     },
     {
         id: 6,
-        name: "Ayesha & Eliyaz",
+        name: "Biswanath & Niketa",
         category: "Wedding",
-        folderTitle: "Ayesha & Eliyaz",
+        folderTitle: "Biswanath & Niketa",
         location: "Kolkata",
-        image: "/assets/portfolio/wedding/ayesha&eliyaz-nikha/ayesha&eliyaz-nikha(2).jpg",
-        description: "Serene moments in nature, reflecting the peace and love of their union."
+        image: "/assets/portfolio/wedding/biswanath&niketa-wedding/biswanath&niketa-wedding(2).jpg",
+        description: "Captured the intimate glances and joyful beginnings of their forever."
     },
 ];
 

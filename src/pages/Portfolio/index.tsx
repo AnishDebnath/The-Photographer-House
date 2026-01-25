@@ -24,24 +24,25 @@ const categoryOrder = [
   'Jewellery Photography'
 ];
 
-const getSortedFolders = (folders: PortfolioFolder[]) => {
-  return [...folders].sort((a, b) => {
-    const catA = a.category || '';
-    const catB = b.category || '';
-
-    if (catA !== catB) {
-      const indexA = categoryOrder.indexOf(catA);
-      const indexB = categoryOrder.indexOf(catB);
-      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
-      if (indexA !== -1) return -1;
-      if (indexB !== -1) return 1;
-      return catA.localeCompare(catB);
-    }
-
-    // Within same category, sort by title alphabetical
-    return a.title.localeCompare(b.title);
-  });
-};
+// Sorting logic removed to respect data.ts order
+// const getSortedFolders = (folders: PortfolioFolder[]) => {
+//   return [...folders].sort((a, b) => {
+//     const catA = a.category || '';
+//     const catB = b.category || '';
+//
+//     if (catA !== catB) {
+//       const indexA = categoryOrder.indexOf(catA);
+//       const indexB = categoryOrder.indexOf(catB);
+//       if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+//       if (indexA !== -1) return -1;
+//       if (indexB !== -1) return 1;
+//       return catA.localeCompare(catB);
+//     }
+//
+//     // Within same category, sort by title alphabetical
+//     return a.title.localeCompare(b.title);
+//   });
+// };
 
 export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 'All', initialFolder = null }) => {
   // State for Navigation & View Modes
@@ -75,9 +76,11 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ initialCategory = 
   const categories = ['All', ...uniqueCategories];
 
   // 2. Logic for what to display based on state
+  // 2. Logic for what to display based on state
+  // Display folders exactly as ordered in data.ts
   const displayedFolders = activeTab === 'All'
-    ? getSortedFolders(projectFolders)
-    : getSortedFolders(projectFolders.filter(f => f.category === activeTab));
+    ? projectFolders
+    : projectFolders.filter(f => f.category === activeTab);
 
   const currentFolder = projectFolders.find(f => f.title === openedFolderTitle && (!openedFolderCategory || f.category === openedFolderCategory));
 
