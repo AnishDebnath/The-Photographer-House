@@ -127,21 +127,21 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
             images: getImagesForService('reception'),
             alignment: 'left'
         },
-        {
-            id: 'anniversary-shoot',
-            category: 'Engagement & Wedding',
-            title: 'Anniversary Shoot',
-            subtitle: 'GRAND CELEBRATIONS',
-            icon: Camera,
-            description: 'Celebrate your lasting love with a professional anniversary photoshoot. We capture the enduring bond and beautiful journey of your relationship.',
-            features: [
-                'Romantic couple portraits',
-                'Indoor & outdoor locations',
-                'Artistic anniversary highlights'
-            ],
-            images: getImagesForService('anniversary-shoot'),
-            alignment: 'right'
-        },
+        // {
+        //     id: 'anniversary-shoot',
+        //     category: 'Engagement & Wedding',
+        //     title: 'Anniversary Shoot',
+        //     subtitle: 'GRAND CELEBRATIONS',
+        //     icon: Camera,
+        //     description: 'Celebrate your lasting love with a professional anniversary photoshoot. We capture the enduring bond and beautiful journey of your relationship.',
+        //     features: [
+        //         'Romantic couple portraits',
+        //         'Indoor & outdoor locations',
+        //         'Artistic anniversary highlights'
+        //     ],
+        //     images: getImagesForService('anniversary-shoot'),
+        //     alignment: 'right'
+        // },
         {
             id: 'birthday',
             category: 'Birthday & Rice Ceremony',
@@ -155,7 +155,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Budget-friendly birthday packages'
             ],
             images: getImagesForService('birthday'),
-            alignment: 'left'
+            alignment: 'right'
         },
         {
             id: 'rice-ceremony',
@@ -170,7 +170,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Affordable family packages'
             ],
             images: getImagesForService('rice-ceremony'),
-            alignment: 'right'
+            alignment: 'left'
         },
         {
             id: 'baby-shoot',
@@ -185,23 +185,23 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Patient and gentle photography approach'
             ],
             images: getImagesForService('baby-shoot'),
-            alignment: 'left'
-        },
-        {
-            id: 'maternity-shoot',
-            category: 'Birthday & Rice Ceremony',
-            title: 'Maternity Shoot',
-            subtitle: 'THE JOURNEY TO MOTHERHOOD',
-            icon: Camera,
-            description: 'Celebrate the beautiful journey of motherhood with an artistic maternity photoshoot. We capture the glow and emotion of this special time in your life.',
-            features: [
-                'Elegant maternity portraits',
-                'Comfortable and creative sessions',
-                'Professional styling and posing'
-            ],
-            images: getImagesForService('maternity-shoot'),
             alignment: 'right'
         },
+        // {
+        //     id: 'maternity-shoot',
+        //     category: 'Birthday & Rice Ceremony',
+        //     title: 'Maternity Shoot',
+        //     subtitle: 'THE JOURNEY TO MOTHERHOOD',
+        //     icon: Camera,
+        //     description: 'Celebrate the beautiful journey of motherhood with an artistic maternity photoshoot. We capture the glow and emotion of this special time in your life.',
+        //     features: [
+        //         'Elegant maternity portraits',
+        //         'Comfortable and creative sessions',
+        //         'Professional styling and posing'
+        //     ],
+        //     images: getImagesForService('maternity-shoot'),
+        //     alignment: 'right'
+        // },
         {
             id: 'jewellery',
             category: 'Jewellery',
@@ -247,21 +247,21 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
             images: getImagesForService('product-shoot'),
             alignment: 'left'
         },
-        {
-            id: 'portfolio-shoot',
-            category: 'Product & Event',
-            title: 'Portfolio / Fashion Shoot',
-            subtitle: 'FASHION & TALENT',
-            icon: Camera,
-            description: 'Professional portfolio shoots for aspiring models, actors, and professionals. We capture your best angles to help you build a compelling visual identity.',
-            features: [
-                'Indoor & outdoor portfolio sessions',
-                'Guidance on posing and styling',
-                'Professional high-end retouching'
-            ],
-            images: getImagesForService('portfolio-shoot'),
-            alignment: 'right'
-        },
+        // {
+        //     id: 'portfolio-shoot',
+        //     category: 'Product & Event',
+        //     title: 'Portfolio / Fashion Shoot',
+        //     subtitle: 'FASHION & TALENT',
+        //     icon: Camera,
+        //     description: 'Professional portfolio shoots for aspiring models, actors, and professionals. We capture your best angles to help you build a compelling visual identity.',
+        //     features: [
+        //         'Indoor & outdoor portfolio sessions',
+        //         'Guidance on posing and styling',
+        //         'Professional high-end retouching'
+        //     ],
+        //     images: getImagesForService('portfolio-shoot'),
+        //     alignment: 'right'
+        // },
         {
             id: 'food-photography',
             category: 'Product & Event',
@@ -275,7 +275,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'High-resolution promotional shots'
             ],
             images: getImagesForService('food-photography'),
-            alignment: 'left'
+            alignment: 'right'
         },
         {
             id: 'corporate-event',
@@ -290,7 +290,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Quick delivery for PR and social media'
             ],
             images: getImagesForService('corporate-event'),
-            alignment: 'right'
+            alignment: 'left'
         },
         {
             id: 'photo-albums',
@@ -305,7 +305,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Multiple size options'
             ],
             images: getImagesForService('photo-albums'),
-            alignment: 'left'
+            alignment: 'right'
         },
         {
             id: 'light-frame',
@@ -320,7 +320,7 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                 'Modern premium finish'
             ],
             images: getImagesForService('light-frame'),
-            alignment: 'right'
+            alignment: 'left'
         }
     ], []);
 
@@ -336,16 +336,16 @@ export const ServiceList: React.FC<ServiceListProps> = ({ onNavigate }) => {
                     <p className="text-gray-500 italic text-sm md:text-base">Choose the perfect package for your needs</p>
                 </div>
 
-                {/* Category Menu with Horizontal Scroll */}
-                <div className="w-full overflow-hidden">
-                    <div className="inline-flex overflow-x-auto no-scrollbar gap-2 bg-gray-100 dark:bg-white/5 p-1.5 rounded-2xl md:rounded-full max-w-full">
+                {/* Category Menu */}
+                <div className="w-full">
+                    <div className="flex flex-wrap justify-start md:justify-start gap-2 md:gap-4 animate-in fade-in duration-700">
                         {categories.map(cat => (
                             <button
                                 key={cat}
                                 onClick={() => setFilter(cat)}
-                                className={`whitespace-nowrap px-5 md:px-6 py-2.5 md:py-2 rounded-xl md:rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 ${filter === cat
-                                    ? 'bg-red-900 text-white shadow-md'
-                                    : 'text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-white/50 dark:hover:bg-white/10'
+                                className={`px-4 py-2 md:px-6 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 ${filter === cat
+                                    ? 'bg-red-900 text-white shadow-md transform scale-105'
+                                    : 'bg-gray-100 dark:bg-white/5 text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-200 dark:hover:bg-white/10'
                                     }`}
                             >
                                 {cat}
