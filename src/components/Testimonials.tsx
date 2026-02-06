@@ -58,8 +58,8 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onNavigate }) => {
                                 )}
                             </div>
 
-                            <blockquote className="text-gray-700 dark:text-gray-200 leading-relaxed mb-8 md:mb-10 font-normal text-base md:text-lg italic relative z-10">
-                                "{testimonial.quote}"
+                            <blockquote className="text-gray-700 dark:text-gray-200 leading-relaxed mb-8 md:mb-10 font-normal text-base md:text-lg italic relative z-10 line-clamp-3">
+                                {"" + testimonial.quote + ""}
                             </blockquote>
 
                             <div className="flex items-center gap-4 mt-auto pt-6 border-t border-gray-200/50 dark:border-white/10 relative z-10">
