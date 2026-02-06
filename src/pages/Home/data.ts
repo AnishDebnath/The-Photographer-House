@@ -1,20 +1,20 @@
 export const clientStories = [
     {
         id: 1,
-        name: "Rajasree & Bishal",
-        category: "Wedding",
-        folderTitle: "Rajasree & Bishal",
-        location: "Kolkata",
-        image: "/assets/portfolio/wedding/rajasree&bishal-wedding/rajasree&bishal-wedding(2).jpg",
-        description: "Serene moments in nature, reflecting the peace and love of their union."
-    },
-    {
-        id: 2,
         name: "Harshita & Yash",
         category: "Reception",
         folderTitle: "Harshita & Yash",
         location: "Kolkata",
         image: "/assets/portfolio/reception/harshita&yash-reception/harshita&yash-reception(1).jpg",
+        description: "Serene moments in nature, reflecting the peace and love of their union."
+    },
+    {
+        id: 2,
+        name: "Rajasree & Bishal",
+        category: "Wedding",
+        folderTitle: "Rajasree & Bishal",
+        location: "Kolkata",
+        image: "/assets/portfolio/wedding/rajasree&bishal-wedding/rajasree&bishal-wedding(2).jpg",
         description: "Serene moments in nature, reflecting the peace and love of their union."
     },
     {
