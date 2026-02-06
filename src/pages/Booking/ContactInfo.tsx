@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter, Globe } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Facebook, Youtube } from 'lucide-react';
 
 export const ContactInfo: React.FC = () => {
     return (
@@ -67,10 +67,9 @@ export const ContactInfo: React.FC = () => {
             <div className="pt-8 border-t border-gray-200 dark:border-white/10">
                 <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">Follow Us</p>
                 <div className="flex gap-4">
-                    <a href="#" className="w-10 h-10 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-500 hover:border-gold-500 hover:text-gold-500 transition-all"><Instagram size={18} /></a>
-                    <a href="#" className="w-10 h-10 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-500 hover:border-gold-500 hover:text-gold-500 transition-all"><Facebook size={18} /></a>
-                    <a href="#" className="w-10 h-10 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-500 hover:border-gold-500 hover:text-gold-500 transition-all"><Twitter size={18} /></a>
-                    <a href="#" className="w-10 h-10 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-500 hover:border-gold-500 hover:text-gold-500 transition-all"><Globe size={18} /></a>
+                    <a href="https://www.youtube.com/@tphkolkata" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-500 hover:border-gold-500 hover:text-gold-500 transition-all" title="Youtube"><Youtube size={18} /></a>
+                    <a href="https://www.facebook.com/tphkolkata" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-500 hover:border-gold-500 hover:text-gold-500 transition-all" title="Facebook"><Facebook size={18} /></a>
+                    <a href="https://www.instagram.com/the_photographer_house" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-500 hover:border-gold-500 hover:text-gold-500 transition-all" title="Instagram"><Instagram size={18} /></a>
                 </div>
             </div>
         </div>

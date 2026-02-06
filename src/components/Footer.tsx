@@ -32,6 +32,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                                 <a
                                     key={social.label}
                                     href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="w-10 h-10 rounded-full bg-gray-50 dark:bg-white/5 flex items-center justify-center text-gray-400 hover:text-gold-500 hover:bg-gold-500/10 transition-all duration-300 border border-gray-100 dark:border-white/10"
                                     aria-label={social.label}
                                 >

@@ -25,8 +25,7 @@ export const footerLinks = {
 };
 
 export const socialLinks = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Youtube, href: '#', label: 'Youtube' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Youtube, href: 'https://www.youtube.com/@tphkolkata', label: 'Youtube' },
+    { icon: Facebook, href: 'https://www.facebook.com/tphkolkata', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/the_photographer_house', label: 'Instagram' },
 ];
