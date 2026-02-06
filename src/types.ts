@@ -76,6 +76,7 @@ export interface FullReview {
   video?: string;
   text: string;
   source: 'google' | 'facebook' | 'instagram' | 'youtube';
+  reviewLink?: string;
 }
 
 export interface FilmItem {

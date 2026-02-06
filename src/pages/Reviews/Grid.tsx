@@ -52,25 +52,56 @@ const renderStars = (count: number) => {
     ));
 };
 
-const renderSourceIcon = (source: FullReview['source'], isOverlay: boolean = false, forceDarkText: boolean = false) => {
+const renderSourceIcon = (review: FullReview, isOverlay: boolean = false) => {
+    const { source, reviewLink } = review;
+
+    const getIcon = () => {
+        switch (source) {
+            case 'google': return <GoogleLogo className="w-3.5 h-3.5 md:w-4 md:h-4" />;
+            case 'facebook': return <FacebookLogo className="w-3.5 h-3.5 md:w-4 md:h-4" />;
+            case 'instagram': return <InstagramLogo className="w-3.5 h-3.5 md:w-4 md:h-4" />;
+            case 'youtube': return <YoutubeLogo className="w-3.5 h-3.5 md:w-4 md:h-4" />;
+            default: return null;
+        }
+    };
+
+    if (source === 'youtube') {
+        const content = (
+            <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border backdrop-blur-md transition-all duration-300 ${reviewLink ? 'hover:bg-red-500/20 active:scale-95 cursor-pointer shadow-lg hover:shadow-red-500/20' : ''} bg-red-500/15 border-red-500/30 text-white font-bold text-[10px] md:text-xs uppercase tracking-wider`}>
+                <YoutubeLogo className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                <span>YouTube</span>
+            </div>
+        );
+        return reviewLink ? (
+            <a href={reviewLink} target="_blank" rel="noopener noreferrer" className="block z-10">{content}</a>
+        ) : content;
+    }
+
+    if (reviewLink) {
+        return (
+            <a
+                href={reviewLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 py-1.5 px-3 rounded-full bg-white/50 dark:bg-white/[0.03] border border-gray-200/50 dark:border-white/[0.05] shadow-sm hover:shadow-md hover:bg-white dark:hover:bg-white/[0.08] transition-all duration-300 group/source z-10"
+                title={`View on ${source}`}
+            >
+                <div className="group-hover/source:scale-110 transition-transform duration-300">
+                    {getIcon()}
+                </div>
+                <span className="text-[10px] md:text-xs font-bold text-gray-600 dark:text-gray-300 group-hover/source:text-blue-600 dark:group-hover/source:text-white transition-colors uppercase tracking-tight capitalize">{source}</span>
+            </a>
+        );
+    }
+
     let textColor = isOverlay ? 'text-white' : 'text-gray-800 dark:text-gray-200';
 
-    // If we use a glassmorphic background (which we will), white text often looks better or specialized colors
-    if (forceDarkText && source !== 'youtube') textColor = 'text-gray-900';
-    if (source === 'youtube') textColor = 'text-white'; // Make YouTube label white as requested
-
-    switch (source) {
-        case 'google':
-            return <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}><GoogleLogo className="w-4 h-4 md:w-5 md:h-5" /> <span>Google</span></div>;
-        case 'facebook':
-            return <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}><FacebookLogo className="w-4 h-4 md:w-5 md:h-5" /> <span>Facebook</span></div>;
-        case 'instagram':
-            return <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}><InstagramLogo className="w-4 h-4 md:w-5 md:h-5" /> <span>Instagram</span></div>;
-        case 'youtube':
-            return <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}><YoutubeLogo className="w-4 h-4 md:w-5 md:h-5" /> <span>YouTube</span></div>;
-        default:
-            return null;
-    }
+    return (
+        <div className={`flex items-center gap-1.5 text-[10px] md:text-xs font-bold ${textColor}`}>
+            {getIcon()}
+            <span className="capitalize">{source}</span>
+        </div>
+    );
 };
 
 const VideoReviewCard: React.FC<{ review: FullReview }> = ({ review }) => {
@@ -90,7 +121,7 @@ const VideoReviewCard: React.FC<{ review: FullReview }> = ({ review }) => {
 
     return (
         <div
-            className="relative h-full aspect-[3/4] md:aspect-auto md:min-h-[400px] bg-dark-900 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group hover:-translate-y-1 block"
+            className="relative h-full aspect-[3/4] md:aspect-auto md:min-h-[400px] bg-dark-900 rounded-2xl shadow-lg transition-all duration-500 border border-gray-100 dark:border-white/5 overflow-hidden group block"
         >
             <video
                 ref={videoRef}
@@ -99,7 +130,7 @@ const VideoReviewCard: React.FC<{ review: FullReview }> = ({ review }) => {
                 playsInline
                 preload="metadata"
                 onClick={togglePlay}
-                className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700 cursor-pointer"
+                className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-700 cursor-pointer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent pointer-events-none"></div>
 
@@ -109,11 +140,8 @@ const VideoReviewCard: React.FC<{ review: FullReview }> = ({ review }) => {
                     <div className="flex gap-1">
                         {renderStars(review.rating)}
                     </div>
-                    {/* Blury Style for Source Icon Container - Red tinted for YouTube */}
-                    <div className={`opacity-95 hover:opacity-100 transition-all backdrop-blur-md px-3.5 py-2 rounded-full border shadow-xl ${review.source === 'youtube' ? 'bg-red-500/15 border-red-500/30' : 'bg-white/10 border-white/20'
-                        }`}>
-                        {renderSourceIcon(review.source, false, false)}
-                    </div>
+                    {/* Source Icon / Link */}
+                    {renderSourceIcon(review, false)}
                 </div>
 
                 <div className="flex items-center gap-4 pt-6 mt-auto pointer-events-auto border-t border-white/10">
@@ -172,8 +200,8 @@ export const Grid: React.FC = () => {
                                     <div className="flex gap-1">
                                         {renderStars(review.rating)}
                                     </div>
-                                    <div className="opacity-80 hover:opacity-100 transition-opacity">
-                                        {renderSourceIcon(review.source)}
+                                    <div className="relative">
+                                        {renderSourceIcon(review)}
                                     </div>
                                 </div>
 
