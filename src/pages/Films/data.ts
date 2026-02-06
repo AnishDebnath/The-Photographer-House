@@ -2,6 +2,12 @@ import { FilmItem } from '../../types';
 
 export const films: FilmItem[] = [
     {
+        id: "jpx1krJzQuM",
+        title: "Hundreds of Kids, One Canvas | Sit & Draw Competition | Lake Road Lake Club",
+        category: "Cinematic Film",
+        description: "A vibrant Sit & Draw competition where hundreds of young artists showcased their creativity on a single canvas."
+    },
+    {
         id: "CD3J_B5OcVQ",
         title: "Lake Road Lake Club Post Kali Puja 2025 | Abir Chatterjee Live",
         category: "Featured Film",
@@ -126,12 +132,6 @@ export const films: FilmItem[] = [
         title: "Bengali Wedding Teaser | Pooja & Anik",
         category: "Cinematic Teaser",
         description: "Highlights of the most emotional and celebratory moments from Pooja and Anik's beautiful wedding day."
-    },
-    {
-        id: "SD9t9ZjpPP0",
-        title: "Wedding Event | Bengali Cuisine",
-        category: "Wedding Film",
-        description: "A visual celebration documenting the rich heritage and mouth-watering delights of traditional Bengali wedding catering."
     },
     {
         id: "XZTsyTt7o_w",
