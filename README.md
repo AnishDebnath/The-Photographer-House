@@ -1,4 +1,29 @@
-# 📸 The Photographer House
+# The Photographer House (Monorepo)
+
+This project is organized as a Turborepo monorepo.
+
+## Structure
+
+- `app/`: Frontend application (React + Vite + TypeScript)
+- `server/`: Backend server (Express + TypeScript)
+
+## Getting Started
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Run development servers:
+   ```bash
+   npm run dev
+   ```
+
+3. Build all projects:
+   ```bash
+   npm run build
+   ```
+
 
 A premium, modern photography portfolio and business management platform built with React, TypeScript, and Vite. Designed to showcase breathtaking visual storytelling through a seamless, cinematic user experience.
 
@@ -25,27 +50,6 @@ A premium, modern photography portfolio and business management platform built w
 - **Email Service**: [EmailJS](https://www.emailjs.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **State Management**: React Hooks (useState, useEffect, useRef)
-
-## 📁 Project Structure
-
-```text
-src/
-├── assets/             # Local optimized images and branding
-│   ├── portfolio/      # Client-specific project folders
-│   └── logo/           # Brand assets
-├── components/         # Shared UI components (NavBar, ChatWidget, etc.)
-│   ├── data/           # Component-specific static data
-│   └── ...
-├── services/           # External API services (EmailJS)
-├── pages/              # Individual page modules
-│   ├── Home/           # Landing page sections
-│   ├── Portfolio/      # Interactive gallery views
-│   ├── Booking/        # Inquiry forms and contact info
-│   └── ...
-├── types/              # Centralized TypeScript definitions
-└── App.tsx             # Main application entry and routing
-```
-
 ## 🛠️ Installation & Setup
 
 To run this project locally, follow these steps:
