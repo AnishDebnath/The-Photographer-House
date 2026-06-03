@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "build:app": "turbo build --filter=app",
     "preview": "turbo preview",
     "lint": "turbo lint"
   },
