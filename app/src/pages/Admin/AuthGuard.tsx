@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../../lib/supabase';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -12,9 +11,9 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
+    const checkAuth = () => {
+      const isAuthenticated = localStorage.getItem('isAuthenticated');
+      if (!isAuthenticated) {
         navigate('/admin/login');
       } else {
         setAuthenticated(true);
@@ -23,16 +22,6 @@ export const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
     };
 
     checkAuth();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) {
-        navigate('/admin/login');
-      } else {
-        setAuthenticated(true);
-      }
-    });
-
-    return () => subscription.unsubscribe();
   }, [navigate]);
 
   if (loading) {

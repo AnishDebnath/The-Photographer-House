@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../../lib/supabase';
 import { Button } from '../../components/ui/Button';
 import { Upload, Save, Trash2, Plus } from 'lucide-react';
 
@@ -10,43 +9,17 @@ export const HomeManager: React.FC = () => {
     videoUrl: '',
     buttonText: '',
   });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    fetchHeroContent();
+    // FIXME: Need to implement fetch using custom API instead of Supabase
   }, []);
-
-  const fetchHeroContent = async () => {
-    const { data, error } = await supabase
-      .from('page_content')
-      .select('content')
-      .eq('page_name', 'home')
-      .eq('section_name', 'hero')
-      .single();
-
-    if (data) {
-      setHeroContent(data.content);
-    }
-    setLoading(false);
-  };
 
   const handleSave = async () => {
     setSaving(true);
-    const { error } = await supabase
-      .from('page_content')
-      .upsert({
-        page_name: 'home',
-        section_name: 'hero',
-        content: heroContent,
-        updated_at: new Date().toISOString(),
-      }, { onConflict: 'page_name,section_name' });
-
-    if (error) {
-      alert('Error saving: ' + error.message);
-    } else {
-      alert('Saved successfully!');
-    }
+    // FIXME: Need to implement save using custom API
+    alert('Save not implemented');
     setSaving(false);
   };
 

@@ -14,7 +14,6 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -37,7 +36,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    localStorage.removeItem('isAuthenticated');
     navigate('/admin/login');
   };
 
@@ -48,13 +47,22 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         className={`${isSidebarOpen ? 'w-64' : 'w-20'
           } bg-dark-800 border-r border-white/10 transition-all duration-300 flex flex-col fixed h-full z-50`}
       >
-        <div className="p-6 flex items-center justify-between">
-          {isSidebarOpen && <span className="font-serif text-xl text-gold-500 tracking-wider">Admin</span>}
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="p-1 hover:bg-white/10 rounded-lg transition-colors"
+        <div className="h-20 flex items-center px-4 border-b border-white/5">
+          <div className="flex items-center gap-3 flex-1 overflow-hidden">
+            <div className="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center text-gold-500 border border-gold-500/20 flex-shrink-0 font-bold">
+              O
+            </div>
+            {isSidebarOpen && (
+              <div className="flex flex-col truncate">
+                <span className="text-sm font-medium text-white truncate">Hello, Owner</span>
+              </div>
+            )}
+          </div>
+          <button 
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)} 
+            className="p-2 text-gray-500 hover:text-white transition-colors flex-shrink-0"
           >
-            {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            {isSidebarOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
 
@@ -85,9 +93,21 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       </aside>
 
       {/* Main Content */}
-      <main className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'} p-8`}>
-        <div className="max-w-6xl mx-auto">
-          {children}
+      <main className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-20'}`}>
+        <header className="bg-dark-800 border-b border-white/10 px-8 py-4 sticky top-0 z-40 shadow-lg">
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
+            <h1 className="text-xl font-serif text-white tracking-wider">
+              The Photographer House <span className="text-gold-500 font-sans font-medium text-xs uppercase tracking-widest ml-2">Admin Portal</span>
+            </h1>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-400 font-medium px-3 py-1 bg-white/5 rounded-full">Dashboard</span>
+            </div>
+          </div>
+        </header>
+        <div className="p-8">
+          <div className="max-w-6xl mx-auto">
+            {children}
+          </div>
         </div>
       </main>
     </div>

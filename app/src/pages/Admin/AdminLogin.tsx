@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
 import { Button } from '../../components/ui/Button';
 
 export const AdminLogin: React.FC = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -17,16 +16,21 @@ export const AdminLogin: React.FC = () => {
     setLoading(true);
     setError(null);
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
 
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else {
+      if (!response.ok) throw new Error('Invalid credentials');
+
+      // Success, navigate
+      localStorage.setItem('isAuthenticated', 'true');
       navigate('/admin');
+    } catch (err: any) {
+      setError(err.message);
+      setLoading(false);
     }
   };
 
@@ -51,13 +55,13 @@ export const AdminLogin: React.FC = () => {
         <form onSubmit={handleLogin} className="space-y-8">
           <div className="space-y-4">
             <div>
-              <label className="block text-gray-400 text-xs uppercase tracking-widest font-semibold mb-2">Email</label>
+              <label className="block text-gray-400 text-xs uppercase tracking-widest font-semibold mb-2">Username</label>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all"
-                placeholder="admin@example.com"
+                placeholder="admin"
                 required
               />
             </div>
@@ -94,7 +98,7 @@ export const AdminLogin: React.FC = () => {
             className="w-full py-4 text-sm font-semibold tracking-wider hover:scale-[1.02] transition-transform"
             disabled={loading}
           >
-            {loading ? 'Authenticating...' : 'Sign In'}
+            {loading ? 'Loading...' : 'Login'}
           </Button>
         </form>
       </div>
