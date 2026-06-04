@@ -27,6 +27,7 @@ export const AdminLogin: React.FC = () => {
 
       // Success, navigate
       localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('username', username);
       navigate('/admin');
     } catch (err: any) {
       setError(err.message);
