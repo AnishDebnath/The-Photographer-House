@@ -21,10 +21,8 @@ import { LoadingBar } from './components/feature/LoadingBar';
 import { SmoothScroll } from './components/feature/SmoothScroll';
 
 // Admin Imports
+import AdminPortal from './pages/Admin';
 import { AdminLogin } from './pages/Admin/AdminLogin';
-import { AuthGuard } from './pages/Admin/AuthGuard';
-import { AdminLayout } from './pages/Admin/AdminLayout';
-import { HomeManager } from './pages/Admin/HomeManager';
 
 function App() {
   const navigate = useNavigate();
@@ -265,31 +263,7 @@ function App() {
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={
-            <AuthGuard>
-              <AdminLayout>
-                <HomeManager />
-              </AdminLayout>
-            </AuthGuard>
-          } />
-          <Route path="/admin/home" element={
-            <AuthGuard>
-              <AdminLayout>
-                <HomeManager />
-              </AdminLayout>
-            </AuthGuard>
-          } />
-          {/* Tabs placeholders */}
-          <Route path="/admin/:tab" element={
-            <AuthGuard>
-              <AdminLayout>
-                <div className="p-8 text-center text-gray-400">
-                  <h2 className="text-2xl font-serif mb-4 uppercase tracking-widest">Under Construction</h2>
-                  <p>Management for this section is coming soon.</p>
-                </div>
-              </AdminLayout>
-            </AuthGuard>
-          } />
+          <Route path="/admin/*" element={<AdminPortal />} />
         </Routes>
       </main>
 

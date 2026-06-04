@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Eye, EyeOff } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { Button } from '../../components/ui/Button';
 
 export const AdminLogin: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
@@ -29,38 +31,59 @@ export const AdminLogin: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-dark-900 px-4">
-      <div className="max-w-md w-full bg-dark-800 p-8 rounded-2xl border border-white/10 shadow-2xl">
-        <div className="text-center mb-8">
-          <h1 className="font-serif text-3xl text-white mb-2">Admin Login</h1>
-          <p className="text-gray-400 text-sm">The Photographer House</p>
+    <div
+      className="min-h-screen flex items-center justify-center bg-black px-4 relative overflow-hidden"
+      style={{
+        backgroundImage: `url('/assets/home/login-banner.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Dark Overlay for readability */}
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm -z-0" />
+
+      <div className="max-w-md w-full bg-black/40 backdrop-blur-xl p-8 rounded-3xl border border-white/5 shadow-2xl relative z-10">
+        <div className="text-center mb-10">
+          <h1 className="font-serif text-3xl text-white mb-3 tracking-tight">Admin Portal</h1>
+          <p className="text-gray-500 text-sm tracking-widest uppercase">The Photographer House</p>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-6">
-          <div>
-            <label className="block text-gray-300 text-sm font-medium mb-2">Email Address</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50 transition-all"
-              required
-            />
-          </div>
+        <form onSubmit={handleLogin} className="space-y-8">
+          <div className="space-y-4">
+            <div>
+              <label className="block text-gray-400 text-xs uppercase tracking-widest font-semibold mb-2">Email</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all"
+                placeholder="admin@example.com"
+                required
+              />
+            </div>
 
-          <div>
-            <label className="block text-gray-300 text-sm font-medium mb-2">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50 transition-all"
-              required
-            />
+            <div className="relative">
+              <label className="block text-gray-400 text-xs uppercase tracking-widest font-semibold mb-2">Password</label>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-600 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all pr-12"
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-[42px] text-gray-500 hover:text-white transition-colors flex items-center justify-center"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/20 text-red-500 text-sm p-3 rounded-lg text-center">
+            <div className="bg-red-500/5 border border-red-500/10 text-red-400 text-xs text-center py-3 px-4 rounded-xl">
               {error}
             </div>
           )}
@@ -68,10 +91,10 @@ export const AdminLogin: React.FC = () => {
           <Button
             type="submit"
             variant="primary"
-            className="w-full py-3"
+            className="w-full py-4 text-sm font-semibold tracking-wider hover:scale-[1.02] transition-transform"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Sign In'}
+            {loading ? 'Authenticating...' : 'Sign In'}
           </Button>
         </form>
       </div>
