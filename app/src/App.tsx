@@ -20,6 +20,12 @@ import { ChatWidget } from './components/ChatWidget';
 import { LoadingBar } from './components/feature/LoadingBar';
 import { SmoothScroll } from './components/feature/SmoothScroll';
 
+// Admin Imports
+import { AdminLogin } from './pages/Admin/AdminLogin';
+import { AuthGuard } from './pages/Admin/AuthGuard';
+import { AdminLayout } from './pages/Admin/AdminLayout';
+import { HomeManager } from './pages/Admin/HomeManager';
+
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,6 +48,8 @@ function App() {
 
   // Derived current page for NavBar highlight
   const currentPage = location.pathname === '/' ? 'home' : (location.pathname === '/home' ? 'home' : location.pathname.substring(1));
+
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   // Update Page Title based on Route
   useEffect(() => {
@@ -216,10 +224,12 @@ function App() {
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-300">
       <SmoothScroll />
       <LoadingBar isNavigating={isNavigating} />
-      <NavBar
-        currentPage={currentPage}
-        onNavigate={handleNavigation}
-      />
+      {!isAdminRoute && (
+        <NavBar
+          currentPage={currentPage}
+          onNavigate={handleNavigation}
+        />
+      )}
 
       <main>
         <Routes>
@@ -252,6 +262,34 @@ function App() {
           <Route path="/special-moments" element={<SpecialMomentsPage onNavigate={handleNavigation} />} />
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/albums" element={<AlbumsPage onNavigate={handleNavigation} />} />
+
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={
+            <AuthGuard>
+              <AdminLayout>
+                <HomeManager />
+              </AdminLayout>
+            </AuthGuard>
+          } />
+          <Route path="/admin/home" element={
+            <AuthGuard>
+              <AdminLayout>
+                <HomeManager />
+              </AdminLayout>
+            </AuthGuard>
+          } />
+          {/* Tabs placeholders */}
+          <Route path="/admin/:tab" element={
+            <AuthGuard>
+              <AdminLayout>
+                <div className="p-8 text-center text-gray-400">
+                  <h2 className="text-2xl font-serif mb-4 uppercase tracking-widest">Under Construction</h2>
+                  <p>Management for this section is coming soon.</p>
+                </div>
+              </AdminLayout>
+            </AuthGuard>
+          } />
         </Routes>
       </main>
 
@@ -336,8 +374,8 @@ function App() {
         </div>
       )}
 
-      <Footer onNavigate={handleNavigation} />
-      <ChatWidget />
+      {!isAdminRoute && <Footer onNavigate={handleNavigation} />}
+      {!isAdminRoute && <ChatWidget />}
     </div>
   );
 }

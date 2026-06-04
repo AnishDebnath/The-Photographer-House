@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { BadgeCheck } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
+import { useContent } from '../../hooks/useContent';
 
 interface HeroProps {
     onNavigate: (page: string) => void;
 }
 
+const FALLBACK_CONTENT = {
+    title: 'Where Every <br /> <span className="italic text-gold-500">Click</span> Tells a Story',
+    subtitle: 'Turning spare moments into lasting memories in Indian weddings, commodities, jewelry, and e-commerce photography since 2010.',
+    videoUrl: '/assets/home/banner-video.webm',
+};
+
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     const [scrollY, setScrollY] = useState(0);
+    const { content } = useContent('home', 'hero', FALLBACK_CONTENT);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,18 +35,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                     playsInline
                     className="w-full h-full object-cover opacity-100"
                 >
-                    <source src="/assets/home/banner-video.webm" type="video/webm" />
+                    <source src={content.videoUrl} type="video/webm" />
                     Your browser does not support the video tag.
                 </video>
-                {/* <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/rjgcZ_mzeOA?autoplay=1&mute=1&controls=0&loop=1&playlist=rjgcZ_mzeOA&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&vq=hd1440p60"
-                    title="Hero Background Video"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    className="w-full h-full scale-[1.5] pointer-events-none opacity-80"
-                ></iframe> */}
                 <div className="absolute inset-0 bg-gradient-to-b from-dark-900/60 via-dark-900/40 to-dark-900/90"></div>
             </div>
 
@@ -51,12 +50,12 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                         www.thephotographerhouse.com
                     </p>
                 </div>
-                <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-[1.1] md:leading-tight">
-                    Where Every <br />
-                    <span className="italic text-gold-500">Click</span> Tells a Story
-                </h1>
+                <h1 
+                    className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-[1.1] md:leading-tight"
+                    dangerouslySetInnerHTML={{ __html: content.title }}
+                />
                 <p className="text-gray-300 max-w-2xl mx-auto mb-8 md:mb-10 font-light text-base md:text-lg px-2">
-                    Turning spare moments into lasting memories in Indian weddings, commodities, jewelry, and e-commerce photography since 2010.
+                    {content.subtitle}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <Button variant="primary" size="lg" onClick={() => onNavigate('portfolio')}>Explore Portfolio</Button>
