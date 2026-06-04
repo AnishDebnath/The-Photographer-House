@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Button } from './Button';
-import logo from '../assets/logo/logo.png';
+import { Button } from '../ui/Button';
+import logo from '../../assets/logo/logo.png';
 
-import { navLinks } from './data';
+import { navLinks } from '../data';
 
 interface NavBarProps {
   currentPage: string;

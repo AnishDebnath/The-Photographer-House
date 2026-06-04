@@ -1,8 +1,8 @@
 import React from 'react';
 import { Quote, Star, MapPin, ArrowRight } from 'lucide-react';
-import { Button } from './Button';
-import { SectionHeader } from './SectionHeader';
-import { testimonials } from './data';
+import { Button } from '../ui/Button';
+import { SectionHeader } from '../common/SectionHeader';
+import { testimonials } from '../data';
 
 const GoogleIcon = ({ className }: { className?: string }) => (
     <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">

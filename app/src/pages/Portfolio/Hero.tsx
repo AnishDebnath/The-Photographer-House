@@ -1,5 +1,5 @@
 import React from 'react';
-import { LazyImage } from '../../components/LazyImage';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 export const Hero: React.FC = () => {
     return (

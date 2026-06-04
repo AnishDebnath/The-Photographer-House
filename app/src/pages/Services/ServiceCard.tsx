@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/ui/Button';
 import { ServiceData } from '../../types';
 
 interface ServiceCardProps {

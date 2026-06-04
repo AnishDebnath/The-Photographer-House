@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/ui/Button';
 
 export const Newsletter: React.FC = () => {
     return (

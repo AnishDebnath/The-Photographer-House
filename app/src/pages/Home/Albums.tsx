@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/ui/Button';
 import { albumImages } from './data';
 
-import { LazyImage } from '../../components/LazyImage';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 interface AlbumsProps {
     onNavigate: (page: string) => void;

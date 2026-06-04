@@ -1,6 +1,6 @@
 import React from 'react';
-import { StatCounter } from './StatCounter';
-import { statItems } from './data';
+import { StatCounter } from '../ui/StatCounter';
+import { statItems } from '../data';
 
 export const Stats: React.FC = () => {
     return (

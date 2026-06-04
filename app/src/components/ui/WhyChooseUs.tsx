@@ -1,6 +1,6 @@
 import React from 'react';
-import { SectionHeader } from './SectionHeader';
-import { philosophyItems } from './data';
+import { SectionHeader } from '../common/SectionHeader';
+import { philosophyItems } from '../data';
 
 export const WhyChooseUs: React.FC = () => {
     return (

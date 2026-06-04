@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button } from '../../components/Button';
-import { SectionHeader } from '../../components/SectionHeader';
+import { Button } from '../../components/ui/Button';
+import { SectionHeader } from '../../components/common/SectionHeader';
 import { GalleryItem } from '../../types';
 import { galleryItems } from './data';
 
-import { LazyImage } from '../../components/LazyImage';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 interface LatestWorkProps {
     onNavigate: (page: string) => void;

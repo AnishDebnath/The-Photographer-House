@@ -1,9 +1,9 @@
 import React from 'react';
 import { Star, ArrowRight } from 'lucide-react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/ui/Button';
 import { GalleryItem } from '../../types';
 
-import { LazyImage } from '../../components/LazyImage';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 import { galleryItems } from '../Home/data';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heart, Award, Clock } from 'lucide-react';
-import { Button } from '../../components/Button';
-import { SectionHeader } from '../../components/SectionHeader';
+import { Button } from '../../components/ui/Button';
+import { SectionHeader } from '../../components/common/SectionHeader';
 
 interface ValuesProps {
     onNavigate: (page: string) => void;

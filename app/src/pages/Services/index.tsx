@@ -4,7 +4,7 @@ import { GalleryItem } from '../../types';
 import { Hero } from './Hero';
 import { ServiceList } from './ServiceList';
 import { WhyChooseUs } from './WhyChooseUs';
-import { Booking } from '../../components/Booking';
+import { Booking } from '../../components/ui/Booking';
 import { SpecialWork } from './SpecialWork';
 
 interface ServicesPageProps {

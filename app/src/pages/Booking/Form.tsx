@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Camera, MapPin, Clock, ChevronDown, ChevronLeft, ChevronRight, Calendar as CalendarIcon, AlertCircle } from 'lucide-react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/ui/Button';
 import { eventTypes } from '../../components/data';
 import { sendBookingInquiry } from '../../services/emailBooking';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { FolderOpen } from 'lucide-react';
 import { PortfolioFolder } from '../../types';
 
-import { LazyImage } from '../../components/LazyImage';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 interface FolderViewProps {
     folders: PortfolioFolder[];

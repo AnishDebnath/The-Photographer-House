@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '../../components/Button';
-import { LazyImage } from '../../components/LazyImage';
+import { Button } from '../../components/ui/Button';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 interface HeroProps {
     onNavigate: (page: string, sectionId?: string) => void;

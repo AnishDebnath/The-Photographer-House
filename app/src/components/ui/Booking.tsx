@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Camera, MapPin, Calendar as CalendarIcon, Phone, ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from './Button';
-import { LazyImage } from './LazyImage';
-import { eventTypes } from './data';
+import { Button } from '../ui/Button';
+import { LazyImage } from '../feature/LazyImage';
+import { eventTypes } from '../data';
 
 interface BookingProps {
     onNavigate: (page: string) => void;
 }
 
-import { sendAvailabilityInquiry } from '../services/emailAvailability';
+import { sendAvailabilityInquiry } from '../../services/emailAvailability';
 
 export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
     const [selectedType, setSelectedType] = useState(eventTypes[0]);

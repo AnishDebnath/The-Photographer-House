@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import { NavBar } from './components/NavBar';
-import { Footer } from './components/Footer';
+import { NavBar } from './components/common/NavBar';
+import { Footer } from './components/common/Footer';
 import { HomePage } from './pages/Home';
 import { PortfolioPage } from './pages/Portfolio';
 import { ServicesPage } from './pages/Services';
@@ -17,8 +17,8 @@ import { AboutPage } from './pages/About';
 import { GalleryItem } from './types';
 import { galleryItems } from './pages/Home/data';
 import { ChatWidget } from './components/ChatWidget';
-import { LoadingBar } from './components/LoadingBar';
-import { SmoothScroll } from './components/SmoothScroll';
+import { LoadingBar } from './components/feature/LoadingBar';
+import { SmoothScroll } from './components/feature/SmoothScroll';
 
 function App() {
   const navigate = useNavigate();

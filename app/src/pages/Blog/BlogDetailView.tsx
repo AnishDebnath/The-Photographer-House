@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Heart, Share2, Calendar, Clock, ArrowRight } from 'lucide-react';
-import { Button } from '../../components/Button';
-import { Booking } from '../../components/Booking';
+import { Button } from '../../components/ui/Button';
+import { Booking } from '../../components/ui/Booking';
 import { BlogPost } from '../../types';
 import { blogPosts } from './data';
 

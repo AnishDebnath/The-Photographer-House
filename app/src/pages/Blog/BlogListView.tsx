@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Search, Calendar, User, ChevronRight } from 'lucide-react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/ui/Button';
 import { BlogPost } from '../../types';
 import { blogPosts } from './data';
 
-import { LazyImage } from '../../components/LazyImage';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 interface BlogListViewProps {
     onPostClick: (post: BlogPost) => void;

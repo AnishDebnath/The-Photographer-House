@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BadgeCheck } from 'lucide-react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/ui/Button';
 
 interface HeroProps {
     onNavigate: (page: string) => void;

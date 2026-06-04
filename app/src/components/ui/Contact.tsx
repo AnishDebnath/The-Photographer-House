@@ -1,6 +1,6 @@
 import React from 'react';
-import { SectionHeader } from './SectionHeader';
-import { contactInfo } from './data';
+import { SectionHeader } from '../common/SectionHeader';
+import { contactInfo } from '../data';
 
 export const Contact: React.FC = () => {
     return (

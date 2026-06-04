@@ -1,7 +1,7 @@
 import React from 'react';
 import { albums } from './data';
 
-import { LazyImage } from '../../components/LazyImage';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 interface GridProps {
     onImageClick: (image: string) => void;

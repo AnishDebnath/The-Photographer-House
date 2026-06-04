@@ -8,14 +8,14 @@ import { Callout } from './Callout';
 import { ClientStories } from './ClientStories';
 import { Albums } from './Albums';
 import { WeddingFilms } from './WeddingFilms';
-import { Booking } from '../../components/Booking';
+import { Booking } from '../../components/ui/Booking';
 import { Services } from './Services';
-import { Faq } from '../../components/Faq';
+import { Faq } from '../../components/ui/Faq';
 import { Blog } from './Blog';
-import { Stats } from '../../components/Stats';
-import { Testimonials } from '../../components/Testimonials';
-import { Contact } from '../../components/Contact';
-import { WhyChooseUs } from '../../components/WhyChooseUs';
+import { Stats } from '../../components/ui/Stats';
+import { Testimonials } from '../../components/ui/Testimonials';
+import { Contact } from '../../components/ui/Contact';
+import { WhyChooseUs } from '../../components/ui/WhyChooseUs';
 
 interface HomePageProps {
     onNavigate: (page: string, sectionId?: string) => void;

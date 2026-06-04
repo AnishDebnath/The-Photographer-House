@@ -1,8 +1,8 @@
 import React from 'react';
 import { Instagram, Facebook, Twitter, Youtube, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
-import logo from '../assets/logo/logo.png';
+import logo from '../../assets/logo/logo.png';
 
-import { footerLinks, socialLinks } from './data';
+import { footerLinks, socialLinks } from '../data';
 
 interface FooterProps {
     onNavigate: (page: string, sectionId?: string) => void;

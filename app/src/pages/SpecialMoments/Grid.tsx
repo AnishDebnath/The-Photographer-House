@@ -1,6 +1,6 @@
 import React from 'react';
 import { SpecialMoment } from '../../types';
-import { LazyImage } from '../../components/LazyImage';
+import { LazyImage } from '../../components/feature/LazyImage';
 
 interface GridProps {
     columns: (SpecialMoment & { actualIndex: number })[][];
