@@ -3,7 +3,7 @@ import { supabaseAdmin } from '../config/supabaseAdmin.js';
 
 export const getMe = async (req: Request, res: Response) => {
   const { username } = req.query;
-  
+
   if (!username) {
     return res.status(400).json({ error: 'Username required' });
   }
