@@ -15,9 +15,22 @@ const FALLBACK_CONTENT = {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
     const [scrollY, setScrollY] = useState(0);
-    const { content } = useContent('home', 'hero', FALLBACK_CONTENT);
+    const [content, setContent] = useState(FALLBACK_CONTENT);
 
     useEffect(() => {
+        fetch('/api/banners/home-hero')
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.asset_url) {
+                    // Update content based on fetched asset
+                    setContent(prev => ({
+                        ...prev,
+                        videoUrl: data.asset_url, // API returns the URL
+                    }));
+                }
+            })
+            .catch(console.error);
+
         const handleScroll = () => {
             setScrollY(window.scrollY);
         };

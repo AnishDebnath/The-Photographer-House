@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LazyImage } from '../../components/feature/LazyImage';
 
 export const Hero: React.FC = () => {
+    const [bannerUrl, setBannerUrl] = useState('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=1920');
+
+    useEffect(() => {
+        fetch('/api/banners/about-hero')
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.asset_url) {
+                    setBannerUrl(data.asset_url);
+                }
+            })
+            .catch(console.error);
+    }, []);
+
     return (
         <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
                 <LazyImage
-                    src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=1920"
+                    src={bannerUrl}
                     alt="About Us Hero"
                     className="w-full h-full object-cover"
                     containerClassName="w-full h-full"

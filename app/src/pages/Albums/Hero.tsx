@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const Hero: React.FC = () => {
+    const [imageUrl, setImageUrl] = useState('https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?auto=format&fit=crop&q=80&w=1200');
+
+    useEffect(() => {
+        fetch('/api/banners/albums-hero')
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.asset_url) {
+                    setImageUrl(data.asset_url);
+                }
+            })
+            .catch(console.error);
+    }, []);
+
     return (
         <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
                 <img
-                    src="https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?auto=format&fit=crop&q=80&w=1200"
+                    src={imageUrl}
                     alt="Albums Hero"
                     className="w-full h-full object-cover"
                 />

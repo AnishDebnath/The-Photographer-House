@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const Hero: React.FC = () => {
+    const [videoUrl, setVideoUrl] = useState('/assets/home/video-background.webm');
+
+    useEffect(() => {
+        fetch('/api/banners/films-hero')
+            .then(res => res.json())
+            .then(data => {
+                if (data && data.asset_url) {
+                    setVideoUrl(data.asset_url);
+                }
+            })
+            .catch(console.error);
+    }, []);
+
     return (
         <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
@@ -11,7 +24,7 @@ export const Hero: React.FC = () => {
                     playsInline
                     className="w-full h-full object-cover opacity-100"
                 >
-                    <source src="/assets/home/video-background.webm" type="video/webm" />
+                    <source src={videoUrl} type="video/webm" />
                     Your browser does not support the video tag.
                 </video>
                 {/* <img
