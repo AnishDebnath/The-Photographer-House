@@ -13,7 +13,7 @@ export const Cta: React.FC<CtaProps> = ({ onNavigate }) => {
                 <div className="relative rounded-[2rem] overflow-hidden bg-dark-900 text-white p-12 md:p-20 text-center shadow-2xl">
                     <div className="absolute inset-0 z-0">
                         <img
-                            src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1920"
+                            src="/assets/cta-banner.jpg"
                             alt="Camera Lens Background"
                             className="w-full h-full object-cover opacity-30"
                         />

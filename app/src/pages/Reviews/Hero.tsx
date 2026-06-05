@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export const Hero: React.FC = () => {
-    const [imageUrl, setImageUrl] = useState('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920');
+    const [imageUrl, setImageUrl] = useState('/assets/reviews/hero-banner.jpg');
 
     useEffect(() => {
         fetch('/api/banners/reviews-hero')

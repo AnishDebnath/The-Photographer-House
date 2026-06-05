@@ -7,7 +7,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
-    const [bannerUrl, setBannerUrl] = useState('https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=1920');
+    const [bannerUrl, setBannerUrl] = useState('assets/special-moments/hero-banner.jpg');
 
     useEffect(() => {
         fetch('/api/banners/special-moments-hero')

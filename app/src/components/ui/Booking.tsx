@@ -8,6 +8,7 @@ interface BookingProps {
     onNavigate: (page: string) => void;
 }
 
+import bookingBanner from '../../assets/booking-banner.jpg';
 import { sendAvailabilityInquiry } from '../../services/emailAvailability';
 
 export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
@@ -184,7 +185,7 @@ export const Booking: React.FC<BookingProps> = ({ onNavigate }) => {
 
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <LazyImage
-                    src="assets/booking banner.jpg"
+                    src={bookingBanner}
                     alt="Booking Background"
                     className="w-full h-full object-cover opacity-20"
                     containerClassName="w-full h-full absolute inset-0"

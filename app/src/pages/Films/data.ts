@@ -2,6 +2,18 @@ import { FilmItem } from '../../types';
 
 export const films: FilmItem[] = [
     {
+        id: "VGFCiZ0nN_w",
+        title: "Bivaan’s Grand Rice Ceremony | Cinematic Annaprashan Teaser",
+        category: "Rice Ceremony",
+        description: "A heartwarming and beautifully captured cinematic journey of Bivaan's Grand Rice Ceremony."
+    },
+    {
+        id: "RluuCvMuuyw",
+        title: "50 Years. One Journey. A Son’s Tribute | Emotional Family Story",
+        category: "Family Story Films",
+        description: "A heartfelt cinematic tribute documenting a remarkable 50-year journey and a son's touching tribute to his family's legacy."
+    },
+    {
         id: "jpx1krJzQuM",
         title: "Hundreds of Kids, One Canvas | Sit & Draw Competition | Lake Road Lake Club",
         category: "Cinematic Film",

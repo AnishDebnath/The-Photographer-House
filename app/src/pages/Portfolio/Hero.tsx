@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { LazyImage } from '../../components/feature/LazyImage';
 
 export const Hero: React.FC = () => {
-    const [bannerUrl, setBannerUrl] = useState('/assets/booking-banner.jpg');
+    const [bannerUrl, setBannerUrl] = useState('/assets/portfolio/hero-banner.jpg');
 
     useEffect(() => {
         fetch('/api/banners/portfolio-hero')
