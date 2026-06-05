@@ -1,15 +1,15 @@
 import React from 'react';
 import { BannerManager } from '../../components/common/BannerManager';
 
-export const HomeManager: React.FC = () => {
+export const FilmsManager: React.FC = () => {
   return (
     <div className="space-y-8">
       <BannerManager
-        bannerName="home-hero"
-        title="Home Banner"
-        fetchUrl="/api/banners/home-hero"
+        bannerName="films-hero"
+        title="Films Banner"
+        fetchUrl="/api/banners/films-hero"
         saveUrl="/api/banners/save"
-        uploadFolder="home/hero-banner"
+        uploadFolder="films/hero-banner"
       />
     </div>
   );

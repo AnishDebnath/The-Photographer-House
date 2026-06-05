@@ -17,7 +17,11 @@ export const uploadAsset = async (req: Request, res: Response) => {
   const stream = Readable.from(req.file.buffer);
 
   const uploadStream = cloudinary.uploader.upload_stream(
-    { folder: folderPath, transformation },
+    { 
+      folder: folderPath, 
+      transformation,
+      resource_type: 'auto' // Crucial: 'auto' handles images/videos/raw files automatically
+    },
     async (error, result) => {
       if (error) return res.status(500).json({ error: error.message });
       
