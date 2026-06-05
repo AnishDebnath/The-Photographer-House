@@ -5,12 +5,15 @@ import { supabaseAdmin } from '../config/supabaseAdmin.js';
 export const login = async (req: Request, res: Response) => {
   try {
     const { username, password } = req.body;
-    
+    console.log('Login attempt for:', username);
+
+    console.log('Querying Supabase...');
     const { data: user, error } = await supabaseAdmin
       .from('auth')
       .select('*')
       .eq('username', username)
       .single();
+    console.log('Supabase query result:', { data: !!user, error });
 
     if (error) {
       console.error('Supabase query error:', error);
