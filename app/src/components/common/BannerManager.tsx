@@ -50,7 +50,7 @@ export const BannerManager: React.FC<BannerManagerProps> = ({ bannerName, title,
     formData.append('file', selectedFile);
 
     const headers: Record<string, string> = { 'x-upload-folder': uploadFolder };
-    
+
     if (savedAsset?.url) {
       try {
         const parts = savedAsset.url.split('/');
@@ -95,13 +95,13 @@ export const BannerManager: React.FC<BannerManagerProps> = ({ bannerName, title,
   return (
     <section className="bg-dark-800 p-4 md:p-8 rounded-2xl border border-white/10 mb-8">
       <h2 className="text-lg md:text-xl font-medium mb-4 md:mb-6">{title}</h2>
-      <div className="border-2 border-dashed border-white/10 rounded-2xl p-0 flex flex-col items-center justify-center bg-dark-900/50 hover:border-gold-500/50 transition-colors overflow-hidden relative min-h-[150px] md:min-h-[250px] group">
+      <div className="border-2 border-dashed border-white/10 rounded-2xl p-0 flex flex-col items-center justify-center bg-dark-900/50 hover:border-gold-500/50 transition-colors overflow-hidden relative group">
         {heroAsset ? (
           <>
             {heroAsset.type === 'video' ? (
-              <video src={heroAsset.url} className="w-full h-full object-cover" autoPlay loop muted playsInline />
+              <video src={heroAsset.url} className="w-full h-auto object-contain" autoPlay loop muted playsInline />
             ) : (
-              <img src={heroAsset.url} alt={title} className="w-full h-full object-cover" />
+              <img src={heroAsset.url} alt={title} className="w-full h-auto object-contain" />
             )}
             {!selectedFile && (
               <div className="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -111,15 +111,15 @@ export const BannerManager: React.FC<BannerManagerProps> = ({ bannerName, title,
                 </label>
               </div>
             )}
-            <button 
-             onClick={() => { setHeroAsset(null); setSelectedFile(null); }}
-             className="absolute top-3 right-3 p-1.5 bg-black/60 backdrop-blur-sm text-white rounded-full hover:bg-black/80 transition-colors border border-white/10"
+            <button
+              onClick={() => { setHeroAsset(null); setSelectedFile(null); }}
+              className="absolute top-3 right-3 p-1.5 bg-black/60 backdrop-blur-sm text-white rounded-full hover:bg-black/80 transition-colors border border-white/10"
             >
               <X size={18} />
             </button>
           </>
         ) : (
-          <label className="cursor-pointer bg-dark-900 border border-gold-500/20 text-gold-500 px-4 py-2 rounded-lg font-bold hover:bg-gold-500/10">
+          <label className="cursor-pointer text-gold-500 w-full h-full min-h-[150px] md:min-h-[250px] flex items-center justify-center font-bold text-sm hover:bg-gold-500/10 text-center transition-colors">
             <input type="file" className="hidden" onChange={handleFileChange} accept="image/*,video/*" />
             Choose {title}
           </label>
