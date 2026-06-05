@@ -20,7 +20,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/app/dist/$1"
+      "destination": "/index.html"
     }
   ]
 }
