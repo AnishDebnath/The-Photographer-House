@@ -1,97 +1,145 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../../components/ui/Button';
-import { Upload, Save, Trash2, Plus } from 'lucide-react';
+import { Upload, X } from 'lucide-react';
 
 export const HomeManager: React.FC = () => {
-  const [heroContent, setHeroContent] = useState({
-    title: '',
-    subtitle: '',
-    videoUrl: '',
-    buttonText: '',
-  });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [savedAsset, setSavedAsset] = useState<{ url: string; type: 'image' | 'video' } | null>(null);
+  const [heroAsset, setHeroAsset] = useState<{ url: string; type: 'image' | 'video' } | null>(null);
   const [loading, setLoading] = useState(false);
-  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    // FIXME: Need to implement fetch using custom API instead of Supabase
+    fetch('/api/banners/home-hero')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.asset_url) {
+          const asset = { url: data.asset_url, type: data.asset_type };
+          setHeroAsset(asset);
+          setSavedAsset(asset);
+        }
+      })
+      .catch(console.error);
   }, []);
 
-  const handleSave = async () => {
-    setSaving(true);
-    // FIXME: Need to implement save using custom API
-    alert('Save not implemented');
-    setSaving(false);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    setHeroAsset({
+      url: URL.createObjectURL(file),
+      type: file.type.startsWith('video/') ? 'video' : 'image'
+    });
   };
 
-  if (loading) return <div>Loading...</div>;
+  const handleCancel = () => {
+    setHeroAsset(savedAsset);
+    setSelectedFile(null);
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) return;
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    const headers: Record<string, string> = { 'x-upload-folder': 'home/hero-banner' };
+    
+    // Attempt to extract public ID if replacing existing asset
+    if (savedAsset?.url) {
+      try {
+        // Cloudinary URL structure: .../upload/v12345/folder/public_id.ext
+        const parts = savedAsset.url.split('/');
+        const fileNameWithExt = parts[parts.length - 1];
+        // Ensure the path matches the one used in uploadController.ts
+        const publicId = `The Photographer House/home/hero-banner/${fileNameWithExt.split('.')[0]}`;
+        headers['x-old-public-id'] = publicId;
+      } catch (e) {
+        console.error('Failed to parse old public ID:', e);
+      }
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        headers,
+        body: formData,
+      });
+      const data = await response.json();
+      const assetData = {
+        url: data.url,
+        type: selectedFile.type.startsWith('video/') ? 'video' : 'image'
+      };
+
+      await fetch('/api/banners/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'home-hero', asset_url: assetData.url, asset_type: assetData.type })
+      });
+
+      setHeroAsset(assetData);
+      setSavedAsset(assetData);
+      setSelectedFile(null);
+    } catch (err) {
+      console.error(err);
+      alert('Upload/Save failed');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-serif">Home Page Management</h1>
-        <Button onClick={handleSave} disabled={saving} variant="primary">
-          <Save size={18} className="mr-2" />
-          {saving ? 'Saving...' : 'Save Changes'}
-        </Button>
-      </div>
+      <section className="bg-dark-800 p-4 md:p-8 rounded-2xl border border-white/10">
+        <h2 className="text-lg md:text-xl font-medium mb-4 md:mb-6">Hero Banner</h2>
+        <div className="border-2 border-dashed border-white/10 rounded-2xl p-0 flex flex-col items-center justify-center bg-dark-900/50 hover:border-gold-500/50 transition-colors overflow-hidden relative min-h-[150px] md:min-h-[250px] group">
+          {heroAsset ? (
+            <>
+              {heroAsset.type === 'video' ? (
+                <video src={heroAsset.url} className="w-full h-full object-cover" autoPlay loop muted playsInline />
+              ) : (
+                <img src={heroAsset.url} alt="Hero" className="w-full h-full object-cover" />
+              )}
 
-      <section className="bg-dark-800 p-6 rounded-2xl border border-white/10">
-        <h2 className="text-xl font-medium mb-6 flex items-center gap-2">
-          Hero Section
-        </h2>
-        <div className="grid gap-6">
-          <div>
-            <label className="block text-gray-400 text-sm mb-2">Main Title (Use &lt;br /&gt; for line breaks)</label>
-            <input
-              type="text"
-              value={heroContent.title}
-              onChange={(e) => setHeroContent({ ...heroContent, title: e.target.value })}
-              className="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-2 text-white focus:ring-1 focus:ring-gold-500 outline-none"
-              placeholder="Where Every Click Tells a Story"
-            />
-          </div>
-          <div>
-            <label className="block text-gray-400 text-sm mb-2">Subtitle / Description</label>
-            <textarea
-              value={heroContent.subtitle}
-              onChange={(e) => setHeroContent({ ...heroContent, subtitle: e.target.value })}
-              className="w-full bg-dark-900 border border-white/10 rounded-lg px-4 py-2 text-white focus:ring-1 focus:ring-gold-500 outline-none h-24"
-              placeholder="Turning spare moments into lasting memories..."
-            />
-          </div>
-          <div>
-            <label className="block text-gray-400 text-sm mb-2">Background Video/Image URL</label>
-            <div className="flex gap-4">
-              <input
-                type="text"
-                value={heroContent.videoUrl}
-                onChange={(e) => setHeroContent({ ...heroContent, videoUrl: e.target.value })}
-                className="flex-1 bg-dark-900 border border-white/10 rounded-lg px-4 py-2 text-white focus:ring-1 focus:ring-gold-500 outline-none"
-                placeholder="/assets/home/banner-video.webm"
-              />
-              <Button variant="dark-outline">
-                <Upload size={18} className="mr-2" />
-                Upload
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+              {/* Replace Overlay */}
+              {!selectedFile && (
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <label className="cursor-pointer bg-gold-500 text-black px-6 py-2 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-white hover:text-black transition-all">
+                    <input type="file" className="hidden" onChange={handleFileChange} accept="image/*,video/*" />
+                    Replace
+                  </label>
+                </div>
+              )}
 
-      {/* Gallery Section Placeholder */}
-      <section className="bg-dark-800 p-6 rounded-2xl border border-white/10">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-medium">Gallery Images</h2>
-          <Button variant="dark-outline" size="sm">
-            <Plus size={18} className="mr-2" />
-            Add Image
-          </Button>
+            </>
+          ) : (
+            <label className="cursor-pointer bg-dark-900 border border-gold-500/20 text-gold-500 px-4 py-2 rounded-lg font-bold hover:bg-gold-500/10">
+              <input type="file" className="hidden" onChange={handleFileChange} accept="image/*,video/*" />
+              Choose Hero Image / Video
+            </label>
+          )}
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="aspect-square bg-dark-900 rounded-lg border border-dashed border-white/20 flex items-center justify-center text-gray-500">
-            No images added
+
+        {selectedFile && (
+          <div className="mt-6 flex gap-4 justify-center">
+            <Button
+              onClick={handleCancel}
+              variant="danger"
+              size="sm"
+              className="rounded-xl"
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleUpload}
+              disabled={loading}
+              variant="primary"
+              size="sm"
+              className="rounded-xl"
+            >
+              {loading ? 'Uploading...' : 'Upload'}
+            </Button>
           </div>
-        </div>
+        )}
       </section>
     </div>
   );

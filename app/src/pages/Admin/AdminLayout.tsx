@@ -21,14 +21,14 @@ interface AdminLayoutProps {
 
 const TABS = [
   { id: 'home', label: 'Home', icon: Home, path: '/admin/home' },
-  { id: 'about', label: 'About', icon: User, path: '/admin/about' },
-  { id: 'portfolio', label: 'Portfolio', icon: Image, path: '/admin/portfolio' },
-  { id: 'services', label: 'Services', icon: Camera, path: '/admin/services' },
-  { id: 'films', label: 'Films', icon: Film, path: '/admin/films' },
-  { id: 'reviews', label: 'Reviews', icon: MessageSquare, path: '/admin/reviews' },
-  { id: 'blog', label: 'Blog', icon: BookOpen, path: '/admin/blog' },
   { id: 'special-moments', label: 'Special Moments', icon: Heart, path: '/admin/special-moments' },
+  { id: 'portfolio', label: 'Portfolio', icon: Image, path: '/admin/portfolio' },
+  { id: 'films', label: 'Films', icon: Film, path: '/admin/films' },
   { id: 'albums', label: 'Albums', icon: Image, path: '/admin/albums' },
+  { id: 'services', label: 'Services', icon: Camera, path: '/admin/services' },
+  { id: 'about', label: 'About', icon: User, path: '/admin/about' },
+  { id: 'reviews', label: 'Reviews', icon: MessageSquare, path: '/admin/reviews' },
+  // { id: 'blog', label: 'Blog', icon: BookOpen, path: '/admin/blog' },
 ];
 
 export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
@@ -73,8 +73,8 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       className={`w-64 bg-dark-800 border-r border-white/10 transition-all duration-300 flex flex-col h-screen`}
     >
       <div className="flex flex-col items-center py-8 border-b border-white/5 relative">
-        <button 
-          onClick={() => setIsMobileOpen(false)} 
+        <button
+          onClick={() => setIsMobileOpen(false)}
           className="absolute top-4 right-4 p-2 text-gray-500 hover:text-white transition-colors xl:hidden"
         >
           <X size={18} />
