@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { supabaseAdmin } from '../config/supabaseAdmin';
+import { supabaseAdmin } from '../config/supabaseAdmin.js';
 
 export const getMe = async (req: Request, res: Response) => {
   const { username } = req.query;

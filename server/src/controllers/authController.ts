@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { supabaseAdmin } from '../config/supabaseAdmin';
+import { supabaseAdmin } from '../config/supabaseAdmin.js';
 
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;

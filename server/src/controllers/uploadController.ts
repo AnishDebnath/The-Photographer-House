@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { cloudinary } from '../config/cloudinaryConfig';
+import { cloudinary } from '../config/cloudinaryConfig.js';
 import { Readable } from 'stream';
 
 export const uploadAsset = async (req: Request, res: Response) => {
