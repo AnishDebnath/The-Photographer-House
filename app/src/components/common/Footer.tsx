@@ -2,6 +2,7 @@ import React from 'react';
 import { Instagram, Facebook, Twitter, Youtube, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import logo from '../../assets/logo/logo.png';
 
+import { Watermark } from '../Watermark';
 import { footerLinks, socialLinks } from '../data';
 
 interface FooterProps {
@@ -132,6 +133,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                         <button className="text-[10px] uppercase tracking-[0.2em] text-gray-400 hover:text-gold-500 transition-colors">Cookies</button>
                     </div>
                 </div>
+                <Watermark />
             </div>
         </footer>
     );
