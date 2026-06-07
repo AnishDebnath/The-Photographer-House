@@ -35,17 +35,18 @@ export const reviews: FullReview[] = [
         source: 'google',
         reviewLink: ""
     },
-    {
-        id: 3,
-        name: "Pamela Banerjee",
-        location: "Kolkata",
-        rating: 5,
-        image: "/assets/reviews/pamela.png",
-        eventImage: "/assets/reviews/pamela-banner.jpeg",
-        text: "Pritam and his team did a wonderful job during our son’s thread ceremony function. He was patient enough to undergo multiple change requests and delivered all the items promised (multiple videos , album) to our utmost satisfaction.. Will surely recommend him for capturing your precious moments.",
-        source: 'google',
-        reviewLink: "https://maps.app.goo.gl/GEQAv1APbEDcCuSi8"
-    },
+    //Add later, for now it will off.
+    // {
+    //     id: 3,
+    //     name: "Pamela Banerjee",
+    //     location: "Kolkata",
+    //     rating: 5,
+    //     image: "/assets/reviews/pamela.png",
+    //     eventImage: "/assets/reviews/pamela-banner.jpeg",
+    //     text: "Pritam and his team did a wonderful job during our son’s thread ceremony function. He was patient enough to undergo multiple change requests and delivered all the items promised (multiple videos , album) to our utmost satisfaction.. Will surely recommend him for capturing your precious moments.",
+    //     source: 'google',
+    //     reviewLink: "https://maps.app.goo.gl/GEQAv1APbEDcCuSi8"
+    // },
     {
         id: 4,
         name: "Indranil Ganguly",
@@ -101,15 +102,16 @@ export const reviews: FullReview[] = [
     //     source: 'google',
     //     reviewLink: "https://maps.app.goo.gl/kAsdopCKPyTxy4taA"
     // },
-    {
-        id: 9,
-        name: "Arijit Ghoshal",
-        location: "Kolkata",
-        rating: 5,
-        image: "/assets/reviews/arijit.png",
-        eventImage: "/assets/reviews/arijit-banner.jpeg",
-        text: "The team captured the soul of our wedding. The colors, the emotions, the jewelry details—everything was preserved beautifully. Highly recommend!",
-        source: 'google',
-        reviewLink: "https://maps.app.goo.gl/VSnvM98kCxfTLEnQ7"
-    },
+    //Add later, for now it will off.
+    // {
+    //     id: 9,
+    //     name: "Arijit Ghoshal",
+    //     location: "Kolkata",
+    //     rating: 5,
+    //     image: "/assets/reviews/arijit.png",
+    //     eventImage: "/assets/reviews/arijit-banner.jpeg",
+    //     text: "The team captured the soul of our wedding. The colors, the emotions, the jewelry details—everything was preserved beautifully. Highly recommend!",
+    //     source: 'google',
+    //     reviewLink: "https://maps.app.goo.gl/VSnvM98kCxfTLEnQ7"
+    // },
 ];
