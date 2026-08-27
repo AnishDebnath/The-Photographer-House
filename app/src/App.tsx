@@ -55,8 +55,8 @@ function App() {
     const path = location.pathname;
 
     const titles: Record<string, string> = {
-      '/': 'Premium Photography & Cinematography',
-      '/home': 'Premium Photography & Cinematography',
+      '/': 'Best Wedding Photography & Cinematography in Kolkata',
+      '/home': 'Best Wedding Photography & Cinematography',
       '/about-tph': 'About Our Story',
       '/portfolio': portfolioFolder ? `${portfolioFolder} Gallery` : 'Portfolio & Gallery',
       '/services': 'Services',

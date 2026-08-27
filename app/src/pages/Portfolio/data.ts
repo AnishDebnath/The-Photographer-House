@@ -182,6 +182,18 @@ export const projectFolders: PortfolioFolder[] = [
         }))
     },
     {
+        title: "Bivaan",
+        category: "Rice Ceremony",
+        coverImage: "/assets/portfolio/rice-ceremony/bivaan-rice-ceremony/bivaan-rice-ceremony(10).jpg",
+        count: 21,
+        items: Array.from({ length: 21 }, (_, i) => ({
+            id: 6101 + i,
+            image: `/assets/portfolio/rice-ceremony/bivaan-rice-ceremony/bivaan-rice-ceremony(${i + 1}).jpg`,
+            title: "Bivaan",
+            category: "Rice Ceremony"
+        }))
+    },
+    {
         title: "Kiara",
         category: "Rice Ceremony",
         coverImage: "/assets/portfolio/rice-ceremony/kiara-rice-ceremony/kiara-rice-ceremony-cover.jpg",
