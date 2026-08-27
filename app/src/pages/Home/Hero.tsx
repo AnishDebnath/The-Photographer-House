@@ -4,7 +4,7 @@ import { Button } from '../../components/ui/Button';
 import { useContent } from '../../hooks/useContent';
 
 interface HeroProps {
-    onNavigate: (page: string) => void;
+    onNavigate: (page: string, sectionId?: string) => void;
 }
 
 const FALLBACK_CONTENT = {

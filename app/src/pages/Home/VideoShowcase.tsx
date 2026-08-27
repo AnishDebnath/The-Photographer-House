@@ -3,7 +3,7 @@ import { Play } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 
 interface VideoShowcaseProps {
-    onNavigate: (page: string) => void;
+    onNavigate: (page: string, sectionId?: string) => void;
 }
 
 export const VideoShowcase: React.FC<VideoShowcaseProps> = ({ onNavigate }) => {

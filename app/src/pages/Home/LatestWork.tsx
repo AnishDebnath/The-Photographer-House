@@ -7,7 +7,7 @@ import { galleryItems } from './data';
 import { LazyImage } from '../../components/feature/LazyImage';
 
 interface LatestWorkProps {
-    onNavigate: (page: string) => void;
+    onNavigate: (page: string, sectionId?: string) => void;
     setLightboxItem: (item: GalleryItem | null) => void;
 }
 

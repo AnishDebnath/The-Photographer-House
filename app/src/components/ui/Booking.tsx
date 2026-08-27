@@ -5,7 +5,7 @@ import { LazyImage } from '../feature/LazyImage';
 import { eventTypes } from '../data';
 
 interface BookingProps {
-    onNavigate: (page: string) => void;
+    onNavigate: (page: string, sectionId?: string) => void;
 }
 
 import bookingBanner from '../../assets/booking-banner.jpg';

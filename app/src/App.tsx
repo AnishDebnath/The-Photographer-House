@@ -259,7 +259,7 @@ function App() {
           <Route path="/blog" element={<BlogPage onNavigate={handleNavigation} initialPostId={selectedBlogId} />} />
           <Route path="/special-moments" element={<SpecialMomentsPage onNavigate={handleNavigation} />} />
           <Route path="/booking" element={<BookingPage />} />
-          <Route path="/albums" element={<AlbumsPage onNavigate={handleNavigation} />} />
+          <Route path="/albums" element={<AlbumsPage />} />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
